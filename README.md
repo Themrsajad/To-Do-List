@@ -1,4 +1,4 @@
-# To-Do List App
+# To-Do List App (Developing)
 
 A simple, powerful app to organize your tasks and stay productive, with a great UI/UX for a seamless experience.
 
