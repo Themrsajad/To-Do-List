@@ -1,7 +1,7 @@
 import CheckIcon from "@mui/icons-material/Check";
 import { useZState } from "../states";
 import { Edit, RecordCircle } from "iconsax-react";
-import { TaskType } from "@/types";
+import { priorityNumToStr, TaskType } from "@/types";
 import { colors } from "@/App";
 import { differenceInDays, format } from "date-fns";
 
@@ -19,37 +19,40 @@ export default function Task({ task }: { task: TaskType }) {
       )
     );
   }
+
   const today = new Date();
-  const DaysLeft = differenceInDays(task.date || today, today);
+  const DaysLeft = differenceInDays(task.deadlineDate || today, today);
+  
   return (
     <div className="EACHTASK flex my-2 h-12">
       <div className="TEXTPART h-full flex flex-row items-center justify-between bg-c text-lg font-medium px-3 mr-2 text-d indent-1 flex-1 rounded-l-lg rounded-r-sm no-select">
         <div className="flex gap-x-4">
           {task.todo}
-          {task.flag && (
+          {task.priority > 0 && (
             <span className="flex flex-row justify-center items-center text-sm font-semibold p-1 bg-b rounded-lg">
               <RecordCircle
                 variant="Bold"
                 size={16}
                 color={
-                  task.flag == "Low"
+                  task.priority == 1
                     ? "#2196f3"
-                    : task.flag == "Medium"
+                    : task.priority == 2
                     ? "#ff9800"
-                    : task.flag == "High"
+                    : task.priority == 3
                     ? colors.red
                     : colors.d
                 }
               />
-              {task.flag}
+              {priorityNumToStr(task.priority)}
             </span>
           )}
         </div>
-        {task.date && (
+        {task.deadlineDate && (
           <span className="bg-red text-white rounded-md px-2 py-1 text-sm">
-            {DaysLeft == 0 && format(task.date, "P") != format(today, "P")
+            {DaysLeft == 0 &&
+            format(task.deadlineDate, "P") != format(today, "P")
               ? "Tomorrow"
-              : format(task.date, "P") == format(today, "P")
+              : format(task.deadlineDate, "P") == format(today, "P")
               ? "Today"
               : DaysLeft == 1
               ? DaysLeft + " Day left"

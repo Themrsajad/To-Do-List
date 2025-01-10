@@ -10,7 +10,19 @@ export interface Colors {
 export interface TaskType {
   id: string;
   todo: string;
-  flag: string;
-  date: Date | undefined;
+  priority: number;
+  deadlineDate: Date | undefined;
+  dateAdded: Date;
   isEditing: boolean;
+}
+
+export function priorityNumToStr(n: number) {
+  switch (n) {
+    case 1:
+      return "Low";
+    case 2:
+      return "Medium";
+    case 3:
+      return "High";
+  }
 }

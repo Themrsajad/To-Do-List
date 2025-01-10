@@ -3,38 +3,48 @@ import { mountStoreDevtool } from "simple-zustand-devtools";
 import { TaskType } from "./types";
 
 type State = {
-  isOpen: boolean;
+  inputValue: string;
   moveTag: boolean;
   tasks: TaskType[];
-  flag: string;
+  priority: number;
   tag: string;
-  date: Date | undefined;
+  deadlineDate: Date | undefined;
+  sortBy: string;
+  isAscending: boolean;
 };
 
 type Action = {
-  setIsOpen: (bool?: boolean) => void;
+  setInputValue: (val: string) => void;
   setMoveTag: (bool?: boolean) => void;
   setTasks: (arr: TaskType[]) => void;
-  setFlag: (f: string) => void;
+  setPriority: (prio: number) => void;
   setTag: (t: string) => void;
-  setDate: (date: Date | undefined) => void;
+  setDeadlineDate: (date: Date | undefined) => void;
+  setSortBy: (sort: string) => void;
+  setIsAscending: (bool?: boolean) => void;
 };
 
 export const useZState = create<State & Action>((set) => ({
-  isOpen: false,
+  inputValue: "",
   moveTag: false,
   tasks: [],
-  flag: "",
+  priority: 0,
   tag: "",
-  date: undefined,
-  setIsOpen: (bool) =>
-    set((s) => ({ isOpen: typeof bool === "boolean" ? bool : !s.isOpen })),
+  deadlineDate: undefined,
+  sortBy: "Date Added",
+  isAscending: true,
+  setInputValue: (val) => set(() => ({ inputValue: val })),
   setMoveTag: (bool) =>
     set((s) => ({ moveTag: typeof bool === "boolean" ? bool : !s.moveTag })),
   setTasks: (arr) => set(() => ({ tasks: arr })),
-  setFlag: (f) => set(() => ({ flag: f })),
+  setPriority: (prio) => set(() => ({ priority: prio })),
   setTag: (t) => set(() => ({ tag: t })),
-  setDate: (date) => set(() => ({ date: date })),
+  setDeadlineDate: (date) => set(() => ({ deadlineDate: date })),
+  setSortBy: (sort) => set(() => ({ sortBy: sort })),
+  setIsAscending: (bool) =>
+    set((s) => ({
+      isAscending: typeof bool === "boolean" ? bool : !s.isAscending,
+    })),
 }));
 
 if (process.env.NODE_ENV === "development") {

@@ -3,14 +3,8 @@ import { useZState } from "../states";
 import { Add } from "iconsax-react";
 import { TaskType } from "@/types";
 
-export default function EditForm({
-  task,
-  onChooseFlag,
-}: {
-  onChooseFlag: (name: string) => void;
-  task: TaskType;
-}) {
-  const { tasks, setTasks, setIsOpen, setFlag } = useZState();
+export default function EditForm({ task }: { task: TaskType }) {
+  const { tasks, setTasks, setPriority } = useZState();
 
   const [value, setValue] = useState(task.todo);
 
@@ -27,8 +21,7 @@ export default function EditForm({
     if (!value) return;
     handleEditInEditForm(value, task.id);
     setValue("");
-    setIsOpen(false);
-    setFlag("");
+    setPriority(0);
   }
 
   return (
@@ -37,14 +30,6 @@ export default function EditForm({
         onSubmit={handleSubmit}
         className="FORM flex flex-nowrap justify-center items-center h-12 my-2 font-medium"
       >
-        {/* {value && (
-          <button
-            type="button"
-            className="SUB flex-none text-lg p-3 mr-1 bg-a rounded-l-lg rounded-r-sm shadow-sm"
-          >
-            <PlaylistAddIcon sx={{ color: colors.d }} />
-          </button>
-        )} */}
         <div className="INPUT&FLAG flex-nowrap mr-2 flex flex-1 items-center relative h-full">
           <input
             autoFocus
@@ -54,16 +39,6 @@ export default function EditForm({
             placeholder="Update Task..."
             className="bg-c h-full placeholder-b text-d text-lg px-3 pl-3w-full flex-1 rounded-r-lg indent-1 outline-none shadow-sm rounded-l-lg focus:ring-2 ring-inset ring-d"
           />
-          {/* {value && (
-            <button
-              type="button"
-              onClick={() => setIsOpen(() => !isOpen)}
-              className="FLAG absolute right-[0.5rem] p-[0.28rem] focus:bg-d/15 rounded-lg"
-            >
-              <FlagIcon sx={{ color: colors.d, fontSize: 30 }} />
-            </button>
-          )} */}
-          {/* {isOpen && <Dropdown onChooseFlag={onChooseFlag} />} */}
         </div>
         <button
           type="submit"
