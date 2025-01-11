@@ -1,13 +1,14 @@
 import { create } from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
-import { TaskType } from "./types";
+import { TagType, TaskType } from "./types";
 
 type State = {
   inputValue: string;
   moveTag: boolean;
   tasks: TaskType[];
   priority: number;
-  tag: string;
+  tags: TagType[];
+  tagInputValue: string;
   deadlineDate: Date | undefined;
   sortBy: string;
   isAscending: boolean;
@@ -18,7 +19,8 @@ type Action = {
   setMoveTag: (bool?: boolean) => void;
   setTasks: (arr: TaskType[]) => void;
   setPriority: (prio: number) => void;
-  setTag: (t: string) => void;
+  setTags: (tags: TagType[]) => void;
+  setTagInputValue: (val: string) => void;
   setDeadlineDate: (date: Date | undefined) => void;
   setSortBy: (sort: string) => void;
   setIsAscending: (bool?: boolean) => void;
@@ -29,7 +31,8 @@ export const useZState = create<State & Action>((set) => ({
   moveTag: false,
   tasks: [],
   priority: 0,
-  tag: "",
+  tags: [],
+  tagInputValue: "",
   deadlineDate: undefined,
   sortBy: "Date Added",
   isAscending: true,
@@ -38,7 +41,8 @@ export const useZState = create<State & Action>((set) => ({
     set((s) => ({ moveTag: typeof bool === "boolean" ? bool : !s.moveTag })),
   setTasks: (arr) => set(() => ({ tasks: arr })),
   setPriority: (prio) => set(() => ({ priority: prio })),
-  setTag: (t) => set(() => ({ tag: t })),
+  setTags: (tags) => set(() => ({ tags: tags })),
+  setTagInputValue: (val) => set(() => ({ tagInputValue: val })),
   setDeadlineDate: (date) => set(() => ({ deadlineDate: date })),
   setSortBy: (sort) => set(() => ({ sortBy: sort })),
   setIsAscending: (bool) =>

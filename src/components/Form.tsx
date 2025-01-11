@@ -17,6 +17,8 @@ export default function Form() {
     setDeadlineDate,
     inputValue,
     setInputValue,
+    tags,
+    setTags,
   } = useZState();
 
   function handleAddTasks(task: string) {
@@ -26,6 +28,7 @@ export default function Form() {
         id: v4(),
         todo: task,
         priority: priority,
+        tags: tags,
         deadlineDate: deadlineDate,
         dateAdded: new Date(),
         isEditing: false,
@@ -40,6 +43,7 @@ export default function Form() {
     setInputValue("");
     setPriority(0);
     setDeadlineDate(undefined);
+    setTags([]);
   }
 
   return (
@@ -61,8 +65,9 @@ export default function Form() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             type="text"
+            autoFocus
             placeholder="like 'Reading my Lessons'"
-            className={`bg-c placeholder-b text-d text-lg h-full w-full flex-1 rounded-r-lg indent-4 outline-none focus:ring-2 ring-inset ring-d z-20 ${
+            className={`bg-c placeholder-b text-d text-lg h-full w-full flex-1 rounded-r-lg indent-4 outline-none focus:ring-1 ring-inset ring-d z-20 ${
               inputValue ? "rounded-tl-sm" : "rounded-l-lg"
             }`}
           />

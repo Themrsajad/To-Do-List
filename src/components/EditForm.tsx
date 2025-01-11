@@ -37,7 +37,7 @@ export default function EditForm({ task }: { task: TaskType }) {
             onChange={(e) => setValue(e.target.value)}
             type="text"
             placeholder="Update Task..."
-            className="bg-c h-full placeholder-b text-d text-lg px-3 pl-3w-full flex-1 rounded-r-lg indent-1 outline-none shadow-sm rounded-l-lg focus:ring-2 ring-inset ring-d"
+            className="bg-c h-full placeholder-b text-d text-lg px-3 pl-3w-full flex-1 rounded-r-lg indent-1 outline-none shadow-sm rounded-l-lg focus:ring-1 ring-inset ring-d"
           />
         </div>
         <button
