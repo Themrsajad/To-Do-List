@@ -12,6 +12,7 @@ type State = {
   deadlineDate: Date | undefined;
   sortBy: string;
   isAscending: boolean;
+  filterByCategory: string;
 };
 
 type Action = {
@@ -24,6 +25,7 @@ type Action = {
   setDeadlineDate: (date: Date | undefined) => void;
   setSortBy: (sort: string) => void;
   setIsAscending: (bool?: boolean) => void;
+  setFilterByCategory: (filter: string) => void;
 };
 
 export const useZState = create<State & Action>((set) => ({
@@ -36,6 +38,7 @@ export const useZState = create<State & Action>((set) => ({
   deadlineDate: undefined,
   sortBy: "Date Added",
   isAscending: true,
+  filterByCategory: "Select",
   setInputValue: (val) => set(() => ({ inputValue: val })),
   setMoveTag: (bool) =>
     set((s) => ({ moveTag: typeof bool === "boolean" ? bool : !s.moveTag })),
@@ -49,6 +52,7 @@ export const useZState = create<State & Action>((set) => ({
     set((s) => ({
       isAscending: typeof bool === "boolean" ? bool : !s.isAscending,
     })),
+  setFilterByCategory: (filter) => set(() => ({ filterByCategory: filter })),
 }));
 
 if (process.env.NODE_ENV === "development") {

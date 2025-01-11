@@ -6,6 +6,7 @@ import { useZState } from "./states.ts";
 import { Colors } from "./types.ts";
 import SortSection from "./components/SortSection.tsx";
 import TagSection from "./components/TagSection.tsx";
+import FilterByTag from "./components/FilterByTag.tsx";
 
 export const colors: Colors = {
   a: "#FFF67E",
@@ -19,6 +20,12 @@ export const colors: Colors = {
 export default function App() {
   const { tasks } = useZState();
 
+  function isFilterByTagAvailable() {
+    let tagCount = 0;
+    tasks.forEach((task) => (task.tags.length > 0 ? tagCount++ : ""));
+    return tagCount;
+  }
+
   return (
     <div className="relative w-[95vw] mx-auto">
       <Logo />
@@ -26,7 +33,10 @@ export default function App() {
         <Form />
         <TagSection />
       </div>
-      {tasks.length > 0 && <SortSection />}
+      <div className="flex items-center gap-x-10 float-right text-d font-semibold text-sm">
+        {isFilterByTagAvailable() > 0 && <FilterByTag />}
+        {tasks.length > 0 && <SortSection />}
+      </div>
       <div className="ALLTASKS flex flex-col clear-right">
         {tasks.map((task, i) =>
           task.isEditing ? (

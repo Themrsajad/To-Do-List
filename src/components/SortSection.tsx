@@ -5,7 +5,7 @@ import { ArrowDown } from "iconsax-react";
 export default function SortSection() {
   const { isAscending, setIsAscending } = useZState();
   return (
-    <div className="text-d font-semibold text-sm *:bg-a flex items-center gap-x-2 *:py-2 *:px-3 *:rounded-lg *:shadow-sm float-right mb-2 mt-6 hover:*:brightness-95 *:outline-none no-select">
+    <div className="*:bg-a flex items-center gap-x-2 *:py-2 *:px-3 *:rounded-lg *:shadow-sm mb-2 mt-6 hover:*:brightness-95 *:outline-none no-select">
       Sort by :
       <SortByDropdown />
       <button className="h-9" onClick={() => setIsAscending()}>
