@@ -55,7 +55,7 @@ export default function Form() {
         {inputValue && (
           <button
             type="button"
-            className="SUB flex-none text-lg h-full px-3 mr-1 bg-a rounded-l-lg rounded-r-sm shadow-sm"
+            className="SUB flex-none text-lg h-full px-3 mr-2 bg-a rounded-l-lg rounded-r-sm shadow-sm"
           >
             <PlaylistAddIcon sx={{ color: colors.d }} />
           </button>
