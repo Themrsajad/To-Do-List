@@ -7,8 +7,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useZState } from "@/states";
-import { colors } from "@/App";
 import { priorityNumToStr } from "@/types";
+import { colors } from "./pages/home";
 
 export default function PriorityDropdown() {
   const { priority, setPriority } = useZState();

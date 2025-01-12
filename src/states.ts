@@ -14,6 +14,7 @@ type State = {
   isAscending: boolean;
   filteredTasks: TaskType[];
   filteredBy: string | null;
+  completedTasks: TaskType[];
 };
 
 type Action = {
@@ -28,6 +29,7 @@ type Action = {
   setIsAscending: (bool?: boolean) => void;
   setFilteredTasks: (filtered: TaskType[]) => void;
   setFilteredBy: (filter: string | null) => void;
+  setCompletedTasks: (completed: TaskType[]) => void;
 };
 
 export const useZState = create<State & Action>((set) => ({
@@ -42,6 +44,7 @@ export const useZState = create<State & Action>((set) => ({
   isAscending: true,
   filteredTasks: [],
   filteredBy: null,
+  completedTasks: [],
   setInputValue: (val) => set(() => ({ inputValue: val })),
   setMoveTag: (bool) =>
     set((s) => ({ moveTag: typeof bool === "boolean" ? bool : !s.moveTag })),
@@ -57,6 +60,7 @@ export const useZState = create<State & Action>((set) => ({
     })),
   setFilteredTasks: (filtered) => set(() => ({ filteredTasks: filtered })),
   setFilteredBy: (filter) => set(() => ({ filteredBy: filter })),
+  setCompletedTasks: (completed) => set(() => ({ completedTasks: completed })),
 }));
 
 if (process.env.NODE_ENV === "development") {

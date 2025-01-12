@@ -2,15 +2,27 @@ import CheckIcon from "@mui/icons-material/Check";
 import { useZState } from "../states";
 import { Edit, Hashtag, RecordCircle } from "iconsax-react";
 import { priorityNumToStr, TaskType } from "@/types";
-import { colors } from "@/App";
 import { differenceInDays, format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { colors } from "./pages/home";
 
 export default function Task({ task }: { task: TaskType }) {
-  const { tasks, setTasks } = useZState();
+  const { tasks, setTasks, setCompletedTasks, completedTasks } = useZState();
 
   function handleDone(id: string) {
     setTasks(tasks.filter((task) => task.id !== id));
+    setCompletedTasks([
+      ...completedTasks,
+      {
+        id: id,
+        todo: task.todo,
+        priority: task.priority,
+        tags: task.tags,
+        deadlineDate: task.deadlineDate,
+        dateAdded: new Date(),
+        isEditing: false,
+      },
+    ]);
   }
 
   function handleEditInTask(id: string) {

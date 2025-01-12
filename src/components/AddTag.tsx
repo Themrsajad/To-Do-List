@@ -1,6 +1,6 @@
-import { colors } from "@/App";
 import { useZState } from "../states";
 import { Add, Category } from "iconsax-react";
+import { colors } from "./pages/home";
 export default function AddTag() {
   const {
     moveTag,

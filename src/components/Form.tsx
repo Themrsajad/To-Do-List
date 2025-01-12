@@ -3,8 +3,8 @@ import PriorityDropdown from "./PriorityDropdown.tsx";
 import { useZState } from "../states";
 import { v4 } from "uuid";
 import { Add } from "iconsax-react";
-import { colors } from "@/App.tsx";
 import { DatePickerDemo as Reminder } from "./ui/date-picker.tsx";
+import { colors } from "./pages/home.tsx";
 v4();
 
 export default function Form() {
@@ -67,7 +67,7 @@ export default function Form() {
             type="text"
             autoFocus
             placeholder="like 'Reading my Lessons'"
-            className={`bg-c placeholder-b text-d text-lg h-full w-full flex-1 rounded-r-lg indent-4 outline-none focus:ring-1 ring-inset ring-d z-20 ${
+            className={`bg-c placeholder-b text-d text-lg h-full w-full flex-1 rounded-r-lg indent-4 outline-none focus:ring-1 ring-inset ring-d z-20 no-select ${
               inputValue ? "rounded-tl-sm" : "rounded-l-lg"
             }`}
           />

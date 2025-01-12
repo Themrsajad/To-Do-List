@@ -14,7 +14,6 @@ import { useEffect } from "react";
 export function FilterByCategoryDropdown() {
   const { tasks, filteredBy, setFilteredBy, setFilteredTasks } = useZState();
 
-  // const tagsList = [...new Set(tasks.flatMap((task) => task.tags))];
   useEffect(() => {
     handleFilterByCategory(filteredBy);
   }, [tasks]);
