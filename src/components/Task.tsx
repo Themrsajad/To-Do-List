@@ -26,7 +26,7 @@ export default function Task({ task }: { task: TaskType }) {
   const haveTags = task.tags.length > 0;
 
   return (
-    <div className="my-2">
+    <div className="my-4">
       <div
         className={cn("EACHTASK flex items-center h-16", haveTags && "h-24")}
       >

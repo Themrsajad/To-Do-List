@@ -18,13 +18,15 @@ export const colors: Colors = {
 };
 
 export default function App() {
-  const { tasks } = useZState();
+  const { tasks, filteredTasks } = useZState();
 
   function isFilterByTagAvailable() {
     let tagCount = 0;
     tasks.forEach((task) => (task.tags.length > 0 ? tagCount++ : ""));
     return tagCount;
   }
+
+  const isFiltered = filteredTasks.length > 0 ? filteredTasks : tasks;
 
   return (
     <div className="relative w-[95vw] mx-auto">
@@ -38,7 +40,7 @@ export default function App() {
         {tasks.length > 0 && <SortSection />}
       </div>
       <div className="ALLTASKS flex flex-col clear-right">
-        {tasks.map((task, i) =>
+        {isFiltered.map((task, i) =>
           task.isEditing ? (
             <EditForm key={i} task={task} />
           ) : (

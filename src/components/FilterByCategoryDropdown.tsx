@@ -9,47 +9,53 @@ import {
   DropdownMenuItem,
 } from "@radix-ui/react-dropdown-menu";
 import { Filter } from "iconsax-react";
+import { useEffect } from "react";
 
 export function FilterByCategoryDropdown() {
-  const { tasks, setTasks, filterByCategory, setFilterByCategory } =
-    useZState();
+  const { tasks, filteredBy, setFilteredBy, setFilteredTasks } = useZState();
 
-  function handleFilterByCategory(id: string) {
-    setTasks(tasks.filter((task) => task.tags.some((t) => t.id === id)));
-  }
+  // const tagsList = [...new Set(tasks.flatMap((task) => task.tags))];
+  useEffect(() => {
+    handleFilterByCategory(filteredBy);
+  }, [tasks]);
 
-  const tagsList = [...new Set(tasks.flatMap((task) => task.tags))];
+  const tagsList = [
+    ...new Map(
+      tasks.flatMap((task) => task.tags).map((tag) => [tag.tag, tag])
+    ).values(),
+  ];
+
+  const handleFilterByCategory = (tag: string | null) => {
+    setFilteredTasks(
+      tasks.filter((task) => task.tags.some((t) => t.tag === tag))
+    );
+    setFilteredBy(tag);
+  };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className="flex items-center gap-x-2">
           <Filter size={16} />
-          test
+          {filteredBy || "Select"}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-c text-d font-semibold border-0">
-        <DropdownMenuGroup className="*:hover:cursor-pointer *:p-1.5 *:m-1">
-          {tagsList.map((tag) => (
-            <DropdownMenuItem onClick={() => handleFilterByCategory(tag.id)}>
+        <DropdownMenuGroup className="*:hover:cursor-pointer *:p-1.5 *:m-1 *:outline-none hover:*:bg-a/30 *:rounded-lg">
+          {tagsList.map((tag, i) => (
+            <DropdownMenuItem
+              key={i}
+              onClick={() => handleFilterByCategory(tag.tag)}
+            >
               <span>{tag.tag}</span>
             </DropdownMenuItem>
           ))}
-          {/* <DropdownMenuItem onClick={() => setPriority(1)}>
-            <span>Low</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setPriority(2)}>
-            <span>Medium</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setPriority(3)}>
-            <span>High</span>
-          </DropdownMenuItem>
           <DropdownMenuItem
+            onClick={() => handleFilterByCategory(null)}
             className="bg-d/10 hover:!bg-d/15 flex justify-center"
-            onClick={() => setPriority(0)}
           >
-            <span>Cancel</span>
-          </DropdownMenuItem> */}
+            <span>Show All</span>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
