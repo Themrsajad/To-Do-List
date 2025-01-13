@@ -4,7 +4,7 @@ import { Edit, Hashtag, RecordCircle } from "iconsax-react";
 import { priorityNumToStr, TaskType } from "@/types";
 import { differenceInDays, format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { colors } from "./pages/home";
+import { colors } from "./pages/Home";
 import { useEffect } from "react";
 
 export default function Task({ task }: { task: TaskType }) {

@@ -4,7 +4,7 @@ import { useZState } from "../states";
 import { v4 } from "uuid";
 import { Add } from "iconsax-react";
 import { DatePickerDemo as Reminder } from "./ui/date-picker.tsx";
-import { colors } from "./pages/home.tsx";
+import { colors } from "./pages/Home.tsx";
 v4();
 
 export default function Form() {

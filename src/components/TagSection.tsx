@@ -2,7 +2,7 @@ import { useZState } from "@/states";
 import AddTag from "./AddTag";
 import InputTag from "./InputTag";
 import { Add } from "iconsax-react";
-import { colors } from "./pages/home";
+import { colors } from "./pages/Home";
 
 export default function TagSection() {
   const { moveTag, tags, setTags } = useZState();
