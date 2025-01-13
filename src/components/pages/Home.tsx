@@ -15,7 +15,7 @@ export const colors: Colors = {
   c: "#9BCF53",
   d: "#416D19",
   white: "#FFFFFF",
-  red: "#DC3545",
+  red: "#E73C51",
 };
 
 export default function Home() {

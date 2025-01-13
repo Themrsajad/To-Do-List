@@ -5,9 +5,14 @@ import { priorityNumToStr, TaskType } from "@/types";
 import { differenceInDays, format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { colors } from "./pages/home";
+import { useEffect } from "react";
 
 export default function Task({ task }: { task: TaskType }) {
   const { tasks, setTasks, setCompletedTasks, completedTasks } = useZState();
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function handleDone(id: string) {
     setTasks(tasks.filter((task) => task.id !== id));

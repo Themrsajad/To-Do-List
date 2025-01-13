@@ -35,7 +35,10 @@ type Action = {
 export const useZState = create<State & Action>((set) => ({
   inputValue: "",
   moveTag: false,
-  tasks: [],
+  tasks: (() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  })(),
   priority: 0,
   tags: [],
   tagInputValue: "",
@@ -44,11 +47,17 @@ export const useZState = create<State & Action>((set) => ({
   isAscending: true,
   filteredTasks: [],
   filteredBy: null,
-  completedTasks: [],
+  completedTasks: (() => {
+    const savedTasks = localStorage.getItem("completedTasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  })(),
   setInputValue: (val) => set(() => ({ inputValue: val })),
   setMoveTag: (bool) =>
     set((s) => ({ moveTag: typeof bool === "boolean" ? bool : !s.moveTag })),
-  setTasks: (arr) => set(() => ({ tasks: arr })),
+  setTasks: (arr) => {
+    set({ tasks: arr });
+    localStorage.setItem("tasks", JSON.stringify(arr));
+  },
   setPriority: (prio) => set(() => ({ priority: prio })),
   setTags: (tags) => set(() => ({ tags: tags })),
   setTagInputValue: (val) => set(() => ({ tagInputValue: val })),
@@ -60,7 +69,10 @@ export const useZState = create<State & Action>((set) => ({
     })),
   setFilteredTasks: (filtered) => set(() => ({ filteredTasks: filtered })),
   setFilteredBy: (filter) => set(() => ({ filteredBy: filter })),
-  setCompletedTasks: (completed) => set(() => ({ completedTasks: completed })),
+  setCompletedTasks: (completed) => {
+    set({ completedTasks: completed });
+    localStorage.setItem("completedTasks", JSON.stringify(completed));
+  },
 }));
 
 if (process.env.NODE_ENV === "development") {
