@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+  @apply bg-b dark:bg-d;
   font-family: "Quicksand", system-ui;
   font-style: normal;
 }
