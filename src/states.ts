@@ -15,6 +15,7 @@ type State = {
   filteredTasks: TaskType[];
   filteredBy: string | null;
   completedTasks: TaskType[];
+  isDark: boolean;
 };
 
 type Action = {
@@ -30,6 +31,7 @@ type Action = {
   setFilteredTasks: (filtered: TaskType[]) => void;
   setFilteredBy: (filter: string | null) => void;
   setCompletedTasks: (completed: TaskType[]) => void;
+  setIsDark: () => void;
 };
 
 export const useZState = create<State & Action>((set) => ({
@@ -50,6 +52,10 @@ export const useZState = create<State & Action>((set) => ({
   completedTasks: (() => {
     const savedTasks = localStorage.getItem("completedTasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
+  })(),
+  isDark: (() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme ? JSON.parse(savedTheme) : false;
   })(),
   setInputValue: (val) => set(() => ({ inputValue: val })),
   setMoveTag: (bool) =>
@@ -72,6 +78,14 @@ export const useZState = create<State & Action>((set) => ({
   setCompletedTasks: (completed) => {
     set({ completedTasks: completed });
     localStorage.setItem("completedTasks", JSON.stringify(completed));
+  },
+  setIsDark: () => {
+    set((s) => {
+      const newTheme = !s.isDark;
+      localStorage.setItem("theme", JSON.stringify(newTheme));
+      document.documentElement.classList.toggle("dark", newTheme);
+      return { isDark: newTheme };
+    });
   },
 }));
 

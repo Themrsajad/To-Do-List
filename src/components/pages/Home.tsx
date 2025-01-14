@@ -7,6 +7,7 @@ import EditForm from "../EditForm.tsx";
 import Task from "../Task.tsx";
 import FloatingButton from "../FloatingButton.tsx";
 import Title from "../Title.tsx";
+import ThemeSwitcher from "../ThemeSwitcher.tsx";
 
 export default function Home() {
   const { tasks, filteredTasks } = useZState();
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <div className="relative w-[95vw] mx-auto pb-[10rem]">
       <Title>To-Do List</Title>
+      <ThemeSwitcher />
       <div className="flex flex-col gap-y-2">
         <Form />
         <TagSection />
