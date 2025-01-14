@@ -1,8 +1,8 @@
 import { useZState } from "@/states";
 import { TaskType } from "@/types";
+import colors from "../../colors";
 import { ArrowForward } from "iconsax-react";
 import { Trash2 } from "lucide-react";
-import { colors } from "./pages/Home";
 
 export default function CompletedTask({ task }: { task: TaskType }) {
   const { tasks, setTasks, setCompletedTasks, completedTasks } = useZState();

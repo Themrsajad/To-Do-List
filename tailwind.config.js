@@ -1,16 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+import colors from "./colors";
+
 export default {
   darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx,html}"],
   theme: {
-    colors: {
-      a: "#FFF67E",
-      b: "#BFEA7C",
-      c: "#9BCF53",
-      d: "#416D19",
-      white: "#FFFFFF",
-      red: "#E73C51",
-    },
+    colors: { ...colors },
     extend: {
       borderRadius: {
         lg: "var(--radius)",

@@ -1,13 +1,8 @@
 import { useZState } from "../states";
 import { Add, Category } from "iconsax-react";
-import { colors } from "./pages/Home";
+import colors from "../../colors";
 export default function AddTag() {
-  const {
-    moveTag,
-    setMoveTag,
-    tagInputValue,
-    setTagInputValue,
-  } = useZState();
+  const { moveTag, setMoveTag, tagInputValue, setTagInputValue } = useZState();
 
   function handleClick() {
     tagInputValue && setTagInputValue("");

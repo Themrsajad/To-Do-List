@@ -1,5 +1,4 @@
 import { useZState } from "@/states.ts";
-import { Colors } from "@/types";
 import Form from "../Form.tsx";
 import TagSection from "../TagSection.tsx";
 import FilterByTag from "../FilterByTag.tsx";
@@ -8,15 +7,6 @@ import EditForm from "../EditForm.tsx";
 import Task from "../Task.tsx";
 import FloatingButton from "../FloatingButton.tsx";
 import Title from "../Title.tsx";
-
-export const colors: Colors = {
-  a: "#FFF67E",
-  b: "#BFEA7C",
-  c: "#9BCF53",
-  d: "#416D19",
-  white: "#FFFFFF",
-  red: "#E73C51",
-};
 
 export default function Home() {
   const { tasks, filteredTasks } = useZState();
