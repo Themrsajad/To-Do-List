@@ -15,7 +15,7 @@ export default function Completed() {
           ))}
         </div>
       ) : (
-        <div className="text-d/60 font-semibold flex justify-center">
+        <div className="text-d/60 font-semibold flex justify-center no-select">
           You haven't completed any tasks yet. Start achieving your goals!
         </div>
       )}

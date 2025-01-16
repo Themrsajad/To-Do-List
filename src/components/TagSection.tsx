@@ -2,10 +2,11 @@ import { useZState } from "@/states";
 import AddTag from "./AddTag";
 import InputTag from "./InputTag";
 import { Add } from "iconsax-react";
-import  colors  from "../../colors";
+import colors from "../../colors";
+import SelectCategories from "./SelectCategories";
 
 export default function TagSection() {
-  const { moveTag, tags, setTags } = useZState();
+  const { moveTag, tags, setTags, tagsList, checkedTags } = useZState();
 
   function handleRemoveTag(id: string) {
     setTags(tags.filter((tag) => tag.id !== id));
@@ -15,6 +16,12 @@ export default function TagSection() {
     <div className="flex items-center gap-x-2 h-[2.2rem]">
       <AddTag />
       {moveTag && <InputTag />}
+      {tagsList.length > 0 && <SelectCategories />}
+      <div className=" flex items-center gap-x-2">
+        {checkedTags.map((tag) => (
+          <span className="bg-white/50 px-3 py-1 rounded-lg text-d font-semibold">{tag.tag}</span>
+        ))}
+      </div>
       {tags.length > 0 && (
         <span className="text-d font-semibold text-sm ml-2">Categories : </span>
       )}

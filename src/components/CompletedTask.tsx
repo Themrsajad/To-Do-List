@@ -21,6 +21,7 @@ export default function CompletedTask({ task }: { task: TaskType }) {
         isEditing: false,
       },
     ]);
+    
   }
 
   function handleRemove(id: string) {

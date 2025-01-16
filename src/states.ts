@@ -16,6 +16,8 @@ type State = {
   filteredBy: string | null;
   completedTasks: TaskType[];
   isDark: boolean;
+  tagsList: TagType[];
+  checkedTags: TagType[];
 };
 
 type Action = {
@@ -32,6 +34,8 @@ type Action = {
   setFilteredBy: (filter: string | null) => void;
   setCompletedTasks: (completed: TaskType[]) => void;
   setIsDark: () => void;
+  setTagsList: (tagsList: TagType[]) => void;
+  setCheckedTags: (checkeds: TagType[]) => void;
 };
 
 export const useZState = create<State & Action>((set) => ({
@@ -57,6 +61,11 @@ export const useZState = create<State & Action>((set) => ({
     const savedTheme = localStorage.getItem("theme");
     return savedTheme ? JSON.parse(savedTheme) : false;
   })(),
+  tagsList: (() => {
+    const savedTags = localStorage.getItem("tags");
+    return savedTags ? JSON.parse(savedTags) : [];
+  })(),
+  checkedTags: [],
   setInputValue: (val) => set(() => ({ inputValue: val })),
   setMoveTag: (bool) =>
     set((s) => ({ moveTag: typeof bool === "boolean" ? bool : !s.moveTag })),
@@ -87,6 +96,11 @@ export const useZState = create<State & Action>((set) => ({
       return { isDark: newTheme };
     });
   },
+  setTagsList: (tagsList) => {
+    set({ tagsList: tagsList });
+    localStorage.setItem("tags", JSON.stringify(tagsList));
+  },
+  setCheckedTags: (checkeds) => set(() => ({ checkedTags: checkeds })),
 }));
 
 if (process.env.NODE_ENV === "development") {

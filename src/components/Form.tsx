@@ -5,6 +5,8 @@ import { v4 } from "uuid";
 import { Add } from "iconsax-react";
 import { DatePickerDemo as Reminder } from "./ui/date-picker.tsx";
 import colors from "../../colors";
+import { useEffect } from "react";
+import { TagType } from "@/types.ts";
 v4();
 
 export default function Form() {
@@ -19,7 +21,22 @@ export default function Form() {
     setInputValue,
     tags,
     setTags,
+    setTagsList,
+    tagsList,
+    checkedTags,
+    setCheckedTags,
   } = useZState();
+
+  const allTags = Array.from(
+    tasks
+      .flatMap((task) => task.tags)
+      .reduce((map, tag) => map.set(tag.tag, tag), new Map<string, TagType>())
+      .values()
+  );
+
+  useEffect(() => {
+    setTagsList(allTags);
+  }, [tasks]);
 
   function handleAddTasks(task: string) {
     setTasks([
@@ -28,7 +45,7 @@ export default function Form() {
         id: v4(),
         todo: task,
         priority: priority,
-        tags: tags,
+        tags: [...tags, ...checkedTags],
         deadlineDate: deadlineDate,
         dateAdded: new Date(),
         isEditing: false,
@@ -44,6 +61,15 @@ export default function Form() {
     setPriority(0);
     setDeadlineDate(undefined);
     setTags([]);
+    setTagsList([
+      ...tagsList,
+      ...tags
+        .filter(
+          (tag) => !tagsList.some((existingTag) => existingTag.tag === tag.tag)
+        )
+        .map((tag) => ({ id: tag.id, tag: tag.tag })),
+    ]);
+    setCheckedTags([]);
   }
 
   return (

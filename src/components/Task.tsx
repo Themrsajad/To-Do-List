@@ -8,7 +8,14 @@ import colors from "../../colors";
 import { useEffect } from "react";
 
 export default function Task({ task }: { task: TaskType }) {
-  const { tasks, setTasks, setCompletedTasks, completedTasks } = useZState();
+  const {
+    tasks,
+    setTasks,
+    setCompletedTasks,
+    completedTasks,
+    setTagsList,
+    tagsList,
+  } = useZState();
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -28,6 +35,13 @@ export default function Task({ task }: { task: TaskType }) {
         isEditing: false,
       },
     ]);
+    setTagsList(
+      tagsList.filter((tag) =>
+        tasks.some(
+          (task) => task.id !== id && task.tags.some((t) => t.tag === tag.tag)
+        )
+      )
+    );
   }
 
   function handleEditInTask(id: string) {
