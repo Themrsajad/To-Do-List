@@ -8,6 +8,8 @@ import Task from "../Task.tsx";
 import FloatingButton from "../FloatingButton.tsx";
 import Title from "../Title.tsx";
 import ThemeSwitcher from "../ThemeSwitcher.tsx";
+import { textsList, Texts } from "@/texts.ts";
+import LanguageSwitcher from "../LanguageSwitcher.tsx";
 
 export default function Home() {
   const { tasks, filteredTasks } = useZState();
@@ -22,8 +24,11 @@ export default function Home() {
 
   return (
     <div className="relative w-[95vw] mx-auto pb-[10rem]">
-      <Title>To-Do List</Title>
-      <ThemeSwitcher />
+      <Title>{Texts(textsList.heading_mainTitle)}</Title>
+      <div className="flex items-center gap-x-2 absolute right-0 top-10">
+        <LanguageSwitcher />
+        <ThemeSwitcher />
+      </div>
       <div className="flex flex-col gap-y-2">
         <Form />
         <TagSection />
@@ -41,7 +46,9 @@ export default function Home() {
           )
         )}
       </div>
-      <FloatingButton to="/completed">Completed Tasks</FloatingButton>
+      <FloatingButton to="/completed">
+        {Texts(textsList.floatedButton_completed)}
+      </FloatingButton>
     </div>
   );
 }

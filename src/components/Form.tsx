@@ -7,6 +7,7 @@ import { DatePickerDemo as Reminder } from "./ui/date-picker.tsx";
 import colors from "../../colors";
 import { useEffect } from "react";
 import { TagType } from "@/types.ts";
+import { Texts, textsList } from "@/texts.ts";
 v4();
 
 export default function Form() {
@@ -92,7 +93,7 @@ export default function Form() {
             onChange={(e) => setInputValue(e.target.value)}
             type="text"
             autoFocus
-            placeholder="like 'Reading my Lessons'"
+            placeholder={Texts(textsList.form_inputPlaceholder)}
             className={`bg-c placeholder-b text-d text-lg h-full w-full flex-1 rounded-r-lg indent-4 outline-none focus:ring-1 ring-inset ring-d z-20 no-select ${
               inputValue ? "rounded-tl-sm" : "rounded-l-lg"
             }`}

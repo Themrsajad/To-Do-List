@@ -1,3 +1,5 @@
+import { Texts, textsList } from "@/texts";
+
 export interface Colors {
   a: string;
   b: string;
@@ -22,13 +24,18 @@ export interface TagType {
   tag: string;
 }
 
+export interface LanguageText {
+  en: string;
+  fa: string;
+}
+
 export function priorityNumToStr(n: number) {
   switch (n) {
     case 1:
-      return "Low";
+      return Texts(textsList.form_priorityLow);
     case 2:
-      return "Medium";
+      return Texts(textsList.form_priorityMedium);
     case 3:
-      return "High";
+      return Texts(textsList.form_priorityHigh);
   }
 }

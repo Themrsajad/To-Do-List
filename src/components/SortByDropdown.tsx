@@ -6,6 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useZState } from "@/states";
+import { Texts, textsList } from "@/texts";
 import { compareAsc, compareDesc } from "date-fns";
 import { ArrangeVertical } from "iconsax-react";
 import { useEffect } from "react";
@@ -52,7 +53,13 @@ export function SortByDropdown() {
       <DropdownMenuTrigger asChild>
         <button className="flex items-center gap-x-2">
           <ArrangeVertical size={16} />
-          {sortBy}
+          {sortBy == "Date Added"
+            ? Texts(textsList.sort_dateAdded)
+            : sortBy == "Priority"
+            ? Texts(textsList.sort_priority)
+            : sortBy == "Remaining Time"
+            ? Texts(textsList.sort_remainingTime)
+            : ""}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-c text-d font-semibold border-0">
@@ -62,13 +69,13 @@ export function SortByDropdown() {
           className="*:pl-8 *:p-2 *:m-1"
         >
           <DropdownMenuRadioItem value="Date Added">
-            Date Added
+            {Texts(textsList.sort_dateAdded)}
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="Priority">
-            Priority
+            {Texts(textsList.sort_priority)}
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="Remaining Time">
-            Remaining Time
+            {Texts(textsList.sort_remainingTime)}
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

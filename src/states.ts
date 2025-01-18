@@ -18,6 +18,7 @@ type State = {
   isDark: boolean;
   tagsList: TagType[];
   checkedTags: TagType[];
+  isEnglish: boolean;
 };
 
 type Action = {
@@ -36,6 +37,7 @@ type Action = {
   setIsDark: () => void;
   setTagsList: (tagsList: TagType[]) => void;
   setCheckedTags: (checkeds: TagType[]) => void;
+  setIsEnglish: () => void;
 };
 
 export const useZState = create<State & Action>((set) => ({
@@ -66,6 +68,10 @@ export const useZState = create<State & Action>((set) => ({
     return savedTags ? JSON.parse(savedTags) : [];
   })(),
   checkedTags: [],
+  isEnglish: (() => {
+    const savedLang = localStorage.getItem("lang");
+    return savedLang ? JSON.parse(savedLang) : true;
+  })(),
   setInputValue: (val) => set(() => ({ inputValue: val })),
   setMoveTag: (bool) =>
     set((s) => ({ moveTag: typeof bool === "boolean" ? bool : !s.moveTag })),
@@ -91,8 +97,8 @@ export const useZState = create<State & Action>((set) => ({
   setIsDark: () => {
     set((s) => {
       const newTheme = !s.isDark;
-      localStorage.setItem("theme", JSON.stringify(newTheme));
       document.documentElement.classList.toggle("dark", newTheme);
+      localStorage.setItem("theme", JSON.stringify(newTheme));
       return { isDark: newTheme };
     });
   },
@@ -101,6 +107,13 @@ export const useZState = create<State & Action>((set) => ({
     localStorage.setItem("tags", JSON.stringify(tagsList));
   },
   setCheckedTags: (checkeds) => set(() => ({ checkedTags: checkeds })),
+  setIsEnglish: () => {
+    set((s) => {
+      const newLang = !s.isEnglish;
+      localStorage.setItem("lang", JSON.stringify(newLang));
+      return { isEnglish: newLang };
+    });
+  },
 }));
 
 if (process.env.NODE_ENV === "development") {

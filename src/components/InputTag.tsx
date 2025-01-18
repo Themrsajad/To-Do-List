@@ -1,6 +1,7 @@
 import CheckIcon from "@mui/icons-material/Check";
 import { useZState } from "../states";
 import { v4 } from "uuid";
+import { Texts, textsList } from "@/texts";
 v4();
 
 export default function InputTag() {
@@ -25,7 +26,7 @@ export default function InputTag() {
         <input
           value={tagInputValue}
           onChange={(e) => setTagInputValue(e.target.value)}
-          placeholder="School"
+          placeholder={Texts(textsList.form_categoryinputPlaceholder)}
           className="bg-c w-full h-full placeholder-b text-d text-sm font-medium rounded-lg outline-none shadow-sm focus:ring-1 ring-inset ring-d indent-3"
           type="text"
           autoFocus

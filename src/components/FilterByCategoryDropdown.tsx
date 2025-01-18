@@ -4,6 +4,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useZState } from "@/states";
+import { Texts, textsList } from "@/texts";
 import {
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -36,7 +37,7 @@ export function FilterByCategoryDropdown() {
       <DropdownMenuTrigger asChild>
         <button className="flex items-center gap-x-2">
           <Filter size={16} />
-          {filteredBy || "Select"}
+          {filteredBy || Texts(textsList.filter_select)}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-c text-d font-semibold border-0">
@@ -53,7 +54,7 @@ export function FilterByCategoryDropdown() {
             onClick={() => handleFilterByCategory(null)}
             className="bg-d/10 hover:!bg-d/15 flex justify-center"
           >
-            <span>Show All</span>
+            <span>{Texts(textsList.filter_showAll)}</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

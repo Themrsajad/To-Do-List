@@ -7,7 +7,7 @@ export default function ThemeSwitcher() {
   return (
     <button
       onClick={() => setIsDark()}
-      className="absolute right-0 top-10 bg-a p-2 rounded-lg shadow-md hover:brightness-95"
+      className="bg-a p-2 rounded-lg shadow-md hover:brightness-95"
     >
       {isDark ? <Sun1 color={colors.d} /> : <Moon color={colors.d} />}
     </button>

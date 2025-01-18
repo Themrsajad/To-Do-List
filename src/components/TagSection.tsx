@@ -4,6 +4,7 @@ import InputTag from "./InputTag";
 import { Add } from "iconsax-react";
 import colors from "../../colors";
 import SelectCategories from "./SelectCategories";
+import { Texts, textsList } from "@/texts";
 
 export default function TagSection() {
   const { moveTag, tags, setTags, tagsList, checkedTags } = useZState();
@@ -19,11 +20,15 @@ export default function TagSection() {
       {tagsList.length > 0 && <SelectCategories />}
       <div className=" flex items-center gap-x-2">
         {checkedTags.map((tag) => (
-          <span className="bg-white/50 px-3 py-1 rounded-lg text-d font-semibold">{tag.tag}</span>
+          <span className="bg-white/50 px-3 py-1 rounded-lg text-d font-semibold">
+            {tag.tag}
+          </span>
         ))}
       </div>
       {tags.length > 0 && (
-        <span className="text-d font-semibold text-sm ml-2">Categories : </span>
+        <span className="text-d font-semibold text-sm ml-2">
+          {Texts(textsList.form_categoryCategories)}
+        </span>
       )}
       {tags.map((tag, i) => (
         <span

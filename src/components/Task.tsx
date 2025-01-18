@@ -6,6 +6,7 @@ import { differenceInDays, format } from "date-fns";
 import { cn } from "@/lib/utils";
 import colors from "../../colors";
 import { useEffect } from "react";
+import { Texts, textsList } from "@/texts";
 
 export default function Task({ task }: { task: TaskType }) {
   const {
@@ -92,14 +93,14 @@ export default function Task({ task }: { task: TaskType }) {
               <span className="bg-red text-white rounded-md px-2 py-1 text-sm">
                 {DaysLeft == 0 &&
                 format(task.deadlineDate, "P") != format(today, "P")
-                  ? "Tomorrow"
+                  ? Texts(textsList.task_tomorrow)
                   : format(task.deadlineDate, "P") == format(today, "P")
-                  ? "Today"
+                  ? Texts(textsList.task_today)
                   : DaysLeft == 1
-                  ? DaysLeft + " Day left"
+                  ? DaysLeft + Texts(textsList.task_dayleft)
                   : DaysLeft < 0
-                  ? "it's past"
-                  : DaysLeft + " Days left"}
+                  ? Texts(textsList.task_past)
+                  : DaysLeft + Texts(textsList.task_daysleft)}
               </span>
             )}
           </div>

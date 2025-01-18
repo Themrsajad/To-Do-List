@@ -9,6 +9,7 @@ import {
 import { useZState } from "@/states";
 import { priorityNumToStr } from "@/types";
 import colors from "../../colors";
+import { Texts, textsList } from "@/texts";
 
 export default function PriorityDropdown() {
   const { priority, setPriority } = useZState();
@@ -33,28 +34,30 @@ export default function PriorityDropdown() {
                 : colors.d
             }
           />
-          {priority == 0 ? "Set Priority" : priorityNumToStr(priority)}
+          {priority == 0
+            ? Texts(textsList.form_priorityTitle)
+            : priorityNumToStr(priority)}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-c text-d font-semibold border-0">
         <DropdownMenuGroup className="*:hover:cursor-pointer *:p-1.5 *:m-1">
           <DropdownMenuItem onClick={() => setPriority(1)}>
             <RecordCircle variant="Bold" color="#2196f3" size={16} />
-            <span>Low</span>
+            <span>{Texts(textsList.form_priorityLow)}</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setPriority(2)}>
             <RecordCircle variant="Bold" color="#ff9800" size={16} />
-            <span>Medium</span>
+            <span>{Texts(textsList.form_priorityMedium)}</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setPriority(3)}>
             <RecordCircle variant="Bold" color={colors.red} size={16} />
-            <span>High</span>
+            <span>{Texts(textsList.form_priorityHigh)}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
             className="bg-d/10 hover:!bg-d/15 flex justify-center"
             onClick={() => setPriority(0)}
           >
-            <span>Cancel</span>
+            <span>{Texts(textsList.form_priorityCancel)}</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
