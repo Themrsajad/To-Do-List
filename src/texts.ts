@@ -85,7 +85,7 @@ export const textsList = {
   },
   task_update: {
     en: "Update",
-    fa: "ثبت تغییرات",
+    fa: "ثبت",
   },
   task_updatePlaceholder: {
     en: "New title",

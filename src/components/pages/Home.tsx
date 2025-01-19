@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <div className="relative w-[95vw] mx-auto pb-[10rem]">
       <Title>{Texts(textsList.heading_mainTitle)}</Title>
-      <div className="flex items-center gap-x-2 absolute right-0 top-10">
+      <div className="flex items-center rtl:flex-row-reverse gap-x-2 absolute right-0 top-10">
         <LanguageSwitcher />
         <ThemeSwitcher />
       </div>
@@ -33,11 +33,11 @@ export default function Home() {
         <Form />
         <TagSection />
       </div>
-      <div className="flex items-center gap-x-10 float-right text-d font-semibold rtl:font-medium text-sm">
+      <div className="flex items-center gap-x-10 rtl:float-right ltr:float-left text-d font-semibold rtl:font-medium text-sm mb-2 mt-8">
         {isFilterByTagAvailable() > 0 && <FilterByTag />}
         {tasks.length > 0 && <SortSection />}
       </div>
-      <div className="flex flex-col clear-right">
+      <div className="flex flex-col rtl:clear-right ltr:clear-left">
         {isFiltered.map((task, i) =>
           task.isEditing ? (
             <EditForm key={i} task={task} />

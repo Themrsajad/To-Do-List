@@ -15,7 +15,7 @@ export function DatePickerDemo() {
     <Popover>
       <PopoverTrigger asChild>
         <button
-          className={`flex items-center gap-x-2 font-semibold bg-a text-d h-full px-4 rounded-lg shadow-sm hover:brightness-95 mr-2 transition duration-100 outline-none ${
+          className={`flex items-center gap-x-2 font-semibold rtl:font-medium bg-a text-d h-full px-4 rounded-lg shadow-sm hover:brightness-95 mr-2 rtl:ml-2 transition duration-100 outline-none ${
             deadlineDate && "w-[9.7rem]"
           }`}
         >

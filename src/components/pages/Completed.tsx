@@ -16,7 +16,7 @@ export default function Completed() {
           ))}
         </div>
       ) : (
-        <div className="text-d/60 font-semibold flex justify-center no-select">
+        <div className="text-d/60 font-semibold rtl:font-medium flex justify-center no-select">
           {Texts(textsList.completedPage_paragraph)}
         </div>
       )}

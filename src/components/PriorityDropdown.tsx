@@ -19,7 +19,7 @@ export default function PriorityDropdown() {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="FLAG flex justify-center items-center absolute z-30 right-[0.7rem] h-3/5 px-2 gap-2 rounded-md hover:brightness-95 bg-a text-d text-sm outline-none"
+          className="FLAG flex justify-center items-center absolute z-30 ltr:right-[0.7rem] rtl:left-[0.7rem] h-3/5 px-2 gap-2 rounded-md hover:brightness-95 bg-a text-d text-sm outline-none"
         >
           <RecordCircle
             variant="Bold"

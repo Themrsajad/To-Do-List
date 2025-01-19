@@ -3,6 +3,7 @@ import { TaskType } from "@/types";
 import colors from "../../colors";
 import { ArrowForward } from "iconsax-react";
 import { Trash2 } from "lucide-react";
+import { Texts, textsList } from "@/texts";
 
 export default function CompletedTask({ task }: { task: TaskType }) {
   const { tasks, setTasks, setCompletedTasks, completedTasks } = useZState();
@@ -21,7 +22,6 @@ export default function CompletedTask({ task }: { task: TaskType }) {
         isEditing: false,
       },
     ]);
-    
   }
 
   function handleRemove(id: string) {
@@ -29,8 +29,8 @@ export default function CompletedTask({ task }: { task: TaskType }) {
   }
 
   return (
-    <div className="w-[95vw] mx-auto my-4 flex items-center gap-x-2 h-16 font-semibold">
-      <div className="h-full flex items-center flex-1 px-4 bg-white/70 text-lg text-d rounded-r-sm rounded-l-lg no-select">
+    <div className="w-[95vw] mx-auto my-4 flex items-center gap-x-2 h-16 font-semibold rtl:font-medium">
+      <div className="h-full flex items-center flex-1 px-4 bg-white/70 text-lg text-d ltr:rounded-r-sm rtl:rounded-l-sm ltr:rounded-l-lg rtl:rounded-r-lg no-select">
         {task.todo}
       </div>
       <button
@@ -41,10 +41,10 @@ export default function CompletedTask({ task }: { task: TaskType }) {
       </button>
       <button
         onClick={() => handleRevert(task.id)}
-        className="flex items-center gap-x-2 h-full text-white bg-d px-4 rounded-r-lg rounded-l-sm hover:brightness-90"
+        className="flex items-center gap-x-2 h-full text-white bg-d px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg hover:brightness-90"
       >
-        Revert
-        <ArrowForward size={16} className="rotate-180" />
+        {Texts(textsList.completedPage_revert)}
+        <ArrowForward size={16} className="rotate-180 rtl:scale-x-[-1]" />
       </button>
     </div>
   );

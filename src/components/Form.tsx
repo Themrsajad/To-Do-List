@@ -82,20 +82,20 @@ export default function Form() {
         {inputValue && (
           <button
             type="button"
-            className="SUB flex-none text-lg h-full px-3 mr-2 bg-a rounded-l-lg rounded-r-sm shadow-sm"
+            className="SUB flex-none text-lg h-full px-3 ltr:mr-2 rtl:ml-2 bg-a ltr:rounded-l-lg ltr:rounded-r-sm rtl:rounded-r-lg rtl:rounded-l-sm shadow-sm"
           >
             <PlaylistAddIcon sx={{ color: colors.d }} />
           </button>
         )}
-        <div className="INPUT&priority flex-nowrap mr-2 flex flex-1 items-center relative h-full">
+        <div className="INPUT&priority flex-nowrap ltr:mr-2 flex flex-1 items-center relative h-full">
           <input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             type="text"
             autoFocus
             placeholder={Texts(textsList.form_inputPlaceholder)}
-            className={`bg-c placeholder-b text-d text-lg h-full w-full flex-1 rounded-r-lg indent-4 outline-none focus:ring-1 ring-inset ring-d z-20 no-select ${
-              inputValue ? "rounded-tl-sm" : "rounded-l-lg"
+            className={`bg-c placeholder-b text-d text-lg h-full w-full flex-1 rounded-r-lg rtl:rounded-l-lg indent-4 outline-none focus:ring-1 ring-inset ring-d z-20 no-select ${
+              inputValue ? "ltr:rounded-l-sm rtl:rounded-r-sm" : "rounded-l-lg"
             }`}
           />
           {inputValue && <PriorityDropdown />}

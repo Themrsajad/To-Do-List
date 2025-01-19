@@ -62,11 +62,11 @@ export function SortByDropdown() {
             : ""}
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-c text-d font-semibold border-0">
+      <DropdownMenuContent className="bg-c text-d font-semibold rtl:font-medium border-0">
         <DropdownMenuRadioGroup
           value={sortBy}
           onValueChange={setSortBy}
-          className="*:pl-8 *:p-2 *:m-1"
+          className="*:pl-8 *:p-2 *:m-1 "
         >
           <DropdownMenuRadioItem value="Date Added">
             {Texts(textsList.sort_dateAdded)}

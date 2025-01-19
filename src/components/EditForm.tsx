@@ -31,7 +31,7 @@ export default function EditForm({ task }: { task: TaskType }) {
         onSubmit={handleSubmit}
         className="FORM flex flex-nowrap justify-center items-center h-12 my-2 font-medium"
       >
-        <div className="INPUT&FLAG flex-nowrap mr-2 flex flex-1 items-center relative h-full">
+        <div className="INPUT&FLAG flex-nowrap ltr:mr-2 rtl:ml-2 flex flex-1 items-center relative h-full">
           <input
             autoFocus
             value={value}

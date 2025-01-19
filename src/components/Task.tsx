@@ -62,7 +62,7 @@ export default function Task({ task }: { task: TaskType }) {
       <div
         className={cn("EACHTASK flex items-center h-16", haveTags && "h-24")}
       >
-        <div className="flex flex-col h-full mr-2 flex-1">
+        <div className="flex flex-col h-full ltr:mr-2 flex-1">
           <div
             className={`TEXTPART h-16 flex items-center justify-between px-3 w-full bg-c text-lg font-medium text-d indent-1 rounded-tr-sm rounded-tl-lg ${
               !haveTags && "rounded-bl-lg rounded-br-sm"
@@ -120,13 +120,13 @@ export default function Task({ task }: { task: TaskType }) {
         </div>
         <button
           onClick={() => handleEditInTask(task.id)}
-          className="EDIT h-full bg-c px-4 mr-2 flex-none rounded-sm"
+          className="EDIT h-full bg-c px-4 mr-2 rtl:ml-2 flex-none rounded-sm"
         >
           <Edit color={colors.d} />
         </button>
         <button
           onClick={() => handleDone(task.id)}
-          className="DONE h-full bg-d px-4 rounded-r-lg rounded-l-sm"
+          className="DONE h-full bg-d px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg"
         >
           <CheckIcon sx={{ color: colors.b, fontSize: 30 }} />
         </button>
