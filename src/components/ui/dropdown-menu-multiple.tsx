@@ -14,11 +14,11 @@ export function DropdownMenuCheckboxes() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="outline-none bg-a rounded-lg h-9 shadow-sm py-2 px-3">
+        <button className="outline-hidden bg-a rounded-lg h-9 shadow-xs py-2 px-3">
           <ArrowDown size={16} color={colors.d} />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-c outline-none border-0 text-d font-semibold rtl:font-medium">
+      <DropdownMenuContent className="bg-c outline-hidden border-0 text-d font-semibold rtl:font-medium">
         {tagsList.map((tag) => (
           <DropdownMenuCheckboxItem
             key={tag.id}

@@ -1,37 +1,74 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@font-face {
-  font-family: "Yekan-Bakh";
-  src: local("YekanBakh-Medium"), url("YekanBakh-Medium.woff2") format("woff2");
-  font-weight: 500;
-  vertical-align: middle;
-  font-style: normal;
-  font-display: swap;
+@plugin 'tailwindcss-animate';
+
+@variant dark (&:is(.dark *));
+
+@theme {
+  --color-*: initial;
+  --color-a: #fff67e;
+  --color-b: #bfea7c;
+  --color-c: #9bcf53;
+  --color-d: #416d19;
+  --color-white: #ffffff;
+  --color-red: #e73c51;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 }
 
-@font-face {
-  font-family: "Yekan-Bakh";
-  src: local("YekanBakh-Heavy"), url("YekanBakh-Heavy.woff2") format("woff2");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-body {
-  @apply bg-b font-[Quicksand] not-italic rtl:font-[Yekan-Bakh];
-}
+@layer utilities {
+  @font-face {
+    font-family: "Yekan-Bakh";
+    src: local("YekanBakh-Medium"),
+      url("YekanBakh-Medium.woff2") format("woff2");
+    font-weight: 500;
+    vertical-align: middle;
+    font-style: normal;
+    font-display: swap;
+  }
 
-.no-select {
-  user-select: none; /* Standard */
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE 10+ */
-}
+  @font-face {
+    font-family: "Yekan-Bakh";
+    src: local("YekanBakh-Heavy"), url("YekanBakh-Heavy.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
 
-.Dropdown-liClasses {
-  @apply flex items-center gap-x-1.5  hover:bg-d/10 p-2 w-full rounded-lg text-d;
+  body {
+    @apply bg-b font-[Quicksand] not-italic rtl:font-[Yekan-Bakh];
+  }
+
+  .no-select {
+    user-select: none; /* Standard */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE 10+ */
+  }
+
+  .Dropdown-liClasses {
+    @apply flex items-center gap-x-1.5  hover:bg-d/10 p-2 w-full rounded-lg text-d;
+  }
 }
 
 @layer base {

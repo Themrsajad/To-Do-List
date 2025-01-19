@@ -35,7 +35,7 @@ export default function TagSection() {
         {checkedTags.map((tag, i) => (
           <span
             key={i}
-            className="flex items-center gap-x-2 text-sm text-d font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-sm outline-none no-select"
+            className="flex items-center gap-x-2 text-sm text-d font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-xs outline-hidden no-select"
           >
             <button
               onClick={() => handleRemoveSavedTag(tag.id)}
@@ -55,7 +55,7 @@ export default function TagSection() {
       {tags.map((tag, i) => (
         <span
           key={i}
-          className="flex items-center gap-x-2 text-sm text-d font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-sm outline-none no-select"
+          className="flex items-center gap-x-2 text-sm text-d font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-xs outline-hidden no-select"
         >
           <button
             onClick={() => handleRemoveTag(tag.id)}

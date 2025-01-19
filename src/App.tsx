@@ -9,6 +9,7 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.dir = isEnglish ? "ltr" : "rtl";
+    document.documentElement.lang = isEnglish ? "en" : "fa";
   }, [isEnglish]);
 
   return (

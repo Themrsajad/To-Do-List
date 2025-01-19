@@ -7,7 +7,7 @@ import { textsList } from "@/textsList";
 export default function SortSection() {
   const { isAscending, setIsAscending,isEnglish } = useZState();
   return (
-    <div className="*:bg-a flex items-center gap-x-2 *:py-2 *:px-3 *:rounded-lg *:shadow-sm hover:*:brightness-95 *:outline-none no-select">
+    <div className="*:bg-a flex items-center gap-x-2 *:py-2 *:px-3 *:rounded-lg *:shadow-xs *:hover:brightness-95 *:outline-hidden no-select">
       {Texts(textsList.sort_sortBy, isEnglish)}
       <SortByDropdown />
       <button className="h-9" onClick={() => setIsAscending()}>

@@ -20,7 +20,7 @@ export default function PriorityDropdown() {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="FLAG flex justify-center items-center absolute z-30 ltr:right-[0.7rem] rtl:left-[0.7rem] h-3/5 px-2 gap-2 rounded-md hover:brightness-95 bg-a text-d text-sm outline-none"
+          className="FLAG flex justify-center items-center absolute z-30 ltr:right-[0.7rem] rtl:left-[0.7rem] h-3/5 px-2 gap-2 rounded-md hover:brightness-95 bg-a text-d text-sm outline-hidden"
         >
           <RecordCircle
             variant="Bold"
@@ -41,7 +41,7 @@ export default function PriorityDropdown() {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-c text-d font-semibold rtl:font-medium border-0">
-        <DropdownMenuGroup className="*:hover:cursor-pointer *:p-1.5 *:m-1">
+        <DropdownMenuGroup className="hover:*:cursor-pointer *:p-1.5 *:m-1">
           <DropdownMenuItem onClick={() => setPriority(1)}>
             <RecordCircle variant="Bold" color="#2196f3" size={16} />
             <span>{Texts(textsList.form_priorityLow, isEnglish)}</span>
@@ -55,7 +55,7 @@ export default function PriorityDropdown() {
             <span>{Texts(textsList.form_priorityHigh, isEnglish)}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="bg-d/10 hover:!bg-d/15 flex justify-center"
+            className="bg-d/10 hover:bg-d/15! flex justify-center"
             onClick={() => setPriority(0)}
           >
             <span>{Texts(textsList.form_priorityCancel, isEnglish)}</span>

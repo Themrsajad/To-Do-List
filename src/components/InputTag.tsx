@@ -38,7 +38,7 @@ export default function InputTag() {
             textsList.form_categoryinputPlaceholder,
             isEnglish
           )}
-          className="bg-c w-full h-full placeholder-b text-d text-sm font-medium rounded-lg outline-none shadow-sm focus:ring-1 ring-inset ring-d indent-3"
+          className="bg-c w-full h-full placeholder-b text-d text-sm font-medium rounded-lg outline-hidden shadow-xs focus:ring-1 ring-inset ring-d indent-3"
           type="text"
           autoFocus
         />

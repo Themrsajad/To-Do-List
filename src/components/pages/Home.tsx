@@ -24,7 +24,7 @@ export default function Home() {
   const isFiltered = filteredTasks.length > 0 ? filteredTasks : tasks;
 
   return (
-    <div className="relative w-[95vw] mx-auto pb-[10rem]">
+    <div className="relative w-[95vw] mx-auto pb-40">
       <Title>{Texts(textsList.heading_mainTitle, isEnglish)}</Title>
       <div className="flex items-center rtl:flex-row-reverse gap-x-2 absolute right-0 top-10">
         <LanguageSwitcher />
