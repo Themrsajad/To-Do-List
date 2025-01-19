@@ -34,11 +34,11 @@ export default function Home() {
         <Form />
         <TagSection />
       </div>
-      <div className="flex items-center gap-x-10 rtl:float-right ltr:float-left text-d font-semibold rtl:font-medium text-sm mb-2 mt-8">
+      <div className="flex items-center gap-x-10 ltr:float-right rtl:float-left text-d font-semibold rtl:font-medium text-sm mb-2 mt-8">
         {isFilterByTagAvailable() > 0 && <FilterByTag />}
         {tasks.length > 0 && <SortSection />}
       </div>
-      <div className="flex flex-col rtl:clear-right ltr:clear-left">
+      <div className="flex flex-col ltr:clear-right rtl:clear-left">
         {isFiltered.map((task, i) =>
           task.isEditing ? (
             <EditForm key={i} task={task} />

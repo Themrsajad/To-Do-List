@@ -13,7 +13,7 @@ import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
 
 export default function PriorityDropdown() {
-  const { priority, setPriority,isEnglish } = useZState();
+  const { priority, setPriority, isEnglish } = useZState();
 
   return (
     <DropdownMenu>
@@ -37,7 +37,7 @@ export default function PriorityDropdown() {
           />
           {priority == 0
             ? Texts(textsList.form_priorityTitle, isEnglish)
-            : priorityNumToStr(priority)}
+            : priorityNumToStr(priority, isEnglish)}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-c text-d font-semibold rtl:font-medium border-0">

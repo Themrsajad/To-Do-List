@@ -87,7 +87,7 @@ export default function Task({ task }: { task: TaskType }) {
                         : colors.d
                     }
                   />
-                  {priorityNumToStr(task.priority)}
+                  {priorityNumToStr(task.priority, isEnglish)}
                 </span>
               )}
             </div>

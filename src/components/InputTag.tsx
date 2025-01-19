@@ -3,6 +3,7 @@ import { useZState } from "../states";
 import { v4 } from "uuid";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
+import colors from "../../colors";
 v4();
 
 export default function InputTag() {
@@ -45,9 +46,9 @@ export default function InputTag() {
       <button
         type="submit"
         onClick={(e) => handleAddTags(e)}
-        className="DONE absolute bg-d h-full px-1 ltr:rounded-r-lg rtl:rounded-l-lg ltr:right-0 rtl:left-0 text-lg z-30 flex items-center"
+        className="DONE absolute bg-d h-full w-8 ltr:rounded-r-lg rtl:rounded-l-lg ltr:right-0 rtl:left-0 text-lg z-30 flex items-center justify-center"
       >
-        <CheckIcon className="text-b" />
+        <CheckIcon sx={{ color: colors.b, fontSize: 20 }} />
       </button>
     </form>
   );

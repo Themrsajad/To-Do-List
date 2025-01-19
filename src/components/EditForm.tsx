@@ -6,7 +6,7 @@ import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
 
 export default function EditForm({ task }: { task: TaskType }) {
-  const { tasks, setTasks, setPriority } = useZState();
+  const { tasks, setTasks, setPriority, isEnglish } = useZState();
 
   const [value, setValue] = useState(task.todo);
 

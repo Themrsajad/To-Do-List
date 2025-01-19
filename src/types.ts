@@ -30,7 +30,7 @@ export interface LanguageText {
   fa: string;
 }
 
-export function priorityNumToStr(n: number) {
+export function priorityNumToStr(n: number, isEnglish: boolean) {
   switch (n) {
     case 1:
       return Texts(textsList.form_priorityLow, isEnglish);
