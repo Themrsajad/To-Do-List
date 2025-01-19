@@ -40,7 +40,7 @@ export function FilterByCategoryDropdown() {
           {filteredBy || Texts(textsList.filter_select)}
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-c text-d font-semibold border-0">
+      <DropdownMenuContent className="bg-c text-d font-semibold rtl:font-medium border-0">
         <DropdownMenuGroup className="*:hover:cursor-pointer *:p-1.5 *:m-1 *:outline-none hover:*:bg-a/30 *:rounded-lg">
           {tagsList.map((tag, i) => (
             <DropdownMenuItem

@@ -17,5 +17,5 @@ A simple, powerful app to organize your tasks and stay productive, with a great 
 
 ## Usage
 
-You can try it through the following link:
+You can try it through this link:
 [beautiful-to-do-list.netlify.app](https://beautiful-to-do-list.netlify.app)

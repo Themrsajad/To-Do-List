@@ -39,7 +39,7 @@ export default function PriorityDropdown() {
             : priorityNumToStr(priority)}
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-c text-d font-semibold border-0">
+      <DropdownMenuContent className="bg-c text-d font-semibold rtl:font-medium border-0">
         <DropdownMenuGroup className="*:hover:cursor-pointer *:p-1.5 *:m-1">
           <DropdownMenuItem onClick={() => setPriority(1)}>
             <RecordCircle variant="Bold" color="#2196f3" size={16} />

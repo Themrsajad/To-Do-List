@@ -33,7 +33,7 @@ export default function Home() {
         <Form />
         <TagSection />
       </div>
-      <div className="flex items-center gap-x-10 float-right text-d font-semibold text-sm">
+      <div className="flex items-center gap-x-10 float-right text-d font-semibold rtl:font-medium text-sm">
         {isFilterByTagAvailable() > 0 && <FilterByTag />}
         {tasks.length > 0 && <SortSection />}
       </div>

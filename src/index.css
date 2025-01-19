@@ -2,10 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-b;
-  font-family: "Quicksand", system-ui;
+@font-face {
+  font-family: "Yekan-Bakh";
+  src: local("YekanBakh-Regular"),
+    url("YekanBakh-Regular.woff2") format("woff2");
+  font-weight: normal;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekan-Bakh";
+  src: local("YekanBakh-Medium"), url("YekanBakh-Medium.woff2") format("woff2");
+  font-weight: 500;
+  vertical-align: middle;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekan-Bakh";
+  src: local("YekanBakh-Heavy"), url("YekanBakh-Heavy.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  @apply bg-b font-[Quicksand] not-italic rtl:font-[Yekan-Bakh];
 }
 
 .no-select {

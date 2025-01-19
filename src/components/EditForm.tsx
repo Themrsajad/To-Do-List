@@ -44,7 +44,7 @@ export default function EditForm({ task }: { task: TaskType }) {
         <button
           type="submit"
           onClick={() => handleSubmit}
-          className="UPDATETASK h-full bg-d px-3 text-lg rounded-lg text-b flex-none shadow-sm font-semibold flex items-center "
+          className="UPDATETASK h-full bg-d px-3 text-lg rounded-lg text-b flex-none shadow-sm font-semibold rtl:font-medium flex items-center "
         >
           <Add />
           {Texts(textsList.task_update)}

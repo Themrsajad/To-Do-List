@@ -11,7 +11,7 @@ export default function FloatingButton({
   return (
     <Link
       to={to}
-      className="fixed right-[2vw] bottom-[2rem] flex items-center gap-x-3 bg-a text-d font-semibold px-4 py-3 shadow-md rounded-lg text-sm hover:brightness-95 no-select group"
+      className="fixed right-[2vw] bottom-[2rem] flex items-center gap-x-3 bg-a text-d font-semibold rtl:font-medium px-4 py-3 shadow-md rounded-lg text-sm hover:brightness-95 no-select group"
     >
       {children}
       <ArrowRight

@@ -20,20 +20,20 @@ export default function TagSection() {
       {tagsList.length > 0 && <SelectCategories />}
       <div className=" flex items-center gap-x-2">
         {checkedTags.map((tag) => (
-          <span className="bg-white/50 px-3 py-1 rounded-lg text-d font-semibold">
+          <span className="bg-white/50 px-3 py-1 rounded-lg text-d font-semibold rtl:font-medium">
             {tag.tag}
           </span>
         ))}
       </div>
       {tags.length > 0 && (
-        <span className="text-d font-semibold text-sm ml-2">
+        <span className="text-d font-semibold rtl:font-medium text-sm ml-2">
           {Texts(textsList.form_categoryCategories)}
         </span>
       )}
       {tags.map((tag, i) => (
         <span
           key={i}
-          className="flex items-center gap-x-2 text-sm text-d font-semibold px-2 py-2 bg-white/50 rounded-lg shadow-sm outline-none no-select"
+          className="flex items-center gap-x-2 text-sm text-d font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-sm outline-none no-select"
         >
           <button
             onClick={() => handleRemoveTag(tag.id)}

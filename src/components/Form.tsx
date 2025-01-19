@@ -77,7 +77,7 @@ export default function Form() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="FORM flex flex-nowrap justify-center items-center w-full h-14 font-semibold "
+        className="FORM flex flex-nowrap justify-center items-center w-full h-14 font-semibold rtl:font-medium"
       >
         {inputValue && (
           <button

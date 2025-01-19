@@ -68,7 +68,7 @@ export default function Task({ task }: { task: TaskType }) {
               !haveTags && "rounded-bl-lg rounded-br-sm"
             } ${haveTags && "rounded-b-none"} no-select`}
           >
-            <div className="flex items-center gap-x-4 font-semibold">
+            <div className="flex items-center gap-x-4 font-semibold rtl:font-medium">
               {task.todo}
               {task.priority > 0 && (
                 <span className="flex flex-row justify-center items-center text-sm p-1 bg-b rounded-lg">

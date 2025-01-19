@@ -6,7 +6,7 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={() => setIsEnglish()}
-      className="*:flex *:items-center font-medium text-d bg-a px-3 py-2 rounded-lg shadow-md hover:brightness-95"
+      className="*:flex *:items-center font-medium text-d bg-a px-3 py-2 rounded-lg shadow-md hover:brightness-95 font-[QuickSand]"
     >
       {isEnglish ? <span>FA</span> : <span>EN</span>}
     </button>
