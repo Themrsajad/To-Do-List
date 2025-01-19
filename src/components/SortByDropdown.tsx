@@ -6,13 +6,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useZState } from "@/states";
-import { Texts, textsList } from "@/texts";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
 import { compareAsc, compareDesc } from "date-fns";
 import { ArrangeVertical } from "iconsax-react";
 import { useEffect } from "react";
 
 export function SortByDropdown() {
-  const { sortBy, setSortBy, tasks, setTasks, isAscending } = useZState();
+  const { sortBy, setSortBy, tasks, setTasks, isAscending,isEnglish } = useZState();
 
   useEffect(() => {
     handleSortBy(isAscending);
@@ -54,11 +55,11 @@ export function SortByDropdown() {
         <button className="flex items-center gap-x-2">
           <ArrangeVertical size={16} />
           {sortBy == "Date Added"
-            ? Texts(textsList.sort_dateAdded)
+            ? Texts(textsList.sort_dateAdded, isEnglish)
             : sortBy == "Priority"
-            ? Texts(textsList.sort_priority)
+            ? Texts(textsList.sort_priority, isEnglish)
             : sortBy == "Remaining Time"
-            ? Texts(textsList.sort_remainingTime)
+            ? Texts(textsList.sort_remainingTime, isEnglish)
             : ""}
         </button>
       </DropdownMenuTrigger>
@@ -69,13 +70,13 @@ export function SortByDropdown() {
           className="*:pl-8 *:p-2 *:m-1 "
         >
           <DropdownMenuRadioItem value="Date Added">
-            {Texts(textsList.sort_dateAdded)}
+            {Texts(textsList.sort_dateAdded, isEnglish)}
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="Priority">
-            {Texts(textsList.sort_priority)}
+            {Texts(textsList.sort_priority, isEnglish)}
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="Remaining Time">
-            {Texts(textsList.sort_remainingTime)}
+            {Texts(textsList.sort_remainingTime, isEnglish)}
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

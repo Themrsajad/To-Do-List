@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useZState } from "../states";
 import { Add } from "iconsax-react";
 import { TaskType } from "@/types";
-import { Texts, textsList } from "@/texts";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
 
 export default function EditForm({ task }: { task: TaskType }) {
   const { tasks, setTasks, setPriority } = useZState();
@@ -37,7 +38,7 @@ export default function EditForm({ task }: { task: TaskType }) {
             value={value}
             onChange={(e) => setValue(e.target.value)}
             type="text"
-            placeholder={Texts(textsList.task_updatePlaceholder)}
+            placeholder={Texts(textsList.task_updatePlaceholder, isEnglish)}
             className="bg-c h-full placeholder-b text-d text-lg px-3 pl-3w-full flex-1 rounded-r-lg indent-1 outline-none shadow-sm rounded-l-lg focus:ring-1 ring-inset ring-d"
           />
         </div>
@@ -47,7 +48,7 @@ export default function EditForm({ task }: { task: TaskType }) {
           className="UPDATETASK h-full bg-d px-3 text-lg rounded-lg text-b flex-none shadow-sm font-semibold rtl:font-medium flex items-center "
         >
           <Add />
-          {Texts(textsList.task_update)}
+          {Texts(textsList.task_update, isEnglish)}
         </button>
       </form>
     </>

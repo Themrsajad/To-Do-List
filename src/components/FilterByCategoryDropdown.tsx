@@ -4,7 +4,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useZState } from "@/states";
-import { Texts, textsList } from "@/texts";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
 import {
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -13,7 +14,8 @@ import { Filter } from "iconsax-react";
 import { useEffect } from "react";
 
 export function FilterByCategoryDropdown() {
-  const { tasks, filteredBy, setFilteredBy, setFilteredTasks } = useZState();
+  const { tasks, filteredBy, setFilteredBy, setFilteredTasks, isEnglish } =
+    useZState();
 
   useEffect(() => {
     handleFilterByCategory(filteredBy);
@@ -37,7 +39,7 @@ export function FilterByCategoryDropdown() {
       <DropdownMenuTrigger asChild>
         <button className="flex items-center gap-x-2">
           <Filter size={16} />
-          {filteredBy || Texts(textsList.filter_select)}
+          {filteredBy || Texts(textsList.filter_select, isEnglish)}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-c text-d font-semibold rtl:font-medium border-0">
@@ -54,7 +56,7 @@ export function FilterByCategoryDropdown() {
             onClick={() => handleFilterByCategory(null)}
             className="bg-d/10 hover:!bg-d/15 flex justify-center"
           >
-            <span>{Texts(textsList.filter_showAll)}</span>
+            <span>{Texts(textsList.filter_showAll, isEnglish)}</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

@@ -8,11 +8,12 @@ import Task from "../Task.tsx";
 import FloatingButton from "../FloatingButton.tsx";
 import Title from "../Title.tsx";
 import ThemeSwitcher from "../ThemeSwitcher.tsx";
-import { textsList, Texts } from "@/texts.ts";
+import { Texts } from "@/texts.ts";
 import LanguageSwitcher from "../LanguageSwitcher.tsx";
+import { textsList } from "@/textsList.ts";
 
 export default function Home() {
-  const { tasks, filteredTasks } = useZState();
+  const { tasks, filteredTasks, isEnglish } = useZState();
 
   function isFilterByTagAvailable() {
     let tagCount = 0;
@@ -24,7 +25,7 @@ export default function Home() {
 
   return (
     <div className="relative w-[95vw] mx-auto pb-[10rem]">
-      <Title>{Texts(textsList.heading_mainTitle)}</Title>
+      <Title>{Texts(textsList.heading_mainTitle, isEnglish)}</Title>
       <div className="flex items-center rtl:flex-row-reverse gap-x-2 absolute right-0 top-10">
         <LanguageSwitcher />
         <ThemeSwitcher />
@@ -47,7 +48,7 @@ export default function Home() {
         )}
       </div>
       <FloatingButton to="/completed">
-        {Texts(textsList.floatedButton_completed)}
+        {Texts(textsList.floatedButton_completed, isEnglish)}
       </FloatingButton>
     </div>
   );

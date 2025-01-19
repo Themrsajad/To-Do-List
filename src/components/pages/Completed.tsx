@@ -2,13 +2,14 @@ import { useZState } from "@/states";
 import FloatingButton from "../FloatingButton";
 import Title from "../Title";
 import CompletedTask from "../CompletedTask";
-import { Texts, textsList } from "@/texts";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
 
 export default function Completed() {
-  const { completedTasks } = useZState();
+  const { completedTasks, isEnglish } = useZState();
   return (
     <div>
-      <Title>{Texts(textsList.heading_completedTitle)}</Title>
+      <Title>{Texts(textsList.heading_completedTitle, isEnglish)}</Title>
       {completedTasks.length > 0 ? (
         <div className="flex flex-col">
           {completedTasks.map((task, i) => (
@@ -17,11 +18,11 @@ export default function Completed() {
         </div>
       ) : (
         <div className="text-d/60 font-semibold rtl:font-medium flex justify-center no-select">
-          {Texts(textsList.completedPage_paragraph)}
+          {Texts(textsList.completedPage_paragraph, isEnglish)}
         </div>
       )}
       <FloatingButton to="/">
-        {Texts(textsList.floatedButton_returnHome)}
+        {Texts(textsList.floatedButton_returnHome, isEnglish)}
       </FloatingButton>
     </div>
   );

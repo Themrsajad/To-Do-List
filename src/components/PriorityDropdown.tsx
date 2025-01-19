@@ -9,10 +9,11 @@ import {
 import { useZState } from "@/states";
 import { priorityNumToStr } from "@/types";
 import colors from "../../colors";
-import { Texts, textsList } from "@/texts";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
 
 export default function PriorityDropdown() {
-  const { priority, setPriority } = useZState();
+  const { priority, setPriority,isEnglish } = useZState();
 
   return (
     <DropdownMenu>
@@ -35,7 +36,7 @@ export default function PriorityDropdown() {
             }
           />
           {priority == 0
-            ? Texts(textsList.form_priorityTitle)
+            ? Texts(textsList.form_priorityTitle, isEnglish)
             : priorityNumToStr(priority)}
         </button>
       </DropdownMenuTrigger>
@@ -43,21 +44,21 @@ export default function PriorityDropdown() {
         <DropdownMenuGroup className="*:hover:cursor-pointer *:p-1.5 *:m-1">
           <DropdownMenuItem onClick={() => setPriority(1)}>
             <RecordCircle variant="Bold" color="#2196f3" size={16} />
-            <span>{Texts(textsList.form_priorityLow)}</span>
+            <span>{Texts(textsList.form_priorityLow, isEnglish)}</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setPriority(2)}>
             <RecordCircle variant="Bold" color="#ff9800" size={16} />
-            <span>{Texts(textsList.form_priorityMedium)}</span>
+            <span>{Texts(textsList.form_priorityMedium, isEnglish)}</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setPriority(3)}>
             <RecordCircle variant="Bold" color={colors.red} size={16} />
-            <span>{Texts(textsList.form_priorityHigh)}</span>
+            <span>{Texts(textsList.form_priorityHigh, isEnglish)}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
             className="bg-d/10 hover:!bg-d/15 flex justify-center"
             onClick={() => setPriority(0)}
           >
-            <span>{Texts(textsList.form_priorityCancel)}</span>
+            <span>{Texts(textsList.form_priorityCancel, isEnglish)}</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

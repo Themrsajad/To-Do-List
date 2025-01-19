@@ -1,10 +1,12 @@
 import { useZState } from "../states";
 import { Add, Category } from "iconsax-react";
 import colors from "../../colors";
-import { Texts, textsList } from "@/texts";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
 
 export default function AddTag() {
-  const { moveTag, setMoveTag, tagInputValue, setTagInputValue } = useZState();
+  const { moveTag, setMoveTag, tagInputValue, setTagInputValue, isEnglish } =
+    useZState();
 
   function handleClick() {
     tagInputValue && setTagInputValue("");
@@ -24,7 +26,7 @@ export default function AddTag() {
       ) : (
         <>
           <Category color={colors.d} size={16} />
-          <span>{Texts(textsList.form_categoryButtonTitle)}</span>
+          <span>{Texts(textsList.form_categoryButtonTitle, isEnglish)}</span>
         </>
       )}
     </button>

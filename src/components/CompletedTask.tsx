@@ -3,10 +3,12 @@ import { TaskType } from "@/types";
 import colors from "../../colors";
 import { ArrowForward } from "iconsax-react";
 import { Trash2 } from "lucide-react";
-import { Texts, textsList } from "@/texts";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
 
 export default function CompletedTask({ task }: { task: TaskType }) {
-  const { tasks, setTasks, setCompletedTasks, completedTasks } = useZState();
+  const { tasks, setTasks, setCompletedTasks, completedTasks, isEnglish } =
+    useZState();
 
   function handleRevert(id: string) {
     setCompletedTasks(completedTasks.filter((task) => task.id !== id));
@@ -43,7 +45,7 @@ export default function CompletedTask({ task }: { task: TaskType }) {
         onClick={() => handleRevert(task.id)}
         className="flex items-center gap-x-2 h-full text-white bg-d px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg hover:brightness-90"
       >
-        {Texts(textsList.completedPage_revert)}
+        {Texts(textsList.completedPage_revert, isEnglish)}
         <ArrowForward size={16} className="rotate-180 rtl:scale-x-[-1]" />
       </button>
     </div>

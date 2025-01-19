@@ -18,7 +18,7 @@ export function DropdownMenuCheckboxes() {
           <ArrowDown size={16} color={colors.d} />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-c outline-none border-0 text-d font-semibold">
+      <DropdownMenuContent className="bg-c outline-none border-0 text-d font-semibold rtl:font-medium">
         {tagsList.map((tag) => (
           <DropdownMenuCheckboxItem
             key={tag.id}

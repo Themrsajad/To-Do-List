@@ -1,4 +1,5 @@
-import { Texts, textsList } from "@/texts";
+import { Texts } from "@/texts";
+import { textsList } from "./textsList";
 
 export interface Colors {
   a: string;
@@ -32,10 +33,10 @@ export interface LanguageText {
 export function priorityNumToStr(n: number) {
   switch (n) {
     case 1:
-      return Texts(textsList.form_priorityLow);
+      return Texts(textsList.form_priorityLow, isEnglish);
     case 2:
-      return Texts(textsList.form_priorityMedium);
+      return Texts(textsList.form_priorityMedium, isEnglish);
     case 3:
-      return Texts(textsList.form_priorityHigh);
+      return Texts(textsList.form_priorityHigh, isEnglish);
   }
 }
