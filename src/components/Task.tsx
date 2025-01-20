@@ -8,6 +8,7 @@ import colors from "../../colors";
 import { useEffect } from "react";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
+import { Button } from "./ui/button";
 
 export default function Task({ task }: { task: TaskType }) {
   const {
@@ -119,7 +120,7 @@ export default function Task({ task }: { task: TaskType }) {
               {task.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="flex items-center gap-x-1 bg-cLight dark:bg-cDark text-dLight dark:text-bDark px-2 py-0.5 rounded-lg"
+                  className="flex items-center gap-x-1 bg-cLight dark:bg-cDark text-dLight dark:text-bDark px-2 py-0.5 rounded-lg no-select"
                 >
                   <Hashtag
                     size={14}
@@ -131,20 +132,23 @@ export default function Task({ task }: { task: TaskType }) {
             </div>
           )}
         </div>
-        <button
+        <Button
           onClick={() => handleEditInTask(task.id)}
-          className="EDIT h-full bg-aLight dark:bg-aDark px-4 mr-2 rtl:ml-2 flex-none rounded-sm shadow-sm"
+          variant={"secondary"}
+          size={"lg"}
+          className="px-4 mr-2 rtl:ml-2 flex-none rounded-sm"
         >
           <Edit color={isDark ? colors.bDark : colors.cLight} />
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => handleDone(task.id)}
-          className="DONE h-full bg-dLight dark:bg-bDark px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg shadow-sm"
+          size={"lg"}
+          className="px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg"
         >
           <CheckIcon
             sx={{ color: isDark ? colors.cDark : colors.bLight, fontSize: 30 }}
           />
-        </button>
+        </Button>
       </div>
     </div>
   );

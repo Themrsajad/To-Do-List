@@ -7,6 +7,7 @@ import {
 import { useZState } from "@/states";
 import { ArrowDown } from "iconsax-react";
 import colors from "../../../colors";
+import { Button } from "./button";
 
 export function DropdownMenuCheckboxes() {
   const { tagsList, checkedTags, setCheckedTags, isDark } = useZState();
@@ -14,11 +15,11 @@ export function DropdownMenuCheckboxes() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="outline-hidden bg-aLight dark:bg-aDark rounded-lg h-9 shadow-xs py-2 px-3">
+        <Button variant={"secondary"} className="h-9">
           <ArrowDown size={16} color={isDark ? colors.bDark : colors.cLight} />
-        </button>
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-cLight dark:bg-bDark text-dLight dark:text-cDark outline-hidden border-0 font-semibold rtl:font-medium">
+      <DropdownMenuContent className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark outline-hidden border-0 font-semibold rtl:font-medium">
         {tagsList.map((tag) => (
           <DropdownMenuCheckboxItem
             key={tag.id}

@@ -15,13 +15,7 @@
   --color-bDark: #bbe1fa;
   --color-cDark: #1b262c;
 
-  /* --color-white: #ffffff; */
   --color-red: #e73c51;
-  /* --color-a: #fff67e;
-  --color-b: #bfea7c;
-  --color-c: #9bcf53;
-  --color-d: #416d19; */
-
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);

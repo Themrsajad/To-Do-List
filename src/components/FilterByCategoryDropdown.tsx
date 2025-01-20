@@ -12,6 +12,7 @@ import {
 } from "@radix-ui/react-dropdown-menu";
 import { Filter } from "iconsax-react";
 import { useEffect } from "react";
+import { Button } from "./ui/button";
 
 export function FilterByCategoryDropdown() {
   const { tasks, filteredBy, setFilteredBy, setFilteredTasks, isEnglish } =
@@ -37,12 +38,12 @@ export function FilterByCategoryDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-x-2">
+        <Button variant={"secondary"}>
           <Filter size={16} />
           {filteredBy || Texts(textsList.filter_select, isEnglish)}
-        </button>
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-cLight dark:bg-bDark text-dLight dark:text-cDark font-semibold rtl:font-medium text-sm border-0">
+      <DropdownMenuContent className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium text-sm border-0">
         <DropdownMenuGroup className="hover:*:cursor-pointer *:p-1.5 *:m-1 *:outline-hidden *:hover:bg-a/30 *:rounded-lg">
           {tagsList.map((tag, i) => (
             <DropdownMenuItem
@@ -54,7 +55,7 @@ export function FilterByCategoryDropdown() {
           ))}
           <DropdownMenuItem
             onClick={() => handleFilterByCategory(null)}
-            className="bg-aLight/15 dark:bg-aDark/15 flex justify-center"
+            className="bg-aLight/15 dark:bg-bDark/10 flex justify-center"
           >
             <span>{Texts(textsList.filter_showAll, isEnglish)}</span>
           </DropdownMenuItem>

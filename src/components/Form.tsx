@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { TagType } from "@/types.ts";
 import { Texts } from "@/texts.ts";
 import { textsList } from "@/textsList.ts";
+import { Button } from "./ui/button.tsx";
 v4();
 
 export default function Form() {
@@ -83,12 +84,16 @@ export default function Form() {
         className="FORM flex flex-nowrap justify-center items-center w-full h-14 font-semibold rtl:font-medium"
       >
         {inputValue && (
-          <button
+          <Button
             type="button"
-            className="SUB flex-none text-lg h-full px-3 ltr:mr-2 rtl:ml-2 bg-aLight dark:bg-aDark ltr:rounded-l-lg ltr:rounded-r-sm rtl:rounded-r-lg rtl:rounded-l-sm shadow-xs"
+            size={"lg"}
+            variant={"secondary"}
+            className="flex-none px-3 ltr:mr-2 rtl:ml-2 ltr:rounded-l-lg ltr:rounded-r-sm rtl:rounded-r-lg rtl:rounded-l-sm"
           >
-            <PlaylistAddIcon sx={{ color: colors.dLight }} />
-          </button>
+            <PlaylistAddIcon
+              sx={{ color: isDark ? colors.bDark : colors.cLight }}
+            />
+          </Button>
         )}
         <div className="INPUT&priority flex-nowrap ltr:mr-2 flex flex-1 items-center relative h-full">
           <input
@@ -104,20 +109,14 @@ export default function Form() {
           {inputValue && <PriorityDropdown />}
         </div>
         <Reminder />
-        {/* <Button
+        <Button
           type="submit"
           onClick={() => handleSubmit}
-          className="bg-dLight dark:bg-bDark h-full px-8 rounded-lg shadow-xs"
-        >
-          <Add color={colors.b} size={32} />
-        </Button> */}
-        <button
-          type="submit"
-          onClick={() => handleSubmit}
-          className="bg-dLight dark:bg-bDark h-full px-8 rounded-lg shadow-xs"
+          size={"lg"}
+          className="px-8"
         >
           <Add color={isDark ? colors.cDark : colors.cLight} size={32} />
-        </button>
+        </Button>
       </form>
     </>
   );

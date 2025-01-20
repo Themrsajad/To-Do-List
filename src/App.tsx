@@ -5,12 +5,16 @@ import { useEffect } from "react";
 import { useZState } from "./states";
 
 export default function App() {
-  const { isEnglish } = useZState();
+  const { isEnglish, isDark } = useZState();
 
   useEffect(() => {
     document.documentElement.dir = isEnglish ? "ltr" : "rtl";
     document.documentElement.lang = isEnglish ? "en" : "fa";
   }, [isEnglish]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
+  }, [isDark]);
 
   return (
     <BrowserRouter>

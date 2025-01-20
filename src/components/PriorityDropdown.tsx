@@ -11,6 +11,7 @@ import { priorityNumToStr } from "@/types";
 import colors from "../../colors";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
+import { Button } from "./ui/button";
 
 export default function PriorityDropdown() {
   const { priority, setPriority, isEnglish, isDark } = useZState();
@@ -18,9 +19,10 @@ export default function PriorityDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button
+        <Button
           type="button"
-          className="flex justify-center items-center absolute z-30 ltr:right-[0.7rem] rtl:left-[0.7rem] h-3/5 px-2 gap-2 rounded-md hover:brightness-95 bg-aLight dark:bg-aDark text-sm outline-hidden no-select"
+          variant={"secondary"}
+          className="absolute z-30 ltr:right-[0.7rem] rtl:left-[0.7rem]"
         >
           <RecordCircle
             variant="Bold"
@@ -40,9 +42,9 @@ export default function PriorityDropdown() {
           {priority == 0
             ? Texts(textsList.form_priorityTitle, isEnglish)
             : priorityNumToStr(priority, isEnglish)}
-        </button>
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-cLight dark:bg-bDark text-dLight dark:text-cDark font-semibold rtl:font-medium border-0 text-sm">
+      <DropdownMenuContent className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium border-0 text-sm">
         <DropdownMenuGroup className="hover:*:cursor-pointer *:p-1.5 *:m-1">
           <DropdownMenuItem onClick={() => setPriority(1)}>
             <RecordCircle variant="Bold" color="#2196f3" size={16} />
@@ -57,7 +59,7 @@ export default function PriorityDropdown() {
             <span>{Texts(textsList.form_priorityHigh, isEnglish)}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="bg-aLight/15 dark:bg-aDark/15 flex justify-center"
+            className="bg-aLight/15 dark:bg-bDark/10 flex justify-center"
             onClick={() => setPriority(0)}
           >
             <span>{Texts(textsList.form_priorityCancel, isEnglish)}</span>

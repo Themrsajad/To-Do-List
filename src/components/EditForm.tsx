@@ -4,6 +4,7 @@ import { Add } from "iconsax-react";
 import { TaskType } from "@/types";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
+import { Button } from "./ui/button";
 
 export default function EditForm({ task }: { task: TaskType }) {
   const { tasks, setTasks, setPriority, isEnglish } = useZState();
@@ -42,14 +43,15 @@ export default function EditForm({ task }: { task: TaskType }) {
             className="bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark h-full placeholder-dLight/30 dark:placeholder-bDark/30 text-lg px-3 flex-1 rounded-r-lg indent-1 outline-hidden shadow-xs rounded-l-lg focus:ring-1 ring-inset ring-aLight dark:ring-aDark"
           />
         </div>
-        <button
+        <Button
           type="submit"
           onClick={() => handleSubmit}
-          className="UPDATETASK h-full bg-dLight dark:bg-bDark px-3 text-lg rounded-lg text-b flex-none shadow-sm font-semibold rtl:font-medium flex items-center "
+          size={"lg"}
+          className="px-3 text-lg"
         >
           <Add />
           {Texts(textsList.task_update, isEnglish)}
-        </button>
+        </Button>
       </form>
     </>
   );

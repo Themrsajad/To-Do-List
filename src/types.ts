@@ -9,12 +9,6 @@ export interface Colors {
   aDark: string;
   bDark: string;
   cDark: string;
-
-  // a: string;
-  // b: string;
-  // c: string;
-  // d: string;
-  white: string;
   red: string;
 }
 

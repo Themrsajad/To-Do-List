@@ -7,6 +7,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useZState } from "@/states";
+import { Button } from "./button";
 
 export function DatePickerDemo() {
   const { deadlineDate, setDeadlineDate } = useZState();
@@ -14,14 +15,16 @@ export function DatePickerDemo() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button
-          className={`flex items-center gap-x-2 font-[Quicksand] font-semibold rtl:font-medium bg-aLight dark:bg-aDark h-full px-4 rounded-lg shadow-sm hover:brightness-95 mr-2 rtl:ml-2 transition duration-100 outline-hidden ${
+        <Button
+          size={"lg"}
+          variant={"secondary"}
+          className={`font-[Quicksand] px-4 mr-2 rtl:ml-2 text-base ${
             deadlineDate && "w-[9.7rem]"
           }`}
         >
           <CalendarSax />
           {deadlineDate && format(deadlineDate, "P")}
-        </button>
+        </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0 border-0">
         <Calendar
@@ -29,7 +32,7 @@ export function DatePickerDemo() {
           selected={deadlineDate}
           onSelect={setDeadlineDate}
           initialFocus
-          className="bg-cLight dark:bg-aDark30 text-dLight dark:text-bDark rounded-lg"
+          className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark rounded-lg shadow-md"
         />
       </PopoverContent>
     </Popover>

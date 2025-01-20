@@ -3,6 +3,7 @@ import { Add, Category } from "iconsax-react";
 import colors from "../../colors";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
+import { Button } from "./ui/button";
 
 export default function AddTag() {
   const {
@@ -20,12 +21,10 @@ export default function AddTag() {
   }
 
   return (
-    <button
+    <Button
       type="button"
       onClick={() => handleClick()}
-      className={`bg-aLight dark:bg-aDark min-h-[2.2rem] text-sm gap-x-2 py-2 px-3 rounded-lg shadow-sm outline-hidden hover:brightness-95 flex items-center justify-center font-semibold rtl:font-medium no-select ${
-        moveTag ? "bg-red dark:bg-red" : ""
-      }`}
+      variant={moveTag ? "red" : "secondary"}
     >
       {moveTag ? (
         <Add size={16} color={colors.white} className="rotate-45" />
@@ -35,6 +34,6 @@ export default function AddTag() {
           <span>{Texts(textsList.form_categoryButtonTitle, isEnglish)}</span>
         </>
       )}
-    </button>
+    </Button>
   );
 }

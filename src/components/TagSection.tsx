@@ -6,6 +6,7 @@ import colors from "../../colors";
 import SelectCategories from "./SelectCategories";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
+import { Button } from "./ui/button";
 
 export default function TagSection() {
   const {
@@ -36,18 +37,19 @@ export default function TagSection() {
         {checkedTags.map((tag, i) => (
           <span
             key={i}
-            className="flex items-center gap-x-2 text-sm bg-cLight dark:bg-aDark30 text-dLight dark:text-bDark font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-sm outline-hidden no-select"
+            className="flex items-center gap-x-2 text-sm bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-sm outline-hidden no-select"
           >
-            <button
+            <Button
               onClick={() => handleRemoveSavedTag(tag.id)}
-              className="bg-dLight dark:bg-bDark rounded-full"
+              size={"lg"}
+              className="rounded-full"
             >
               <Add
                 size={16}
                 color={isDark ? colors.cDark : colors.bLight}
                 className="rotate-45"
               />
-            </button>
+            </Button>
             {tag.tag}
           </span>
         ))}
@@ -60,18 +62,19 @@ export default function TagSection() {
       {tags.map((tag, i) => (
         <span
           key={i}
-          className="flex items-center gap-x-2 text-sm bg-cLight dark:bg-aDark30 text-dLight dark:text-bDark font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-xs outline-hidden no-select"
+          className="flex items-center gap-x-2 text-sm bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-xs outline-hidden no-select"
         >
-          <button
+          <Button
             onClick={() => handleRemoveTag(tag.id)}
-            className="bg-dLight dark:bg-bDark rounded-full"
+            size={"lg"}
+            className="rounded-full"
           >
             <Add
               size={16}
               color={isDark ? colors.cDark : colors.bLight}
               className="rotate-45"
             />
-          </button>
+          </Button>
           {tag.tag}
         </span>
       ))}

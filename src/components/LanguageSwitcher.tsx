@@ -1,14 +1,16 @@
 import { useZState } from "@/states";
+import { Button } from "./ui/button";
 
 export default function LanguageSwitcher() {
   const { isEnglish, setIsEnglish } = useZState();
 
   return (
-    <button
+    <Button
       onClick={() => setIsEnglish()}
-      className="*:flex *:items-center font-medium bg-dLight dark:bg-bDark px-3 py-2 rounded-lg shadow-md hover:brightness-95 font-[QuickSand]"
+      variant={"secondary"}
+      className="font-[QuickSand] h-10"
     >
       {isEnglish ? <span>FA</span> : <span>EN</span>}
-    </button>
+    </Button>
   );
 }

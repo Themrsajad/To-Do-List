@@ -11,6 +11,7 @@ import { textsList } from "@/textsList";
 import { compareAsc, compareDesc } from "date-fns";
 import { ArrangeVertical } from "iconsax-react";
 import { useEffect } from "react";
+import { Button } from "./ui/button";
 
 export function SortByDropdown() {
   const { sortBy, setSortBy, tasks, setTasks, isAscending, isEnglish } =
@@ -53,7 +54,7 @@ export function SortByDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-x-2">
+        <Button variant={"secondary"}>
           <ArrangeVertical size={16} />
           {sortBy == "Date Added"
             ? Texts(textsList.sort_dateAdded, isEnglish)
@@ -62,9 +63,9 @@ export function SortByDropdown() {
             : sortBy == "Remaining Time"
             ? Texts(textsList.sort_remainingTime, isEnglish)
             : ""}
-        </button>
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-cLight dark:bg-bDark text-dLight dark:text-cDark font-semibold rtl:font-medium border-0">
+      <DropdownMenuContent className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium border-0">
         <DropdownMenuRadioGroup
           value={sortBy}
           onValueChange={setSortBy}

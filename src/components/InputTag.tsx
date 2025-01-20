@@ -4,6 +4,7 @@ import { v4 } from "uuid";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
 import colors from "../../colors";
+import { Button } from "./ui/button";
 v4();
 
 export default function InputTag() {
@@ -44,15 +45,15 @@ export default function InputTag() {
           autoFocus
         />
       </div>
-      <button
+      <Button
         type="submit"
         onClick={(e) => handleAddTags(e)}
-        className="absolute bg-dLight dark:bg-bDark h-full w-8 ltr:rounded-r-lg rtl:rounded-l-lg ltr:right-0 rtl:left-0 text-lg z-30 flex items-center justify-center"
+        className="absolute h-full w-8 ltr:rounded-r-lg ltr:rounded-l-none rtl:rounded-l-lg rtl:rounded-r-none ltr:right-0 rtl:left-0 z-30"
       >
         <CheckIcon
           sx={{ color: isDark ? colors.cDark : colors.cLight, fontSize: 20 }}
         />
-      </button>
+      </Button>
     </form>
   );
 }

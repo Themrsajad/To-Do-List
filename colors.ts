@@ -8,12 +8,6 @@ const colors: Colors = {
   aDark: "#0f4c75",
   bDark: "#bbe1fa",
   cDark: "#1b262c",
-
-  // a: "#FFF67E",
-  // b: "#BFEA7C",
-  // c: "#9BCF53",
-  // d: "#416D19",
-  white: "#FFFFFF",
   red: "#E73C51",
 };
 
