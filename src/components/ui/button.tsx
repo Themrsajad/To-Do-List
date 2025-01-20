@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold rtl:font-medium no-select shadow-sm outline-hidden hover:cursor-pointer active:scale-95 delay-0 transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold rtl:font-medium no-select shadow-sm outline-hidden hover:cursor-pointer active:scale-95 delay-0 transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 rtl:[&_span]:-mb-1",
   {
     variants: {
       variant: {
@@ -13,7 +13,7 @@ const buttonVariants = cva(
           "bg-dLight text-cLight hover:bg-dLight/90 dark:bg-bDark dark:text-cDark dark:hover:bg-bDark/90",
         red: "bg-red text-cLight hover:bg-red/90 dark:bg-red dark:text-bDark dark:hover:bg-red/90",
         secondary:
-          "bg-aLight text-cLight hover:bg-aLight/90 dark:bg-aDark dark:text-bDark dark:hover:bg-aDark/90",
+          "bg-aLight text-bLight hover:bg-aLight/95 dark:bg-aDark dark:text-bDark dark:hover:bg-aDark/90",
       },
       size: {
         sm: "min-h-[2.2rem] py-2 px-3",

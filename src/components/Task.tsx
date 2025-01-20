@@ -77,7 +77,7 @@ export default function Task({ task }: { task: TaskType }) {
               !haveTags && "rounded-bl-lg rounded-br-sm"
             } ${haveTags && "rounded-b-none"}`}
           >
-            <div className="flex items-center gap-x-4 font-semibold rtl:font-medium">
+            <div className="fa flex items-center gap-x-4 font-semibold rtl:font-medium">
               {task.todo}
               {task.priority > 0 && (
                 <span className="flex flex-row justify-center items-center text-sm px-2 py-1 text-dLight dark:text-bDark bg-bLight dark:bg-cDark rounded-lg">
@@ -96,7 +96,9 @@ export default function Task({ task }: { task: TaskType }) {
                         : colors.cLight
                     }
                   />
-                  {priorityNumToStr(task.priority, isEnglish)}
+                  <span className="fa">
+                    {priorityNumToStr(task.priority, isEnglish)}
+                  </span>
                 </span>
               )}
             </div>
@@ -126,7 +128,7 @@ export default function Task({ task }: { task: TaskType }) {
                     size={14}
                     color={isDark ? colors.bDark : colors.dLight}
                   />
-                  <span>{tag.tag}</span>
+                  <span className="fa">{tag.tag}</span>
                 </span>
               ))}
             </div>

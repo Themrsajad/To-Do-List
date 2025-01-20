@@ -56,13 +56,15 @@ export function SortByDropdown() {
       <DropdownMenuTrigger asChild>
         <Button variant={"secondary"}>
           <ArrangeVertical size={16} />
-          {sortBy == "Date Added"
-            ? Texts(textsList.sort_dateAdded, isEnglish)
-            : sortBy == "Priority"
-            ? Texts(textsList.sort_priority, isEnglish)
-            : sortBy == "Remaining Time"
-            ? Texts(textsList.sort_remainingTime, isEnglish)
-            : ""}
+          <span>
+            {sortBy == "Date Added"
+              ? Texts(textsList.sort_dateAdded, isEnglish)
+              : sortBy == "Priority"
+              ? Texts(textsList.sort_priority, isEnglish)
+              : sortBy == "Remaining Time"
+              ? Texts(textsList.sort_remainingTime, isEnglish)
+              : ""}
+          </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium border-0">

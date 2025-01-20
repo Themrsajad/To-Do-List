@@ -40,7 +40,9 @@ export function FilterByCategoryDropdown() {
       <DropdownMenuTrigger asChild>
         <Button variant={"secondary"}>
           <Filter size={16} />
-          {filteredBy || Texts(textsList.filter_select, isEnglish)}
+          {filteredBy || (
+            <span>{Texts(textsList.filter_select, isEnglish)}</span>
+          )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium text-sm border-0">

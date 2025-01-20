@@ -50,7 +50,7 @@ export default function EditForm({ task }: { task: TaskType }) {
           className="px-3 text-lg"
         >
           <Add />
-          {Texts(textsList.task_update, isEnglish)}
+          <span>{Texts(textsList.task_update, isEnglish)}</span>
         </Button>
       </form>
     </>

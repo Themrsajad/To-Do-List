@@ -27,7 +27,11 @@ export default function AddTag() {
       variant={moveTag ? "red" : "secondary"}
     >
       {moveTag ? (
-        <Add size={16} color={colors.white} className="rotate-45" />
+        <Add
+          size={16}
+          color={isDark ? colors.bDark : colors.cLight}
+          className="rotate-45"
+        />
       ) : (
         <>
           <Category color={isDark ? colors.bDark : colors.cLight} size={16} />

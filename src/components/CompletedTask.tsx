@@ -40,7 +40,7 @@ export default function CompletedTask({ task }: { task: TaskType }) {
   return (
     <div className="w-[95vw] mx-auto my-4 flex items-center gap-x-2 h-16 font-semibold rtl:font-medium">
       <div className="h-full flex items-center flex-1 px-4 text-lg bg-dLight/10 text-dLight/50 dark:bg-bDark/10 dark:text-bDark/50 ltr:rounded-r-sm rtl:rounded-l-sm ltr:rounded-l-lg rtl:rounded-r-lg no-select">
-        {task.todo}
+        <span className="fa">{task.todo}</span>
       </div>
       <Button
         onClick={() => handleRemove(task.id)}
@@ -55,7 +55,7 @@ export default function CompletedTask({ task }: { task: TaskType }) {
         size={"lg"}
         className="px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg"
       >
-        {Texts(textsList.completedPage_revert, isEnglish)}
+        <span>{Texts(textsList.completedPage_revert, isEnglish)}</span>
         <ArrowForward size={16} className="rotate-180 rtl:scale-x-[-1]" />
       </Button>
     </div>

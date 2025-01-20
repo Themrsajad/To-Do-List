@@ -37,7 +37,6 @@
     src: local("YekanBakh-Medium"),
       url("YekanBakh-Medium.woff2") format("woff2");
     font-weight: 500;
-    vertical-align: middle;
     font-style: normal;
     font-display: swap;
   }
@@ -54,15 +53,15 @@
     @apply bg-bLight dark:bg-cDark font-[Quicksand] not-italic rtl:font-[Yekan-Bakh];
   }
 
+  .fa {
+    @apply rtl:-mb-1;
+  }
+
   .no-select {
     user-select: none; /* Standard */
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE 10+ */
-  }
-
-  .Dropdown-liClasses {
-    @apply flex items-center gap-x-1.5 hover:dark:bg-bDark hover:bg-dLight/10 p-2 w-full rounded-lg dark:bg-bDark bg-dLight;
   }
 }
 

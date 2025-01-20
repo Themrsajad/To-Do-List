@@ -39,30 +39,40 @@ export default function PriorityDropdown() {
                 : colors.cLight
             }
           />
-          {priority == 0
-            ? Texts(textsList.form_priorityTitle, isEnglish)
-            : priorityNumToStr(priority, isEnglish)}
+          <span>
+            {priority == 0
+              ? Texts(textsList.form_priorityTitle, isEnglish)
+              : priorityNumToStr(priority, isEnglish)}
+          </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium border-0 text-sm">
         <DropdownMenuGroup className="hover:*:cursor-pointer *:p-1.5 *:m-1">
           <DropdownMenuItem onClick={() => setPriority(1)}>
             <RecordCircle variant="Bold" color="#2196f3" size={16} />
-            <span>{Texts(textsList.form_priorityLow, isEnglish)}</span>
+            <span className="fa">
+              {Texts(textsList.form_priorityLow, isEnglish)}
+            </span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setPriority(2)}>
             <RecordCircle variant="Bold" color="#ff9800" size={16} />
-            <span>{Texts(textsList.form_priorityMedium, isEnglish)}</span>
+            <span className="fa">
+              {Texts(textsList.form_priorityMedium, isEnglish)}
+            </span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setPriority(3)}>
             <RecordCircle variant="Bold" color={colors.red} size={16} />
-            <span>{Texts(textsList.form_priorityHigh, isEnglish)}</span>
+            <span className="fa">
+              {Texts(textsList.form_priorityHigh, isEnglish)}
+            </span>
           </DropdownMenuItem>
           <DropdownMenuItem
             className="bg-aLight/15 dark:bg-bDark/10 flex justify-center"
             onClick={() => setPriority(0)}
           >
-            <span>{Texts(textsList.form_priorityCancel, isEnglish)}</span>
+            <span className="fa">
+              {Texts(textsList.form_priorityCancel, isEnglish)}
+            </span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

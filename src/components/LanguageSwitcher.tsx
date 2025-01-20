@@ -8,7 +8,7 @@ export default function LanguageSwitcher() {
     <Button
       onClick={() => setIsEnglish()}
       variant={"secondary"}
-      className="font-[QuickSand] h-10"
+      className="h-10"
     >
       {isEnglish ? <span>FA</span> : <span>EN</span>}
     </Button>
