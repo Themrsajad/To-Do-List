@@ -32,7 +32,7 @@ export default function CompletedTask({ task }: { task: TaskType }) {
 
   return (
     <div className="w-[95vw] mx-auto my-4 flex items-center gap-x-2 h-16 font-semibold rtl:font-medium">
-      <div className="h-full flex items-center flex-1 px-4 bg-white/70 text-lg text-d ltr:rounded-r-sm rtl:rounded-l-sm ltr:rounded-l-lg rtl:rounded-r-lg no-select">
+      <div className="h-full flex items-center flex-1 px-4 bg-white/70 text-lg bg-dLight dark:bg-bDark ltr:rounded-r-sm rtl:rounded-l-sm ltr:rounded-l-lg rtl:rounded-r-lg no-select">
         {task.todo}
       </div>
       <button
@@ -43,7 +43,7 @@ export default function CompletedTask({ task }: { task: TaskType }) {
       </button>
       <button
         onClick={() => handleRevert(task.id)}
-        className="flex items-center gap-x-2 h-full text-white bg-d px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg hover:brightness-90"
+        className="flex items-center gap-x-2 h-full text-white bg-dLight dark:bg-bDark px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg hover:brightness-90"
       >
         {Texts(textsList.completedPage_revert, isEnglish)}
         <ArrowForward size={16} className="rotate-180 rtl:scale-x-[-1]" />

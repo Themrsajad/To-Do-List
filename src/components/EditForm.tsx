@@ -39,13 +39,13 @@ export default function EditForm({ task }: { task: TaskType }) {
             onChange={(e) => setValue(e.target.value)}
             type="text"
             placeholder={Texts(textsList.task_updatePlaceholder, isEnglish)}
-            className="bg-c h-full placeholder-b text-d text-lg px-3 pl-3w-full flex-1 rounded-r-lg indent-1 outline-hidden shadow-xs rounded-l-lg focus:ring-1 ring-inset ring-d"
+            className="bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark h-full placeholder-dLight/30 dark:placeholder-bDark/30 text-lg px-3 flex-1 rounded-r-lg indent-1 outline-hidden shadow-xs rounded-l-lg focus:ring-1 ring-inset ring-aLight dark:ring-aDark"
           />
         </div>
         <button
           type="submit"
           onClick={() => handleSubmit}
-          className="UPDATETASK h-full bg-d px-3 text-lg rounded-lg text-b flex-none shadow-xs font-semibold rtl:font-medium flex items-center "
+          className="UPDATETASK h-full bg-dLight dark:bg-bDark px-3 text-lg rounded-lg text-b flex-none shadow-sm font-semibold rtl:font-medium flex items-center "
         >
           <Add />
           {Texts(textsList.task_update, isEnglish)}

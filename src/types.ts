@@ -2,10 +2,18 @@ import { Texts } from "@/texts";
 import { textsList } from "./textsList";
 
 export interface Colors {
-  a: string;
-  b: string;
-  c: string;
-  d: string;
+  aLight: string;
+  bLight: string;
+  cLight: string;
+  dLight: string;
+  aDark: string;
+  bDark: string;
+  cDark: string;
+
+  // a: string;
+  // b: string;
+  // c: string;
+  // d: string;
   white: string;
   red: string;
 }

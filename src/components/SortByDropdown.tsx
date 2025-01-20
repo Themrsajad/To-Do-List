@@ -13,7 +13,8 @@ import { ArrangeVertical } from "iconsax-react";
 import { useEffect } from "react";
 
 export function SortByDropdown() {
-  const { sortBy, setSortBy, tasks, setTasks, isAscending,isEnglish } = useZState();
+  const { sortBy, setSortBy, tasks, setTasks, isAscending, isEnglish } =
+    useZState();
 
   useEffect(() => {
     handleSortBy(isAscending);
@@ -63,7 +64,7 @@ export function SortByDropdown() {
             : ""}
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-c text-d font-semibold rtl:font-medium border-0">
+      <DropdownMenuContent className="bg-cLight dark:bg-bDark text-dLight dark:text-cDark font-semibold rtl:font-medium border-0">
         <DropdownMenuRadioGroup
           value={sortBy}
           onValueChange={setSortBy}

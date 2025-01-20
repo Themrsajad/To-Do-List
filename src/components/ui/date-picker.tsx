@@ -15,7 +15,7 @@ export function DatePickerDemo() {
     <Popover>
       <PopoverTrigger asChild>
         <button
-          className={`flex items-center gap-x-2 font-semibold rtl:font-medium bg-a text-d h-full px-4 rounded-lg shadow-sm hover:brightness-95 mr-2 rtl:ml-2 transition duration-100 outline-hidden ${
+          className={`flex items-center gap-x-2 font-[Quicksand] font-semibold rtl:font-medium bg-aLight dark:bg-aDark h-full px-4 rounded-lg shadow-sm hover:brightness-95 mr-2 rtl:ml-2 transition duration-100 outline-hidden ${
             deadlineDate && "w-[9.7rem]"
           }`}
         >
@@ -29,7 +29,7 @@ export function DatePickerDemo() {
           selected={deadlineDate}
           onSelect={setDeadlineDate}
           initialFocus
-          className="bg-c rounded-lg text-d"
+          className="bg-cLight dark:bg-aDark30 text-dLight dark:text-bDark rounded-lg"
         />
       </PopoverContent>
     </Popover>

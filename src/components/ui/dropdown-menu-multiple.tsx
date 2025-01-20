@@ -9,16 +9,16 @@ import { ArrowDown } from "iconsax-react";
 import colors from "../../../colors";
 
 export function DropdownMenuCheckboxes() {
-  const { tagsList, checkedTags, setCheckedTags } = useZState();
+  const { tagsList, checkedTags, setCheckedTags, isDark } = useZState();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="outline-hidden bg-a rounded-lg h-9 shadow-xs py-2 px-3">
-          <ArrowDown size={16} color={colors.d} />
+        <button className="outline-hidden bg-aLight dark:bg-aDark rounded-lg h-9 shadow-xs py-2 px-3">
+          <ArrowDown size={16} color={isDark ? colors.bDark : colors.cLight} />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-c outline-hidden border-0 text-d font-semibold rtl:font-medium">
+      <DropdownMenuContent className="bg-cLight dark:bg-bDark text-dLight dark:text-cDark outline-hidden border-0 font-semibold rtl:font-medium">
         {tagsList.map((tag) => (
           <DropdownMenuCheckboxItem
             key={tag.id}

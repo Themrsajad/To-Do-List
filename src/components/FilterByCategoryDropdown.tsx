@@ -42,7 +42,7 @@ export function FilterByCategoryDropdown() {
           {filteredBy || Texts(textsList.filter_select, isEnglish)}
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-c text-d font-semibold rtl:font-medium border-0">
+      <DropdownMenuContent className="bg-cLight dark:bg-bDark text-dLight dark:text-cDark font-semibold rtl:font-medium text-sm border-0">
         <DropdownMenuGroup className="hover:*:cursor-pointer *:p-1.5 *:m-1 *:outline-hidden *:hover:bg-a/30 *:rounded-lg">
           {tagsList.map((tag, i) => (
             <DropdownMenuItem
@@ -54,7 +54,7 @@ export function FilterByCategoryDropdown() {
           ))}
           <DropdownMenuItem
             onClick={() => handleFilterByCategory(null)}
-            className="bg-d/10 hover:bg-d/15! flex justify-center"
+            className="bg-aLight/15 dark:bg-aDark/15 flex justify-center"
           >
             <span>{Texts(textsList.filter_showAll, isEnglish)}</span>
           </DropdownMenuItem>

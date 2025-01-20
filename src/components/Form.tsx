@@ -28,6 +28,7 @@ export default function Form() {
     checkedTags,
     setCheckedTags,
     isEnglish,
+    isDark,
   } = useZState();
 
   const allTags = Array.from(
@@ -84,9 +85,9 @@ export default function Form() {
         {inputValue && (
           <button
             type="button"
-            className="SUB flex-none text-lg h-full px-3 ltr:mr-2 rtl:ml-2 bg-a ltr:rounded-l-lg ltr:rounded-r-sm rtl:rounded-r-lg rtl:rounded-l-sm shadow-xs"
+            className="SUB flex-none text-lg h-full px-3 ltr:mr-2 rtl:ml-2 bg-aLight dark:bg-aDark ltr:rounded-l-lg ltr:rounded-r-sm rtl:rounded-r-lg rtl:rounded-l-sm shadow-xs"
           >
-            <PlaylistAddIcon sx={{ color: colors.d }} />
+            <PlaylistAddIcon sx={{ color: colors.dLight }} />
           </button>
         )}
         <div className="INPUT&priority flex-nowrap ltr:mr-2 flex flex-1 items-center relative h-full">
@@ -96,19 +97,26 @@ export default function Form() {
             type="text"
             autoFocus
             placeholder={Texts(textsList.form_inputPlaceholder, isEnglish)}
-            className={`bg-c placeholder-b text-d text-lg h-full w-full flex-1 rounded-r-lg rtl:rounded-l-lg indent-4 outline-hidden focus:ring-1 ring-inset ring-d z-20 no-select ${
+            className={`bg-cLight dark:bg-aDark/30 placeholder-dLight/30 dark:placeholder-bDark/30 text-dLight dark:text-bDark text-lg h-full w-full flex-1 rounded-r-lg rtl:rounded-l-lg indent-4 outline-hidden focus:ring-1 ring-inset ring-aLight dark:ring-aDark z-20 no-select ${
               inputValue ? "ltr:rounded-l-sm rtl:rounded-r-sm" : "rounded-l-lg"
             }`}
           />
           {inputValue && <PriorityDropdown />}
         </div>
         <Reminder />
+        {/* <Button
+          type="submit"
+          onClick={() => handleSubmit}
+          className="bg-dLight dark:bg-bDark h-full px-8 rounded-lg shadow-xs"
+        >
+          <Add color={colors.b} size={32} />
+        </Button> */}
         <button
           type="submit"
           onClick={() => handleSubmit}
-          className="ADDTASK bg-d h-full px-8 rounded-lg shadow-xs"
+          className="bg-dLight dark:bg-bDark h-full px-8 rounded-lg shadow-xs"
         >
-          <Add color={colors.b} size={32} />
+          <Add color={isDark ? colors.cDark : colors.cLight} size={32} />
         </button>
       </form>
     </>

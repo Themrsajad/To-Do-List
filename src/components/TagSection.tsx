@@ -16,6 +16,7 @@ export default function TagSection() {
     checkedTags,
     isEnglish,
     setCheckedTags,
+    isDark,
   } = useZState();
 
   function handleRemoveTag(id: string) {
@@ -35,33 +36,41 @@ export default function TagSection() {
         {checkedTags.map((tag, i) => (
           <span
             key={i}
-            className="flex items-center gap-x-2 text-sm text-d font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-xs outline-hidden no-select"
+            className="flex items-center gap-x-2 text-sm bg-cLight dark:bg-aDark30 text-dLight dark:text-bDark font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-sm outline-hidden no-select"
           >
             <button
               onClick={() => handleRemoveSavedTag(tag.id)}
-              className="bg-d rounded-full"
+              className="bg-dLight dark:bg-bDark rounded-full"
             >
-              <Add size={16} color={colors.white} className="rotate-45" />
+              <Add
+                size={16}
+                color={isDark ? colors.cDark : colors.bLight}
+                className="rotate-45"
+              />
             </button>
             {tag.tag}
           </span>
         ))}
       </div>
-      {tags.length > 0 && (
-        <span className="text-d font-semibold rtl:font-medium text-sm ml-2">
+      {tagsList.length == 0 && tags.length > 0 && (
+        <span className="text-dLight dark:text-bDark font-semibold rtl:font-medium text-sm ml-2 no-select">
           {Texts(textsList.form_categoryCategories, isEnglish)}
         </span>
       )}
       {tags.map((tag, i) => (
         <span
           key={i}
-          className="flex items-center gap-x-2 text-sm text-d font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-xs outline-hidden no-select"
+          className="flex items-center gap-x-2 text-sm bg-cLight dark:bg-aDark30 text-dLight dark:text-bDark font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-xs outline-hidden no-select"
         >
           <button
             onClick={() => handleRemoveTag(tag.id)}
-            className="bg-d rounded-full"
+            className="bg-dLight dark:bg-bDark rounded-full"
           >
-            <Add size={16} color={colors.white} className="rotate-45" />
+            <Add
+              size={16}
+              color={isDark ? colors.cDark : colors.bLight}
+              className="rotate-45"
+            />
           </button>
           {tag.tag}
         </span>

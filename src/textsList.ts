@@ -40,8 +40,8 @@ export const textsList = {
     fa: "مدرسه",
   },
   form_categorySelect: {
-    en: "Select : ",
-    fa: "انتخاب : ",
+    en: "or Select : ",
+    fa: "یا انتخاب : ",
   },
   form_categoryCategories: {
     en: "Categories : ",

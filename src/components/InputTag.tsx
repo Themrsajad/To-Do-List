@@ -14,6 +14,7 @@ export default function InputTag() {
     tagInputValue,
     setTagInputValue,
     isEnglish,
+    isDark,
   } = useZState();
 
   function handleAddTags(e: any) {
@@ -38,7 +39,7 @@ export default function InputTag() {
             textsList.form_categoryinputPlaceholder,
             isEnglish
           )}
-          className="bg-c w-full h-full placeholder-b text-d text-sm font-medium rounded-lg outline-hidden shadow-xs focus:ring-1 ring-inset ring-d indent-3"
+          className="bg-cLight dark:bg-aDark/30 placeholder-dLight/30 dark:placeholder-bDark/30 text-dLight dark:text-bDark w-full h-full text-sm font-medium rounded-lg outline-hidden focus:ring-1 ring-inset ring-dLight dark:ring-aDark indent-3"
           type="text"
           autoFocus
         />
@@ -46,9 +47,11 @@ export default function InputTag() {
       <button
         type="submit"
         onClick={(e) => handleAddTags(e)}
-        className="DONE absolute bg-d h-full w-8 ltr:rounded-r-lg rtl:rounded-l-lg ltr:right-0 rtl:left-0 text-lg z-30 flex items-center justify-center"
+        className="absolute bg-dLight dark:bg-bDark h-full w-8 ltr:rounded-r-lg rtl:rounded-l-lg ltr:right-0 rtl:left-0 text-lg z-30 flex items-center justify-center"
       >
-        <CheckIcon sx={{ color: colors.b, fontSize: 20 }} />
+        <CheckIcon
+          sx={{ color: isDark ? colors.cDark : colors.cLight, fontSize: 20 }}
+        />
       </button>
     </form>
   );

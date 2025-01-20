@@ -1,31 +1,32 @@
 @import "tailwindcss";
-
 @plugin 'tailwindcss-animate';
-
 @variant dark (&:is(.dark *));
 
 @theme {
   --color-*: initial;
-  --color-a: #fff67e;
+  /* light theme */
+  --color-aLight: #3f72af;
+  --color-bLight: #f9f7f7;
+  --color-cLight: #dbe2ef;
+  --color-dLight: #112d4e;
+  /* dark theme */
+  --color-aDark: #0f4c75;
+  --color-aDark30: #173242;
+  --color-bDark: #bbe1fa;
+  --color-cDark: #1b262c;
+
+  /* --color-white: #ffffff; */
+  --color-red: #e73c51;
+  /* --color-a: #fff67e;
   --color-b: #bfea7c;
   --color-c: #9bcf53;
-  --color-d: #416d19;
-  --color-white: #ffffff;
-  --color-red: #e73c51;
+  --color-d: #416d19; */
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -56,7 +57,7 @@
   }
 
   body {
-    @apply bg-b font-[Quicksand] not-italic rtl:font-[Yekan-Bakh];
+    @apply bg-bLight dark:bg-cDark font-[Quicksand] not-italic rtl:font-[Yekan-Bakh];
   }
 
   .no-select {
@@ -67,7 +68,7 @@
   }
 
   .Dropdown-liClasses {
-    @apply flex items-center gap-x-1.5  hover:bg-d/10 p-2 w-full rounded-lg text-d;
+    @apply flex items-center gap-x-1.5 hover:dark:bg-bDark hover:bg-dLight/10 p-2 w-full rounded-lg dark:bg-bDark bg-dLight;
   }
 }
 
