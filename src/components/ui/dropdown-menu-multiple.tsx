@@ -10,12 +10,14 @@ import colors from "../../../colors";
 import { Button } from "./button";
 
 export function DropdownMenuCheckboxes() {
-  const { tagsList, checkedTags, setCheckedTags, isDark } = useZState();
+  const { tagsList, checkedTags, setCheckedTags, isDark, isMobile } =
+    useZState();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant={"secondary"} className="h-9">
+          {isMobile && <span className="font-medium">List</span>}
           <ArrowDown size={16} color={isDark ? colors.bDark : colors.cLight} />
         </Button>
       </DropdownMenuTrigger>

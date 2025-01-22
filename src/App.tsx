@@ -5,8 +5,18 @@ import { useEffect } from "react";
 import { useZState } from "./states";
 
 export default function App() {
-  const { isEnglish, isDark } = useZState();
+  const { isEnglish, isDark, setIsMobile } = useZState();
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  
   useEffect(() => {
     document.documentElement.dir = isEnglish ? "ltr" : "rtl";
     document.documentElement.lang = isEnglish ? "en" : "fa";

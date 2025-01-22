@@ -19,6 +19,7 @@ type State = {
   tagsList: TagType[];
   checkedTags: TagType[];
   isEnglish: boolean;
+  isMobile: boolean;
 };
 
 type Action = {
@@ -38,6 +39,7 @@ type Action = {
   setTagsList: (tagsList: TagType[]) => void;
   setCheckedTags: (checkeds: TagType[]) => void;
   setIsEnglish: () => void;
+  setIsMobile: (bool?: boolean) => void;
 };
 
 export const useZState = create<State & Action>((set) => ({
@@ -72,6 +74,7 @@ export const useZState = create<State & Action>((set) => ({
     const savedLang = localStorage.getItem("lang");
     return savedLang ? JSON.parse(savedLang) : true;
   })(),
+  isMobile: window.innerWidth < 640,
   setInputValue: (val) => set(() => ({ inputValue: val })),
   setMoveTag: (bool) =>
     set((s) => ({ moveTag: typeof bool === "boolean" ? bool : !s.moveTag })),
@@ -114,6 +117,10 @@ export const useZState = create<State & Action>((set) => ({
       return { isEnglish: newLang };
     });
   },
+  setIsMobile: (bool) =>
+    set((s) => ({
+      isMobile: typeof bool === "boolean" ? bool : !s.isMobile,
+    })),
 }));
 
 if (process.env.NODE_ENV === "development") {

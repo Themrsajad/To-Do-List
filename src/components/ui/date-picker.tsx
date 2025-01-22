@@ -18,11 +18,11 @@ export function DatePickerDemo() {
         <Button
           size={"lg"}
           variant={"secondary"}
-          className={`font-[Quicksand] px-4 mr-2 rtl:ml-2 text-base ${
-            deadlineDate && "w-[9.7rem]"
+          className={`font-[Quicksand] px-4 sm:mr-2 rtl:ml-2 text-base size-12 sm:h-full sm:w-auto ${
+            deadlineDate && "w-[9rem] sm:w-[9.7rem]"
           }`}
         >
-          <CalendarSax />
+          <CalendarSax size={24} />
           {deadlineDate && format(deadlineDate, "P")}
         </Button>
       </PopoverTrigger>

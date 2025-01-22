@@ -30,6 +30,7 @@ export default function Form() {
     setCheckedTags,
     isEnglish,
     isDark,
+    isMobile,
   } = useZState();
 
   const allTags = Array.from(
@@ -81,9 +82,9 @@ export default function Form() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="FORM flex flex-nowrap justify-center items-center w-full h-14 font-semibold rtl:font-medium"
+        className="flex flex-nowrap justify-center items-center w-full h-10 sm:h-14 font-semibold rtl:font-medium"
       >
-        {inputValue && (
+        {inputValue && !isMobile && (
           <Button
             type="button"
             size={"lg"}
@@ -102,20 +103,23 @@ export default function Form() {
             type="text"
             autoFocus
             placeholder={Texts(textsList.form_inputPlaceholder, isEnglish)}
-            className={`bg-cLight dark:bg-aDark/30 placeholder-dLight/30 dark:placeholder-bDark/30 text-dLight dark:text-bDark text-lg h-full w-full flex-1 rounded-r-lg rtl:rounded-l-lg indent-4 outline-hidden focus:ring-1 ring-inset ring-aLight dark:ring-aDark z-20 no-select ${
+            className={`bg-cLight dark:bg-aDark/30 placeholder-dLight/30 dark:placeholder-bDark/30 text-dLight dark:text-bDark text-base sm:text-lg h-full w-full flex-1 rounded-r-lg rtl:rounded-l-lg indent-2 sm:indent-4 outline-hidden focus:ring-1 ring-inset ring-aLight dark:ring-aDark z-20 no-select ${
               inputValue ? "ltr:rounded-l-sm rtl:rounded-r-sm" : "rounded-l-lg"
             }`}
           />
-          {inputValue && <PriorityDropdown />}
+          {inputValue && !isMobile && <PriorityDropdown />}
         </div>
-        <Reminder />
+        {!isMobile && <Reminder />}
         <Button
           type="submit"
           onClick={() => handleSubmit}
           size={"lg"}
-          className="px-8"
+          className="px-2 sm:px-8"
         >
-          <Add color={isDark ? colors.cDark : colors.cLight} size={32} />
+          <Add
+            color={isDark ? colors.cDark : colors.cLight}
+            size={isMobile ? 24 : 32}
+          />
         </Button>
       </form>
     </>

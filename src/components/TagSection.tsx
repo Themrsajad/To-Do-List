@@ -33,7 +33,7 @@ export default function TagSection() {
       <AddTag />
       {moveTag && <InputTag />}
       {tagsList.length > 0 && <SelectCategories />}
-      <div className=" flex items-center gap-x-2">
+      <div className="flex items-center gap-x-2">
         {checkedTags.map((tag, i) => (
           <span
             key={i}
