@@ -1,4 +1,4 @@
-import { RecordCircle } from "iconsax-react";
+import { Flag, RecordCircle } from "iconsax-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,39 +12,74 @@ import colors from "../../colors";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 export default function PriorityDropdown() {
-  const { priority, setPriority, isEnglish, isDark } = useZState();
+  const { priority, setPriority, isEnglish, isDark, isMobile } = useZState();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          type="button"
-          variant={"secondary"}
-          className="absolute z-30 ltr:right-[0.7rem] rtl:left-[0.7rem]"
-        >
-          <RecordCircle
-            variant="Bold"
-            size={16}
-            color={
-              priority == 1
-                ? "#2196f3"
-                : priority == 2
-                ? "#ff9800"
-                : priority == 3
-                ? colors.red
-                : isDark
-                ? colors.bDark
-                : colors.cLight
-            }
-          />
-          <span>
-            {priority == 0
-              ? Texts(textsList.form_priorityTitle, isEnglish)
-              : priorityNumToStr(priority, isEnglish)}
-          </span>
-        </Button>
+        {isMobile ? (
+          <Button
+            size={"lg"}
+            variant={"mobile"}
+            className={cn(
+              "font-[Quicksand] px-4 sm:mr-2 rtl:ml-2 text-base size-12 sm:h-full sm:w-auto",
+              priority > 0 && "bg-aLight dark:bg-aDark"
+            )}
+          >
+            <div
+              className={cn(
+                priority > 0 &&
+                  "bg-cLight dark:bg-bDark p-[0.2rem] rounded-lg"
+              )}
+            >
+              <Flag
+                size={24}
+                variant="Bold"
+                color={
+                  priority == 1
+                    ? "#2196f3"
+                    : priority == 2
+                    ? "#ff9800"
+                    : priority == 3
+                    ? colors.red
+                    : isDark
+                    ? colors.aDark
+                    : colors.aLight
+                }
+              />
+            </div>
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            variant={"secondary"}
+            className="absolute z-30 ltr:right-[0.7rem] rtl:left-[0.7rem]"
+          >
+            <RecordCircle
+              variant="Bold"
+              size={16}
+              color={
+                priority == 1
+                  ? "#2196f3"
+                  : priority == 2
+                  ? "#ff9800"
+                  : priority == 3
+                  ? colors.red
+                  : isDark
+                  ? colors.bDark
+                  : colors.cLight
+              }
+            />
+            <span>
+              {priority == 0
+                ? Texts(textsList.form_priorityTitle, isEnglish)
+                : priorityNumToStr(priority, isEnglish)}
+            </span>
+          </Button>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium border-0 text-sm">
         <DropdownMenuGroup className="hover:*:cursor-pointer *:p-1.5 *:m-1">

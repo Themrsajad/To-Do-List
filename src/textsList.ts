@@ -31,6 +31,18 @@ export const textsList = {
     en: "Cancel",
     fa: "انصراف",
   },
+  form_category: {
+    en: "Category",
+    fa: "دسته بندی",
+  },
+  form_categoryTitleMobile: {
+    en: "Add Category",
+    fa: "دسته بندی اضافه کنید",
+  },
+  form_categoryDescriptionMobile: {
+    en: "or choose from List",
+    fa: "یا از لیست انتخاب کنید",
+  },
   form_categoryButtonTitle: {
     en: "Add Category",
     fa: "افزودن دسته بندی",
@@ -39,6 +51,14 @@ export const textsList = {
     en: "School",
     fa: "مدرسه",
   },
+  form_categoryinputPlaceholderMobile: {
+    en: "like 'School'",
+    fa: "مثلا 'مدرسه'",
+  },
+  form_categoryNoCategoryMobile: {
+    en: "Try to add a Category",
+    fa: "یک دسته بندی اضافه کنید",
+  },
   form_categorySelect: {
     en: "or Select : ",
     fa: "یا انتخاب : ",
@@ -46,6 +66,26 @@ export const textsList = {
   form_categoryCategories: {
     en: "Categories : ",
     fa: "دسته بندی ها : ",
+  },
+  form_list: {
+    en: "List",
+    fa: "لیست",
+  },
+  form_reminder: {
+    en: "Reminder",
+    fa: "یادآوری",
+  },
+  form_completed: {
+    en: "Completed",
+    fa: "انجام شده",
+  },
+  form_priority: {
+    en: "Priority",
+    fa: "اولویت",
+  },
+  form_submit: {
+    en: "Submit",
+    fa: "ثبت",
   },
   filter_filterByCategory: {
     en: "Filter By Category : ",

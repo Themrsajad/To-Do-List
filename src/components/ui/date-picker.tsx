@@ -8,21 +8,34 @@ import {
 } from "@/components/ui/popover";
 import { useZState } from "@/states";
 import { Button } from "./button";
+import colors from "../../../colors";
 
 export function DatePickerDemo() {
-  const { deadlineDate, setDeadlineDate } = useZState();
+  const { deadlineDate, setDeadlineDate, isDark } = useZState();
 
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
           size={"lg"}
-          variant={"secondary"}
-          className={`font-[Quicksand] px-4 sm:mr-2 rtl:ml-2 text-base size-12 sm:h-full sm:w-auto ${
-            deadlineDate && "w-[9rem] sm:w-[9.7rem]"
+          variant={"mobile"}
+          className={`font-[Quicksand] px-4 sm:mr-2 rtl:ml-2 text-sm sm:text-base size-12 sm:h-full sm:w-auto ${
+            deadlineDate && "w-[8rem] sm:w-[9.7rem] bg-aLight dark:bg-aDark"
           }`}
         >
-          <CalendarSax size={24} />
+          <CalendarSax
+            size={24}
+            variant="Bold"
+            color={
+              deadlineDate
+                ? isDark
+                  ? colors.bDark
+                  : colors.bLight
+                : isDark
+                ? colors.aDark
+                : colors.aLight
+            }
+          />
           {deadlineDate && format(deadlineDate, "P")}
         </Button>
       </PopoverTrigger>

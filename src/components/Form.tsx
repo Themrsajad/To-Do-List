@@ -10,6 +10,7 @@ import { TagType } from "@/types.ts";
 import { Texts } from "@/texts.ts";
 import { textsList } from "@/textsList.ts";
 import { Button } from "./ui/button.tsx";
+import { cn } from "@/lib/utils.ts";
 v4();
 
 export default function Form() {
@@ -82,7 +83,7 @@ export default function Form() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-nowrap justify-center items-center w-full h-10 sm:h-14 font-semibold rtl:font-medium"
+        className="flex flex-nowrap justify-center items-center w-full h-12 sm:h-14 font-semibold rtl:font-medium"
       >
         {inputValue && !isMobile && (
           <Button
@@ -101,11 +102,12 @@ export default function Form() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             type="text"
-            autoFocus
+            autoFocus={!isMobile}
             placeholder={Texts(textsList.form_inputPlaceholder, isEnglish)}
-            className={`bg-cLight dark:bg-aDark/30 placeholder-dLight/30 dark:placeholder-bDark/30 text-dLight dark:text-bDark text-base sm:text-lg h-full w-full flex-1 rounded-r-lg rtl:rounded-l-lg indent-2 sm:indent-4 outline-hidden focus:ring-1 ring-inset ring-aLight dark:ring-aDark z-20 no-select ${
+            className={cn(
+              "bg-cLight dark:bg-aDark/30 placeholder-dLight/30 dark:placeholder-bDark/30 text-dLight dark:text-bDark text-base sm:text-lg h-full w-full flex-1 rounded-r-lg rtl:rounded-l-lg indent-3 sm:indent-4 outline-hidden focus:ring-1 ring-inset ring-aLight dark:ring-aDark z-20 no-select",
               inputValue ? "ltr:rounded-l-sm rtl:rounded-r-sm" : "rounded-l-lg"
-            }`}
+            )}
           />
           {inputValue && !isMobile && <PriorityDropdown />}
         </div>
@@ -114,7 +116,7 @@ export default function Form() {
           type="submit"
           onClick={() => handleSubmit}
           size={"lg"}
-          className="px-2 sm:px-8"
+          className="px-4 sm:px-8"
         >
           <Add
             color={isDark ? colors.cDark : colors.cLight}

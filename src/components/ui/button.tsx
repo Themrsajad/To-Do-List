@@ -14,6 +14,7 @@ const buttonVariants = cva(
         red: "bg-red text-cLight hover:bg-red/90 dark:bg-red dark:text-bDark dark:hover:bg-red/90",
         secondary:
           "bg-aLight text-bLight hover:bg-aLight/95 dark:bg-aDark dark:text-bDark dark:hover:bg-aDark/90",
+        mobile: "bg-aLight/30 text-bLight dark:bg-aDark/30 dark:text-bDark",
       },
       size: {
         sm: "min-h-[2.2rem] py-2 px-3",

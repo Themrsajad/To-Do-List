@@ -8,16 +8,26 @@ import { useZState } from "@/states";
 import { ArrowDown } from "iconsax-react";
 import colors from "../../../colors";
 import { Button } from "./button";
+import { cn } from "@/lib/utils";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
 
 export function DropdownMenuCheckboxes() {
-  const { tagsList, checkedTags, setCheckedTags, isDark, isMobile } =
+  const { tagsList, checkedTags, setCheckedTags, isDark, isMobile, isEnglish } =
     useZState();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={"secondary"} className="h-9">
-          {isMobile && <span className="font-medium">List</span>}
+        <Button
+          variant={"secondary"}
+          className={cn("h-full sm:h-9", isMobile && "dark:bg-aDark")}
+        >
+          {isMobile && (
+            <span className="font-medium">
+              {Texts(textsList.form_list, isEnglish)}
+            </span>
+          )}
           <ArrowDown size={16} color={isDark ? colors.bDark : colors.cLight} />
         </Button>
       </DropdownMenuTrigger>

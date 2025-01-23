@@ -1,10 +1,10 @@
-import CheckIcon from "@mui/icons-material/Check";
 import { useZState } from "../states";
 import { v4 } from "uuid";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
 import colors from "../../colors";
 import { Button } from "./ui/button";
+import { Add } from "iconsax-react";
 v4();
 
 export default function InputTag() {
@@ -50,9 +50,7 @@ export default function InputTag() {
         onClick={(e) => handleAddTags(e)}
         className="absolute h-full w-8 ltr:rounded-r-lg ltr:rounded-l-none rtl:rounded-l-lg rtl:rounded-r-none ltr:right-0 rtl:left-0 z-30"
       >
-        <CheckIcon
-          sx={{ color: isDark ? colors.cDark : colors.cLight, fontSize: 20 }}
-        />
+        <Add color={isDark ? colors.cDark : colors.cLight} size={18} />
       </Button>
     </form>
   );

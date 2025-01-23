@@ -15,10 +15,12 @@ import { DatePickerDemo as Reminder } from "../ui/date-picker.tsx";
 import { Button } from "../ui/button.tsx";
 import { TickSquare } from "iconsax-react";
 import { Link } from "react-router-dom";
-import MobileAddCategory from "../MobileAddCategory.tsx";
+import MobileCategoryDrawer from "../MobileCategoryDrawer.tsx";
+import PriorityDropdown from "../PriorityDropdown.tsx";
+import colors from "../../../colors";
 
 export default function Home() {
-  const { tasks, filteredTasks, isEnglish, isMobile } = useZState();
+  const { tasks, filteredTasks, isEnglish, isMobile, isDark } = useZState();
 
   function isFilterByTagAvailable() {
     let tagCount = 0;
@@ -42,18 +44,32 @@ export default function Home() {
           <div className="w-full flex items-center justify-around py-6">
             <div className="flex flex-col items-center gap-1">
               <Reminder />
-              <span className="text-xs font-medium">Reminder</span>
+              <span className="text-xs font-medium text-dLight dark:text-bDark">
+                {Texts(textsList.form_reminder, isEnglish)}
+              </span>
             </div>
-            <MobileAddCategory />
+            <MobileCategoryDrawer />
+            <div className="flex flex-col items-center gap-1">
+              <PriorityDropdown />
+              <span className="text-xs font-medium text-dLight dark:text-bDark">
+                {Texts(textsList.form_priority, isEnglish)}
+              </span>
+            </div>
             <Link to="/completed" className="flex flex-col items-center gap-1">
               <Button
                 size={"lg"}
-                variant={"secondary"}
-                className={`font-[Quicksand] px-4 sm:mr-2 rtl:ml-2 text-base size-12 sm:h-full sm:w-auto `}
+                variant={"mobile"}
+                className="font-[Quicksand] px-4 sm:mr-2 rtl:ml-2 text-base size-12 sm:h-full sm:w-auto"
               >
-                <TickSquare size={24} />
+                <TickSquare
+                  size={24}
+                  variant="Bold"
+                  color={isDark ? colors.aDark : colors.aLight}
+                />
               </Button>
-              <span className="text-xs font-medium">Completed</span>
+              <span className="text-xs font-medium text-dLight dark:text-bDark">
+                {Texts(textsList.form_completed, isEnglish)}
+              </span>
             </Link>
           </div>
         )}
