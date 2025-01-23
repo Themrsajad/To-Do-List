@@ -26,7 +26,7 @@ export default function PriorityDropdown() {
             variant={"mobile"}
             className={cn(
               "font-[Quicksand] px-4 sm:mr-2 rtl:ml-2 text-base size-12 sm:h-full sm:w-auto",
-              priority > 0 && "bg-aLight dark:bg-aDark"
+              priority > 0 && "bg-bLight dark:bg-aDark"
             )}
           >
             <div
