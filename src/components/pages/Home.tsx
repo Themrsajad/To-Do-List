@@ -12,7 +12,8 @@ import { textsList } from "@/textsList.ts";
 import TasksSection from "../TasksSection.tsx";
 import MobileOptionsBar from "../MobileOptionsBar.tsx";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import CompletedTask from "../CompletedTask.tsx";
+import CompletedTasksSection from "../CompletedTasksSection.tsx";
+import { cn } from "@/lib/utils.ts";
 
 export default function Home() {
   const { tasks, isEnglish, isMobile, completedTasks } = useZState();
@@ -26,7 +27,12 @@ export default function Home() {
   return (
     <div className="relative w-[90vw] sm:w-[95vw] mx-auto pb-40">
       <Title>{Texts(textsList.heading_mainTitle, isEnglish)}</Title>
-      <div className="flex items-center rtl:flex-row-reverse gap-x-2 absolute right-0 top-6 sm:top-10">
+      <div
+        className={cn(
+          "flex items-center sm:rtl:flex-row-reverse gap-x-2 absolute ltr:right-0 top-6 sm:top-10",
+          isMobile && "rtl:left-0"
+        )}
+      >
         <LanguageSwitcher />
         <ThemeSwitcher />
       </div>
@@ -41,27 +47,21 @@ export default function Home() {
           {tasks.length > 0 && <SortSection />}
         </div>
       )}
-      {isMobile && (
-        <Tabs defaultValue="tasks" className="w-full">
+      {(tasks.length > 0 || completedTasks.length > 0) && isMobile && (
+        <Tabs defaultValue="tasks" className="w-full *:w-full">
           <TabsList className="w-full *:w-1/2 ">
-            <TabsTrigger value="tasks">Tasks</TabsTrigger>
-            <TabsTrigger value="completed">Completed</TabsTrigger>
+            <TabsTrigger value="tasks">
+              {Texts(textsList.task_tasks, isEnglish)}
+            </TabsTrigger>
+            <TabsTrigger value="completed">
+              {Texts(textsList.form_completed, isEnglish)}
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="tasks">
             <TasksSection />
           </TabsContent>
           <TabsContent value="completed">
-            {completedTasks.length > 0 ? (
-              <div className="flex flex-col">
-                {completedTasks.map((task, i) => (
-                  <CompletedTask task={task} key={i} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-dLight/50 dark:text-bDark/50 font-semibold rtl:font-medium flex justify-center p-8 no-select">
-                {Texts(textsList.completedPage_paragraph, isEnglish)}
-              </div>
-            )}
+            <CompletedTasksSection />
           </TabsContent>
         </Tabs>
       )}

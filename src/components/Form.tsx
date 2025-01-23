@@ -83,7 +83,7 @@ export default function Form() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-nowrap justify-center items-center w-full h-12 sm:h-14 font-semibold rtl:font-medium"
+        className="flex flex-nowrap justify-center items-center w-full h-12 sm:h-14 font-semibold rtl:font-medium gap-2 sm:gap-0"
       >
         {inputValue && !isMobile && (
           <Button
@@ -97,7 +97,7 @@ export default function Form() {
             />
           </Button>
         )}
-        <div className="INPUT&priority flex-nowrap ltr:mr-2 flex flex-1 items-center relative h-full">
+        <div className="INPUT&priority flex-nowrap sm:ltr:mr-2 flex flex-1 items-center relative h-full">
           <input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}

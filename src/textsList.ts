@@ -115,6 +115,10 @@ export const textsList = {
     en: "Remaining Time",
     fa: "زمان باقیمانده",
   },
+  task_tasks: {
+    en: "Tasks",
+    fa: "کارها",
+  },
   task_update: {
     en: "Update",
     fa: "ثبت",

@@ -16,7 +16,7 @@ import { textsList } from "@/textsList";
 import { DropdownMenuCheckboxes } from "./ui/dropdown-menu-multiple";
 import colors from "../../colors";
 import { v4 } from "uuid";
-import { ScrollArea, ScrollBar } from "./ui/scroll-area";
+import { ScrollArea } from "./ui/scroll-area";
 import { cn } from "@/lib/utils";
 v4();
 
@@ -54,7 +54,7 @@ export default function MobileCategoryDrawer() {
             size={"lg"}
             variant={"mobile"}
             className={cn(
-              "font-[Quicksand] px-4 sm:mr-2 rtl:ml-2 text-base size-12 sm:h-full sm:w-auto",
+              "font-[Quicksand] px-4 sm:mr-2 rtl:sm:ml-2 text-base size-12 sm:h-full sm:w-auto",
               (checkedTags.length > 0 || tags.length > 0) &&
                 "bg-aLight dark:bg-aDark"
             )}
@@ -172,7 +172,6 @@ export default function MobileCategoryDrawer() {
                   </span>
                 ))}
               </div>
-              <ScrollBar orientation="horizontal" />
             </ScrollArea>
           </div>
         </div>

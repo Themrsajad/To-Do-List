@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
 import { Button } from "./ui/button";
+import { ScrollArea } from "./ui/scroll-area";
 
 export default function Task({ task }: { task: TaskType }) {
   const {
@@ -20,6 +21,7 @@ export default function Task({ task }: { task: TaskType }) {
     tagsList,
     isEnglish,
     isDark,
+    isMobile,
   } = useZState();
 
   useEffect(() => {
@@ -62,25 +64,28 @@ export default function Task({ task }: { task: TaskType }) {
   const haveTags = task.tags.length > 0;
 
   return (
-    <div className="my-4">
+    <div className="my-2 sm:my-4 w-full">
       <div
-        className={cn("EACHTASK flex items-center h-16", haveTags && "h-24")}
+        className={cn(
+          "EACHTASK flex items-center h-10 sm:h-16 w-full gap-x-2",
+          haveTags && "h-18 sm:h-24"
+        )}
       >
         <div
           className={cn(
-            "flex flex-col h-full ltr:mr-2 flex-1 rounded-lg",
+            "flex flex-col h-full flex-1 rounded-lg min-w-0",
             haveTags && "shadow-sm dark:shadow-md"
           )}
         >
           <div
-            className={`TEXTPART h-16 flex items-center justify-between px-3 w-full bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark text-lg font-medium indent-1 rounded-tr-sm rounded-tl-lg shadow-sm no-select ${
+            className={`TEXTPART h-11 sm:h-16 flex items-center justify-between px-2 sm:px-3 bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark text-base sm:text-lg font-medium indent-1 rounded-tr-sm rounded-tl-lg shadow-sm no-select ${
               !haveTags && "rounded-bl-lg rounded-br-sm"
             } ${haveTags && "rounded-b-none"}`}
           >
-            <div className="fa flex items-center gap-x-4 font-semibold rtl:font-medium">
+            <div className="fa flex items-center gap-x-2 sm:gap-x-4 font-semibold rtl:font-medium">
               {task.todo}
               {task.priority > 0 && (
-                <span className="flex flex-row justify-center items-center text-sm px-2 py-1 text-dLight dark:text-bDark bg-bLight dark:bg-cDark rounded-lg">
+                <span className="flex flex-row justify-center items-center text-xs sm:text-sm px-1 sm:px-2 py-1 text-dLight dark:text-bDark bg-bLight dark:bg-cDark rounded-lg">
                   <RecordCircle
                     variant="Bold"
                     size={16}
@@ -117,38 +122,46 @@ export default function Task({ task }: { task: TaskType }) {
               </span>
             )}
           </div>
-          {haveTags && (
-            <div className="flex items-center bg-aLight/30 dark:bg-aDark/15 font-medium px-3 gap-x-4 h-10 text-[0.8rem] rounded-bl-lg rounded-br-sm">
-              {task.tags.map((tag, i) => (
-                <span
-                  key={i}
-                  className="flex items-center gap-x-1 bg-cLight dark:bg-cDark text-dLight dark:text-bDark px-2 py-0.5 rounded-lg no-select"
-                >
-                  <Hashtag
-                    size={14}
-                    color={isDark ? colors.bDark : colors.dLight}
-                  />
-                  <span className="fa">{tag.tag}</span>
-                </span>
-              ))}
-            </div>
-          )}
+          <ScrollArea>
+            {haveTags && (
+              <div className="flex items-center bg-aLight/30 dark:bg-aDark/15 font-medium px-2 sm:px-3 gap-x-2 sm:gap-x-4 h-7 sm:h-10 text-[0.8rem] rounded-bl-lg rounded-br-sm ">
+                {task.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="flex items-center gap-x-1 bg-cLight dark:bg-cDark text-dLight dark:text-bDark px-1 sm:px-2 py-0 sm:py-0.5 rounded-lg no-select"
+                  >
+                    <Hashtag
+                      size={isMobile ? 12 : 14}
+                      color={isDark ? colors.bDark : colors.dLight}
+                    />
+                    <span className="fa">{tag.tag}</span>
+                  </span>
+                ))}
+              </div>
+            )}
+          </ScrollArea>
         </div>
         <Button
           onClick={() => handleEditInTask(task.id)}
           variant={"secondary"}
           size={"lg"}
-          className="px-4 mr-2 rtl:ml-2 flex-none rounded-sm"
+          className="px-2 sm:px-4 flex-none rounded-sm"
         >
-          <Edit color={isDark ? colors.bDark : colors.cLight} />
+          <Edit
+            color={isDark ? colors.bDark : colors.cLight}
+            size={isMobile ? 18 : 24}
+          />
         </Button>
         <Button
           onClick={() => handleDone(task.id)}
           size={"lg"}
-          className="px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg"
+          className="px-2 sm:px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg"
         >
           <CheckIcon
-            sx={{ color: isDark ? colors.cDark : colors.bLight, fontSize: 30 }}
+            sx={{
+              color: isDark ? colors.cDark : colors.bLight,
+              fontSize: isMobile ? 20 : 30,
+            }}
           />
         </Button>
       </div>

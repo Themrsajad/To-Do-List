@@ -19,7 +19,7 @@ export function DatePickerDemo() {
         <Button
           size={"lg"}
           variant={"mobile"}
-          className={`font-[Quicksand] px-4 sm:mr-2 rtl:ml-2 text-sm sm:text-base size-12 sm:h-full sm:w-auto ${
+          className={`font-[Quicksand] px-4 sm:mr-2 rtl:sm:ml-2 text-sm sm:text-base size-12 sm:h-full sm:w-auto ${
             deadlineDate && "w-[8rem] sm:w-[9.7rem] bg-aLight dark:bg-aDark"
           }`}
         >
