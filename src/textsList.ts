@@ -99,6 +99,10 @@ export const textsList = {
     en: "Show All",
     fa: "همه",
   },
+  filter_filter: {
+    en: "Filter",
+    fa: "فیلتر",
+  },
   sort_sortBy: {
     en: "Sort By : ",
     fa: "مرتب سازی براساس : ",

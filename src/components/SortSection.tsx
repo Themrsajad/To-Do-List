@@ -8,8 +8,10 @@ import { Button } from "./ui/button";
 export default function SortSection() {
   const { isAscending, setIsAscending, isEnglish } = useZState();
   return (
-    <div className="flex items-center gap-x-2 *:py-2 *:px-3 *:rounded-lg *:shadow-xs *:hover:brightness-95 *:outline-hidden no-select">
-      {Texts(textsList.sort_sortBy, isEnglish)}
+    <div className="flex items-center gap-x-2 *:py-2 *:px-3 *:rounded-lg *:shadow-xs *:outline-hidden no-select">
+      <span className="shadow-none! p-0! hidden sm:block">
+        {Texts(textsList.sort_sortBy, isEnglish)}
+      </span>
       <SortByDropdown />
       <Button
         variant={"secondary"}

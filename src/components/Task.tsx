@@ -71,44 +71,41 @@ export default function Task({ task }: { task: TaskType }) {
           haveTags && "h-18 sm:h-24"
         )}
       >
-        <div
-          className={cn(
-            "flex flex-col h-full flex-1 rounded-lg min-w-0",
-            haveTags && "shadow-sm dark:shadow-md"
-          )}
-        >
+        <div className="flex flex-col h-full flex-1 rounded-lg min-w-0">
           <div
             className={`TEXTPART h-11 sm:h-16 flex items-center justify-between px-2 sm:px-3 bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark text-base sm:text-lg font-medium indent-1 rounded-tr-sm rounded-tl-lg shadow-sm no-select ${
               !haveTags && "rounded-bl-lg rounded-br-sm"
             } ${haveTags && "rounded-b-none"}`}
           >
-            <div className="fa flex items-center gap-x-2 sm:gap-x-4 font-semibold rtl:font-medium">
-              {task.todo}
-              {task.priority > 0 && (
-                <span className="flex flex-row justify-center items-center text-xs sm:text-sm px-1 sm:px-2 py-1 text-dLight dark:text-bDark bg-bLight dark:bg-cDark rounded-lg">
-                  <RecordCircle
-                    variant="Bold"
-                    size={16}
-                    color={
-                      task.priority == 1
-                        ? "#2196f3"
-                        : task.priority == 2
-                        ? "#ff9800"
-                        : task.priority == 3
-                        ? colors.red
-                        : isDark
-                        ? colors.bDark
-                        : colors.cLight
-                    }
-                  />
-                  <span className="fa">
-                    {priorityNumToStr(task.priority, isEnglish)}
+            <ScrollArea>
+              <div className="fa flex items-center gap-x-2 sm:gap-x-4 font-semibold rtl:font-medium text-nowrap">
+                {task.todo}
+                {task.priority > 0 && (
+                  <span className="flex justify-center items-center text-xs sm:text-sm px-1 sm:px-2 py-1 text-dLight dark:text-bDark bg-bLight dark:bg-cDark rounded-lg">
+                    <RecordCircle
+                      variant="Bold"
+                      size={16}
+                      color={
+                        task.priority == 1
+                          ? "#2196f3"
+                          : task.priority == 2
+                          ? "#ff9800"
+                          : task.priority == 3
+                          ? colors.red
+                          : isDark
+                          ? colors.bDark
+                          : colors.cLight
+                      }
+                    />
+                    <span className="fa hidden min-[367px]:block">
+                      {priorityNumToStr(task.priority, isEnglish)}
+                    </span>
                   </span>
-                </span>
-              )}
-            </div>
+                )}
+              </div>
+            </ScrollArea>
             {task.deadlineDate && (
-              <span className="bg-bLight dark:bg-cDark text-red rounded-md px-2 py-1 text-sm ltr:font-semibold rtl:font-medium">
+              <span className="bg-bLight dark:bg-cDark text-red rounded-md py-1 text-xs sm:text-sm px-0.5 sm:px-2 ltr:font-semibold rtl:font-medium text-nowrap">
                 {DaysLeft == 0 &&
                 format(task.deadlineDate, "P") != format(today, "P")
                   ? Texts(textsList.task_tomorrow, isEnglish)

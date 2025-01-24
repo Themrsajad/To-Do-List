@@ -58,6 +58,10 @@ export default function Home() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="tasks">
+            <div className="flex items-center gap-x-2 gap-y-2 py-2 flex-wrap">
+              <FilterByTag />
+              <SortSection />
+            </div>
             <TasksSection />
           </TabsContent>
           <TabsContent value="completed">

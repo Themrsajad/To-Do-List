@@ -15,8 +15,14 @@ import { useEffect } from "react";
 import { Button } from "./ui/button";
 
 export function FilterByCategoryDropdown() {
-  const { tasks, filteredBy, setFilteredBy, setFilteredTasks, isEnglish } =
-    useZState();
+  const {
+    tasks,
+    filteredBy,
+    setFilteredBy,
+    setFilteredTasks,
+    isEnglish,
+    isMobile,
+  } = useZState();
 
   useEffect(() => {
     handleFilterByCategory(filteredBy);
@@ -41,7 +47,11 @@ export function FilterByCategoryDropdown() {
         <Button variant={"secondary"}>
           <Filter size={16} />
           {filteredBy || (
-            <span>{Texts(textsList.filter_select, isEnglish)}</span>
+            <span>
+              {isMobile
+                ? Texts(textsList.filter_filter, isEnglish)
+                : Texts(textsList.filter_select, isEnglish)}
+            </span>
           )}
         </Button>
       </DropdownMenuTrigger>

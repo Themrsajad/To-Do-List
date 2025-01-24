@@ -6,6 +6,7 @@ import { Trash2 } from "lucide-react";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
 import { Button } from "./ui/button";
+import { ScrollArea } from "./ui/scroll-area";
 
 export default function CompletedTask({ task }: { task: TaskType }) {
   const {
@@ -15,6 +16,7 @@ export default function CompletedTask({ task }: { task: TaskType }) {
     completedTasks,
     isEnglish,
     isDark,
+    isMobile,
   } = useZState();
 
   function handleRevert(id: string) {
@@ -38,25 +40,33 @@ export default function CompletedTask({ task }: { task: TaskType }) {
   }
 
   return (
-    <div className="w-[95vw] mx-auto my-4 flex items-center gap-x-2 h-16 font-semibold rtl:font-medium">
-      <div className="h-full flex items-center flex-1 px-4 text-lg bg-dLight/10 text-dLight/50 dark:bg-bDark/10 dark:text-bDark/50 ltr:rounded-r-sm rtl:rounded-l-sm ltr:rounded-l-lg rtl:rounded-r-lg no-select">
-        <span className="fa">{task.todo}</span>
-      </div>
+    <div className="w-full sm:w-[95vw] sm:mx-auto my-2 sm:my-4 flex items-center gap-x-2 h-10 sm:h-16 font-semibold rtl:font-medium">
+      <ScrollArea className="h-full flex-1">
+        <div className="h-10 flex items-center px-3 sm:px-4 text-base sm:text-lg bg-dLight/10 text-dLight/50 dark:bg-bDark/10 dark:text-bDark/50 ltr:rounded-r-sm rtl:rounded-l-sm ltr:rounded-l-lg rtl:rounded-r-lg text-nowrap no-select">
+          <span className="fa">{task.todo}</span>
+        </div>
+      </ScrollArea>
       <Button
         onClick={() => handleRemove(task.id)}
         variant={"red"}
         size={"lg"}
-        className="px-4 rounded-sm"
+        className="px-2 sm:px-4 rounded-sm"
       >
-        <Trash2 color={isDark ? colors.bDark : colors.cLight} />
+        <Trash2
+          size={isMobile ? 18 : 24}
+          color={isDark ? colors.bDark : colors.bLight}
+        />
       </Button>
       <Button
         onClick={() => handleRevert(task.id)}
         size={"lg"}
-        className="px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg"
+        className="px-2 sm:px-4 text-xs sm:text-lg ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg"
       >
         <span>{Texts(textsList.completedPage_revert, isEnglish)}</span>
-        <ArrowForward size={16} className="rotate-180 rtl:scale-x-[-1]" />
+        <ArrowForward
+          size={isMobile ? 16 : 24}
+          className="rotate-180 rtl:scale-x-[-1]"
+        />
       </Button>
     </div>
   );
