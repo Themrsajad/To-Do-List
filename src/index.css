@@ -34,8 +34,7 @@
 @layer utilities {
   @font-face {
     font-family: "Yekan-Bakh";
-    src: local("YekanBakh-Medium"),
-      url("YekanBakh-Medium.woff2") format("woff2");
+    src: url("fonts/YekanBakh-Medium.woff2") format("woff2");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -43,7 +42,7 @@
 
   @font-face {
     font-family: "Yekan-Bakh";
-    src: local("YekanBakh-Heavy"), url("YekanBakh-Heavy.woff2") format("woff2");
+    src: url("fonts/YekanBakh-Heavy.woff2") format("woff2");
     font-weight: 900;
     font-style: normal;
     font-display: swap;

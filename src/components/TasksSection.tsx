@@ -8,7 +8,7 @@ export default function TasksSection() {
   const isFiltered = filteredTasks.length > 0 ? filteredTasks : tasks;
 
   return (
-    <div className="flex flex-col ltr:clear-right rtl:clear-left w-full">
+    <div className="flex flex-col gap-y-4 ltr:clear-right rtl:clear-left w-full my-2">
       {isFiltered.map((task, i) =>
         task.isEditing ? (
           <EditForm key={i} task={task} />

@@ -16,7 +16,6 @@ import { textsList } from "@/textsList";
 import { DropdownMenuCheckboxes } from "./ui/dropdown-menu-multiple";
 import colors from "../../colors";
 import { v4 } from "uuid";
-import { ScrollArea } from "./ui/scroll-area";
 import { cn } from "@/lib/utils";
 v4();
 
@@ -78,7 +77,7 @@ export default function MobileCategoryDrawer() {
           </span>
         </div>
       </DrawerTrigger>
-      <DrawerContent className="px-6 bg-cLight dark:bg-aDark30 text-dLight dark:text-bDark">
+      <DrawerContent className="h-fit px-6 bg-cLight dark:bg-aDark30 text-dLight dark:text-bDark">
         <DrawerHeader>
           <DrawerTitle>
             {Texts(textsList.form_categoryTitleMobile, isEnglish)}
@@ -88,7 +87,7 @@ export default function MobileCategoryDrawer() {
           </DrawerDescription>
         </DrawerHeader>
 
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 h-fit">
           <form
             onSubmit={handleAddTags}
             className="flex items-center gap-4 h-10 mt-4"
@@ -115,9 +114,9 @@ export default function MobileCategoryDrawer() {
             </div>
             {tagsList.length > 0 && <DropdownMenuCheckboxes />}
           </form>
-          <div className="flex items-center w-full pb-2">
+          <div className="flex items-center w-full pb-2 h-fit">
             {checkedTags.length > 0 || tags.length > 0 ? (
-              <span className="text-dLight dark:text-bDark font-medium text-sm no-select text-nowrap pr-2">
+              <span className="text-dLight dark:text-bDark font-medium text-sm no-select text-nowrap ltr:pr-2 rtl:pl-2">
                 {Texts(textsList.form_categoryCategories, isEnglish)}
               </span>
             ) : (
@@ -125,54 +124,52 @@ export default function MobileCategoryDrawer() {
                 {Texts(textsList.form_categoryNoCategoryMobile, isEnglish)}
               </span>
             )}
-            <ScrollArea className="min-h-9">
-              <div className="flex items-center gap-x-4">
-                {checkedTags.map((tagg, i) => (
-                  <span
-                    key={i}
-                    className="flex size-fit items-center gap-x-2 text-sm bg-aLight/20 dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-sm outline-hidden no-select text-nowrap"
+            <div className="flex flex-row items-center flex-wrap gap-4 w-full h-fit">
+              {checkedTags.map((tagg, i) => (
+                <span
+                  key={i}
+                  className="flex size-fit items-center gap-2 text-sm bg-aLight/20 dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-sm outline-hidden no-select text-wrap"
+                >
+                  <Button
+                    onClick={() =>
+                      setCheckedTags(
+                        checkedTags.filter((tag) => tag.id !== tagg.id)
+                      )
+                    }
+                    size={"lg"}
+                    className="rounded-full"
                   >
-                    <Button
-                      onClick={() =>
-                        setCheckedTags(
-                          checkedTags.filter((tag) => tag.id !== tagg.id)
-                        )
-                      }
-                      size={"lg"}
-                      className="rounded-full"
-                    >
-                      <Add
-                        size={16}
-                        color={isDark ? colors.cDark : colors.bLight}
-                        className="rotate-45"
-                      />
-                    </Button>
-                    {tagg.tag}
-                  </span>
-                ))}
-                {tags.map((tagg, i) => (
-                  <span
-                    key={i}
-                    className="flex size-fit items-center gap-x-2 text-sm bg-aLight/20 dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-xs outline-hidden no-select text-nowrap"
+                    <Add
+                      size={16}
+                      color={isDark ? colors.cDark : colors.bLight}
+                      className="rotate-45"
+                    />
+                  </Button>
+                  {tagg.tag}
+                </span>
+              ))}
+              {tags.map((tagg, i) => (
+                <span
+                  key={i}
+                  className="flex size-fit items-center gap-x-2 text-sm bg-aLight/20 dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium px-2 py-2 bg-white/50 rounded-lg shadow-xs outline-hidden no-select text-nowrap"
+                >
+                  <Button
+                    onClick={() =>
+                      setTags(tags.filter((tag) => tag.id !== tagg.id))
+                    }
+                    size={"lg"}
+                    className="rounded-full"
                   >
-                    <Button
-                      onClick={() =>
-                        setTags(tags.filter((tag) => tag.id !== tagg.id))
-                      }
-                      size={"lg"}
-                      className="rounded-full"
-                    >
-                      <Add
-                        size={16}
-                        color={isDark ? colors.cDark : colors.bLight}
-                        className="rotate-45"
-                      />
-                    </Button>
-                    {tagg.tag}
-                  </span>
-                ))}
-              </div>
-            </ScrollArea>
+                    <Add
+                      size={16}
+                      color={isDark ? colors.cDark : colors.bLight}
+                      className="rotate-45"
+                    />
+                  </Button>
+                  {tagg.tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
         <DrawerFooter className="py-4 px-0">

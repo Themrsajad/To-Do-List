@@ -3,13 +3,11 @@ import { useZState } from "../states";
 import { Edit, Hashtag, RecordCircle } from "iconsax-react";
 import { priorityNumToStr, TaskType } from "@/types";
 import { differenceInDays, format } from "date-fns";
-import { cn } from "@/lib/utils";
 import colors from "../../colors";
 import { useEffect } from "react";
 import { Texts } from "@/texts";
 import { textsList } from "@/textsList";
 import { Button } from "./ui/button";
-import { ScrollArea } from "./ui/scroll-area";
 
 export default function Task({ task }: { task: TaskType }) {
   const {
@@ -64,48 +62,45 @@ export default function Task({ task }: { task: TaskType }) {
   const haveTags = task.tags.length > 0;
 
   return (
-    <div className="my-2 sm:my-4 w-full">
+    <div className="w-full">
       <div
-        className={cn(
-          "EACHTASK flex items-center h-10 sm:h-16 w-full gap-x-2",
-          haveTags && "h-18 sm:h-24"
-        )}
+        dir={isEnglish ? "ltr" : "rtl"}
+        className="EACHTASK grid grid-cols-9 lg:grid-cols-22 justify-items-stretch h-fit w-full gap-x-1 sm:gap-x-2"
       >
-        <div className="flex flex-col h-full flex-1 rounded-lg min-w-0">
+        <div className="col-span-7 lg:col-span-20 flex flex-col h-fit rounded-lg min-w-0">
           <div
-            className={`TEXTPART h-11 sm:h-16 flex items-center justify-between px-2 sm:px-3 bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark text-base sm:text-lg font-medium indent-1 rounded-tr-sm rounded-tl-lg shadow-sm no-select ${
-              !haveTags && "rounded-bl-lg rounded-br-sm"
+            className={`TEXTPART min-h-11 h-fit sm:min-h-16 flex items-center justify-between px-2 sm:px-3 bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark text-base sm:text-lg font-medium indent-1 ltr:rounded-tr-sm rtl:rounded-tr-lg ltr:rounded-tl-lg rtl:rounded-tl-sm shadow-sm no-select ${
+              !haveTags &&
+              "ltr:rounded-bl-lg rtl:rounded-bl-sm ltr:rounded-br-sm rtl:rounded-br-lg"
             } ${haveTags && "rounded-b-none"}`}
           >
-            <ScrollArea>
-              <div className="fa flex items-center gap-x-2 sm:gap-x-4 font-semibold rtl:font-medium text-nowrap">
-                {task.todo}
-                {task.priority > 0 && (
-                  <span className="flex justify-center items-center text-xs sm:text-sm px-1 sm:px-2 py-1 text-dLight dark:text-bDark bg-bLight dark:bg-cDark rounded-lg">
-                    <RecordCircle
-                      variant="Bold"
-                      size={16}
-                      color={
-                        task.priority == 1
-                          ? "#2196f3"
-                          : task.priority == 2
-                          ? "#ff9800"
-                          : task.priority == 3
-                          ? colors.red
-                          : isDark
-                          ? colors.bDark
-                          : colors.cLight
-                      }
-                    />
-                    <span className="fa hidden min-[367px]:block">
-                      {priorityNumToStr(task.priority, isEnglish)}
-                    </span>
+            <div className="flex flex-col items-start py-4 gap-y-2 font-semibold rtl:font-medium ltr:text-left rtl:text-right h-fit">
+              {task.todo}
+              {task.priority > 0 && (
+                <span className="flex justify-center items-center text-[0.7rem] sm:text-sm px-1 sm:px-2 py-1 text-dLight dark:text-bDark bg-bLight dark:bg-cDark rounded-lg">
+                  <RecordCircle
+                    variant="Bold"
+                    size={16}
+                    color={
+                      task.priority == 1
+                        ? "#2196f3"
+                        : task.priority == 2
+                        ? "#ff9800"
+                        : task.priority == 3
+                        ? colors.red
+                        : isDark
+                        ? colors.bDark
+                        : colors.cLight
+                    }
+                  />
+                  <span className="hidden min-[367px]:block">
+                    {priorityNumToStr(task.priority, isEnglish)}
                   </span>
-                )}
-              </div>
-            </ScrollArea>
+                </span>
+              )}
+            </div>
             {task.deadlineDate && (
-              <span className="bg-bLight dark:bg-cDark text-red rounded-md py-1 text-xs sm:text-sm px-0.5 sm:px-2 ltr:font-semibold rtl:font-medium text-nowrap">
+              <span className="bg-bLight dark:bg-cDark text-red rounded-md py-1 text-[0.7rem] sm:text-sm px-1 sm:px-2 ltr:font-semibold rtl:font-medium text-nowrap">
                 {DaysLeft == 0 &&
                 format(task.deadlineDate, "P") != format(today, "P")
                   ? Texts(textsList.task_tomorrow, isEnglish)
@@ -119,30 +114,28 @@ export default function Task({ task }: { task: TaskType }) {
               </span>
             )}
           </div>
-          <ScrollArea>
-            {haveTags && (
-              <div className="flex items-center bg-aLight/30 dark:bg-aDark/15 font-medium px-2 sm:px-3 gap-x-2 sm:gap-x-4 h-7 sm:h-10 text-[0.8rem] rounded-bl-lg rounded-br-sm ">
-                {task.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="flex items-center gap-x-1 bg-cLight dark:bg-cDark text-dLight dark:text-bDark px-1 sm:px-2 py-0 sm:py-0.5 rounded-lg no-select"
-                  >
-                    <Hashtag
-                      size={isMobile ? 12 : 14}
-                      color={isDark ? colors.bDark : colors.dLight}
-                    />
-                    <span className="fa">{tag.tag}</span>
-                  </span>
-                ))}
-              </div>
-            )}
-          </ScrollArea>
+          {haveTags && (
+            <div className="flex items-center flex-wrap bg-aLight/30 dark:bg-aDark/15 font-medium p-2 sm:p-3 gap-2 sm:gap-4 h-fit text-[0.7rem] sm:text-[0.8rem] ltr:rounded-bl-lg rtl:rounded-bl-sm ltr:rounded-br-sm rtl:rounded-br-lg">
+              {task.tags.map((tag, i) => (
+                <span
+                  key={i}
+                  className="flex items-center gap-x-1 bg-cLight dark:bg-cDark text-dLight dark:text-bDark px-1 sm:px-2 py-1 rounded-lg no-select"
+                >
+                  <Hashtag
+                    size={isMobile ? 12 : 14}
+                    color={isDark ? colors.bDark : colors.dLight}
+                  />
+                  <span>{tag.tag}</span>
+                </span>
+              ))}
+            </div>
+          )}
         </div>
         <Button
           onClick={() => handleEditInTask(task.id)}
           variant={"secondary"}
           size={"lg"}
-          className="px-2 sm:px-4 flex-none rounded-sm"
+          className="px-2 sm:px-4 flex-none rounded-sm col-span-1"
         >
           <Edit
             color={isDark ? colors.bDark : colors.cLight}
@@ -152,7 +145,7 @@ export default function Task({ task }: { task: TaskType }) {
         <Button
           onClick={() => handleDone(task.id)}
           size={"lg"}
-          className="px-2 sm:px-4 ltr:rounded-r-lg rtl:rounded-r-sm ltr:rounded-l-sm rtl:rounded-l-lg"
+          className="col-span-1 px-2 sm:px-4 ltr:rounded-r-lg ltr:rounded-l-sm rtl:rounded-r-sm rtl:rounded-l-lg"
         >
           <CheckIcon
             sx={{

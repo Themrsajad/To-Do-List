@@ -7,7 +7,7 @@ export default function CompletedTasksSection() {
   const { completedTasks, isEnglish } = useZState();
 
   return completedTasks.length > 0 ? (
-    <div className="flex flex-col">
+    <div className="flex flex-col my-2 gap-y-4 w-full">
       {completedTasks.map((task, i) => (
         <CompletedTask task={task} key={i} />
       ))}
