@@ -1,4 +1,5 @@
 # To-Do List App
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c7e3306d-96f1-4f05-8768-f8cc257f4f7e/deploy-status)](https://app.netlify.com/projects/beautiful-to-do-list/deploys)
 
 A simple, powerful and fully responsive app to organize your tasks and stay productive, offering a great UI/UX for a seamless experience on all devices.
 
