@@ -2,15 +2,51 @@ import CheckIcon from "@mui/icons-material/Check";
 import { useZState } from "../states";
 import { Edit, Hashtag, RecordCircle } from "iconsax-react";
 import { priorityNumToStr, TaskType } from "@/types";
-import { colors } from "@/App";
 import { differenceInDays, format } from "date-fns";
-import { cn } from "@/lib/utils";
+import colors from "../../colors";
+import { useEffect } from "react";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
+import { Button } from "./ui/button";
 
 export default function Task({ task }: { task: TaskType }) {
-  const { tasks, setTasks } = useZState();
+  const {
+    tasks,
+    setTasks,
+    setCompletedTasks,
+    completedTasks,
+    setTagsList,
+    tagsList,
+    isEnglish,
+    isDark,
+    isMobile,
+  } = useZState();
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function handleDone(id: string) {
     setTasks(tasks.filter((task) => task.id !== id));
+    setCompletedTasks([
+      ...completedTasks,
+      {
+        id: id,
+        todo: task.todo,
+        priority: task.priority,
+        tags: task.tags,
+        deadlineDate: task.deadlineDate,
+        dateAdded: new Date(),
+        isEditing: false,
+      },
+    ]);
+    setTagsList(
+      tagsList.filter((tag) =>
+        tasks.some(
+          (task) => task.id !== id && task.tags.some((t) => t.tag === tag.tag)
+        )
+      )
+    );
   }
 
   function handleEditInTask(id: string) {
@@ -26,20 +62,22 @@ export default function Task({ task }: { task: TaskType }) {
   const haveTags = task.tags.length > 0;
   //ab
   return (
-    <div className="my-4">
+    <div className="w-full">
       <div
-        className={cn("EACHTASK flex items-center h-16", haveTags && "h-24")}
+        dir={isEnglish ? "ltr" : "rtl"}
+        className="EACHTASK grid grid-cols-9 lg:grid-cols-22 justify-items-stretch h-fit w-full gap-x-1 sm:gap-x-2"
       >
-        <div className="flex flex-col h-full mr-2 flex-1">
+        <div className="col-span-7 lg:col-span-20 flex flex-col h-fit rounded-lg min-w-0">
           <div
-            className={`TEXTPART h-16 flex items-center justify-between px-3 w-full bg-c text-lg font-medium text-d indent-1 rounded-tr-sm rounded-tl-lg ${
-              !haveTags && "rounded-bl-lg rounded-br-sm"
-            } ${haveTags && "rounded-b-none"} no-select`}
+            className={`TEXTPART min-h-11 h-fit sm:min-h-16 flex items-center justify-between px-2 sm:px-3 bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark text-base sm:text-lg font-medium indent-1 ltr:rounded-tr-sm rtl:rounded-tr-lg ltr:rounded-tl-lg rtl:rounded-tl-sm shadow-sm no-select ${
+              !haveTags &&
+              "ltr:rounded-bl-lg rtl:rounded-bl-sm ltr:rounded-br-sm rtl:rounded-br-lg"
+            } ${haveTags && "rounded-b-none"}`}
           >
-            <div className="flex items-center gap-x-4 font-semibold">
+            <div className="flex flex-col items-start py-4 gap-y-2 font-semibold rtl:font-medium ltr:text-left rtl:text-right h-fit">
               {task.todo}
               {task.priority > 0 && (
-                <span className="flex flex-row justify-center items-center text-sm p-1 bg-b rounded-lg">
+                <span className="flex justify-center items-center text-[0.7rem] sm:text-sm px-1 sm:px-2 py-1 text-dLight dark:text-bDark bg-bLight dark:bg-cDark rounded-lg">
                   <RecordCircle
                     variant="Bold"
                     size={16}
@@ -50,54 +88,72 @@ export default function Task({ task }: { task: TaskType }) {
                         ? "#ff9800"
                         : task.priority == 3
                         ? colors.red
-                        : colors.d
+                        : isDark
+                        ? colors.bDark
+                        : colors.cLight
                     }
                   />
-                  {priorityNumToStr(task.priority)}
+                  <span className="hidden min-[367px]:block">
+                    {priorityNumToStr(task.priority, isEnglish)}
+                  </span>
                 </span>
               )}
             </div>
             {task.deadlineDate && (
-              <span className="bg-red text-white rounded-md px-2 py-1 text-sm">
+              <span className="bg-bLight dark:bg-cDark text-red rounded-md py-1 text-[0.7rem] sm:text-sm px-1 sm:px-2 ltr:font-semibold rtl:font-medium text-nowrap">
                 {DaysLeft == 0 &&
                 format(task.deadlineDate, "P") != format(today, "P")
-                  ? "Tomorrow"
+                  ? Texts(textsList.task_tomorrow, isEnglish)
                   : format(task.deadlineDate, "P") == format(today, "P")
-                  ? "Today"
+                  ? Texts(textsList.task_today, isEnglish)
                   : DaysLeft == 1
-                  ? DaysLeft + " Day left"
+                  ? DaysLeft + Texts(textsList.task_dayleft, isEnglish)
                   : DaysLeft < 0
-                  ? "it's past"
-                  : DaysLeft + " Days left"}
+                  ? Texts(textsList.task_past, isEnglish)
+                  : DaysLeft + Texts(textsList.task_daysleft, isEnglish)}
               </span>
             )}
           </div>
           {haveTags && (
-            <div className="flex items-center text-d font-medium px-3 gap-x-4 h-10 bg-white/40 text-[0.8rem] rounded-bl-lg rounded-br-sm">
+            <div className="flex items-center flex-wrap bg-aLight/30 dark:bg-aDark/15 font-medium p-2 sm:p-3 gap-2 sm:gap-4 h-fit text-[0.7rem] sm:text-[0.8rem] ltr:rounded-bl-lg rtl:rounded-bl-sm ltr:rounded-br-sm rtl:rounded-br-lg">
               {task.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="flex items-center bg-white px-2 py-0.5 rounded-lg"
+                  className="flex items-center gap-x-1 bg-cLight dark:bg-cDark text-dLight dark:text-bDark px-1 sm:px-2 py-1 rounded-lg no-select"
                 >
-                  <Hashtag size={14} />
+                  <Hashtag
+                    size={isMobile ? 12 : 14}
+                    color={isDark ? colors.bDark : colors.dLight}
+                  />
                   <span>{tag.tag}</span>
                 </span>
               ))}
             </div>
           )}
         </div>
-        <button
+        <Button
           onClick={() => handleEditInTask(task.id)}
-          className="EDIT h-full bg-c px-4 mr-2 flex-none rounded-sm"
+          variant={"secondary"}
+          size={"lg"}
+          className="px-2 sm:px-4 flex-none rounded-sm col-span-1"
         >
-          <Edit color={colors.d} />
-        </button>
-        <button
+          <Edit
+            color={isDark ? colors.bDark : colors.cLight}
+            size={isMobile ? 18 : 24}
+          />
+        </Button>
+        <Button
           onClick={() => handleDone(task.id)}
-          className="DONE h-full bg-d px-4 rounded-r-lg rounded-l-sm"
+          size={"lg"}
+          className="col-span-1 px-2 sm:px-4 ltr:rounded-r-lg ltr:rounded-l-sm rtl:rounded-r-sm rtl:rounded-l-lg"
         >
-          <CheckIcon sx={{ color: colors.b, fontSize: 30 }} />
-        </button>
+          <CheckIcon
+            sx={{
+              color: isDark ? colors.cDark : colors.bLight,
+              fontSize: isMobile ? 20 : 30,
+            }}
+          />
+        </Button>
       </div>
     </div>
   );

@@ -1,11 +1,22 @@
-import CheckIcon from "@mui/icons-material/Check";
 import { useZState } from "../states";
 import { v4 } from "uuid";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
+import colors from "../../colors";
+import { Button } from "./ui/button";
+import { Add } from "iconsax-react";
 v4();
 
 export default function InputTag() {
-  const { setMoveTag, tags, setTags, tagInputValue, setTagInputValue } =
-    useZState();
+  const {
+    setMoveTag,
+    tags,
+    setTags,
+    tagInputValue,
+    setTagInputValue,
+    isEnglish,
+    isDark,
+  } = useZState();
 
   function handleAddTags(e: any) {
     e.preventDefault();
@@ -25,19 +36,22 @@ export default function InputTag() {
         <input
           value={tagInputValue}
           onChange={(e) => setTagInputValue(e.target.value)}
-          placeholder="School"
-          className="bg-c w-full h-full placeholder-b text-d text-sm font-medium rounded-lg outline-none shadow-sm focus:ring-1 ring-inset ring-d indent-3"
+          placeholder={Texts(
+            textsList.form_categoryinputPlaceholder,
+            isEnglish
+          )}
+          className="bg-cLight dark:bg-aDark/30 placeholder-dLight/30 dark:placeholder-bDark/30 text-dLight dark:text-bDark w-full h-full text-sm font-medium rounded-lg outline-hidden focus:ring-1 ring-inset ring-dLight dark:ring-aDark indent-3"
           type="text"
           autoFocus
         />
       </div>
-      <button
+      <Button
         type="submit"
         onClick={(e) => handleAddTags(e)}
-        className="DONE absolute bg-d h-full px-1 rounded-r-lg right-0 text-lg z-30 flex items-center"
+        className="absolute h-full w-8 ltr:rounded-r-lg ltr:rounded-l-none rtl:rounded-l-lg rtl:rounded-r-none ltr:right-0 rtl:left-0 z-30"
       >
-        <CheckIcon className="text-b" />
-      </button>
+        <Add color={isDark ? colors.cDark : colors.cLight} size={18} />
+      </Button>
     </form>
   );
 }

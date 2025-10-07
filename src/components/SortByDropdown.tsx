@@ -6,12 +6,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useZState } from "@/states";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
 import { compareAsc, compareDesc } from "date-fns";
 import { ArrangeVertical } from "iconsax-react";
 import { useEffect } from "react";
+import { Button } from "./ui/button";
 
 export function SortByDropdown() {
-  const { sortBy, setSortBy, tasks, setTasks, isAscending } = useZState();
+  const { sortBy, setSortBy, tasks, setTasks, isAscending, isEnglish } =
+    useZState();
 
   useEffect(() => {
     handleSortBy(isAscending);
@@ -50,25 +54,33 @@ export function SortByDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-x-2">
+        <Button variant={"secondary"}>
           <ArrangeVertical size={16} />
-          {sortBy}
-        </button>
+          <span>
+            {sortBy == "Date Added"
+              ? Texts(textsList.sort_dateAdded, isEnglish)
+              : sortBy == "Priority"
+              ? Texts(textsList.sort_priority, isEnglish)
+              : sortBy == "Remaining Time"
+              ? Texts(textsList.sort_remainingTime, isEnglish)
+              : ""}
+          </span>
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-c text-d font-semibold border-0">
+      <DropdownMenuContent className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark font-semibold rtl:font-medium border-0">
         <DropdownMenuRadioGroup
           value={sortBy}
           onValueChange={setSortBy}
-          className="*:pl-8 *:p-2 *:m-1"
+          className="*:pl-8 *:p-2 *:m-1 "
         >
           <DropdownMenuRadioItem value="Date Added">
-            Date Added
+            {Texts(textsList.sort_dateAdded, isEnglish)}
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="Priority">
-            Priority
+            {Texts(textsList.sort_priority, isEnglish)}
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="Remaining Time">
-            Remaining Time
+            {Texts(textsList.sort_remainingTime, isEnglish)}
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

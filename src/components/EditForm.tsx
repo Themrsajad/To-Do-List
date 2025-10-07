@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { useZState } from "../states";
-import { Add } from "iconsax-react";
 import { TaskType } from "@/types";
+import { Texts } from "@/texts";
+import { textsList } from "@/textsList";
+import { Button } from "./ui/button";
+import colors from "../../colors";
+import CheckIcon from "@mui/icons-material/Check";
 
 export default function EditForm({ task }: { task: TaskType }) {
-  const { tasks, setTasks, setPriority } = useZState();
+  const { tasks, setTasks, setPriority, isEnglish, isDark, isMobile } =
+    useZState();
 
   const [value, setValue] = useState(task.todo);
 
@@ -28,26 +33,32 @@ export default function EditForm({ task }: { task: TaskType }) {
     <>
       <form
         onSubmit={handleSubmit}
-        className="FORM flex flex-nowrap justify-center items-center h-12 my-2 font-medium"
+        className="FORM flex flex-nowrap justify-center items-center gap-x-2 h-10 sm:h-16 my-2 sm:my-4 font-semibold rtl:font-medium"
       >
-        <div className="INPUT&FLAG flex-nowrap mr-2 flex flex-1 items-center relative h-full">
+        <div className="INPUT&FLAG flex-nowrap flex flex-1 items-center relative h-full">
           <input
             autoFocus
             value={value}
             onChange={(e) => setValue(e.target.value)}
             type="text"
-            placeholder="Update Task..."
-            className="bg-c h-full placeholder-b text-d text-lg px-3 pl-3w-full flex-1 rounded-r-lg indent-1 outline-none shadow-sm rounded-l-lg focus:ring-1 ring-inset ring-d"
+            placeholder={Texts(textsList.task_updatePlaceholder, isEnglish)}
+            className="bg-cLight dark:bg-aDark/30 text-dLight dark:text-bDark h-full placeholder-dLight/30 dark:placeholder-bDark/30 text-base sm:text-lg px-2 sm:px-3 flex-1 rounded-r-lg indent-1 outline-hidden shadow-xs rounded-l-lg focus:ring-1 ring-inset ring-aLight dark:ring-aDark"
           />
         </div>
-        <button
+        <Button
           type="submit"
           onClick={() => handleSubmit}
-          className="UPDATETASK h-full bg-d px-3 text-lg rounded-lg text-b flex-none shadow-sm font-semibold flex items-center "
+          size={"lg"}
+          className="px-2 sm:px-3 text-base sm:text-lg"
         >
-          <Add />
-          Update
-        </button>
+          <CheckIcon
+            sx={{
+              color: isDark ? colors.cDark : colors.bLight,
+              fontSize: isMobile ? 20 : 26,
+            }}
+          />
+          <span>{Texts(textsList.task_update, isEnglish)}</span>
+        </Button>
       </form>
     </>
   );

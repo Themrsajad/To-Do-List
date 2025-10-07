@@ -14,6 +14,12 @@ type State = {
   isAscending: boolean;
   filteredTasks: TaskType[];
   filteredBy: string | null;
+  completedTasks: TaskType[];
+  isDark: boolean;
+  tagsList: TagType[];
+  checkedTags: TagType[];
+  isEnglish: boolean;
+  isMobile: boolean;
 };
 
 type Action = {
@@ -28,12 +34,21 @@ type Action = {
   setIsAscending: (bool?: boolean) => void;
   setFilteredTasks: (filtered: TaskType[]) => void;
   setFilteredBy: (filter: string | null) => void;
+  setCompletedTasks: (completed: TaskType[]) => void;
+  setIsDark: () => void;
+  setTagsList: (tagsList: TagType[]) => void;
+  setCheckedTags: (checkeds: TagType[]) => void;
+  setIsEnglish: () => void;
+  setIsMobile: (bool?: boolean) => void;
 };
 
 export const useZState = create<State & Action>((set) => ({
   inputValue: "",
   moveTag: false,
-  tasks: [],
+  tasks: (() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  })(),
   priority: 0,
   tags: [],
   tagInputValue: "",
@@ -42,10 +57,31 @@ export const useZState = create<State & Action>((set) => ({
   isAscending: true,
   filteredTasks: [],
   filteredBy: null,
+  completedTasks: (() => {
+    const savedTasks = localStorage.getItem("completedTasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  })(),
+  isDark: (() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme ? JSON.parse(savedTheme) : false;
+  })(),
+  tagsList: (() => {
+    const savedTags = localStorage.getItem("tags");
+    return savedTags ? JSON.parse(savedTags) : [];
+  })(),
+  checkedTags: [],
+  isEnglish: (() => {
+    const savedLang = localStorage.getItem("lang");
+    return savedLang ? JSON.parse(savedLang) : true;
+  })(),
+  isMobile: window.innerWidth < 640,
   setInputValue: (val) => set(() => ({ inputValue: val })),
   setMoveTag: (bool) =>
     set((s) => ({ moveTag: typeof bool === "boolean" ? bool : !s.moveTag })),
-  setTasks: (arr) => set(() => ({ tasks: arr })),
+  setTasks: (arr) => {
+    set({ tasks: arr });
+    localStorage.setItem("tasks", JSON.stringify(arr));
+  },
   setPriority: (prio) => set(() => ({ priority: prio })),
   setTags: (tags) => set(() => ({ tags: tags })),
   setTagInputValue: (val) => set(() => ({ tagInputValue: val })),
@@ -57,6 +93,34 @@ export const useZState = create<State & Action>((set) => ({
     })),
   setFilteredTasks: (filtered) => set(() => ({ filteredTasks: filtered })),
   setFilteredBy: (filter) => set(() => ({ filteredBy: filter })),
+  setCompletedTasks: (completed) => {
+    set({ completedTasks: completed });
+    localStorage.setItem("completedTasks", JSON.stringify(completed));
+  },
+  setIsDark: () => {
+    set((s) => {
+      const newTheme = !s.isDark;
+      document.documentElement.classList.toggle("dark", newTheme);
+      localStorage.setItem("theme", JSON.stringify(newTheme));
+      return { isDark: newTheme };
+    });
+  },
+  setTagsList: (tagsList) => {
+    set({ tagsList: tagsList });
+    localStorage.setItem("tags", JSON.stringify(tagsList));
+  },
+  setCheckedTags: (checkeds) => set(() => ({ checkedTags: checkeds })),
+  setIsEnglish: () => {
+    set((s) => {
+      const newLang = !s.isEnglish;
+      localStorage.setItem("lang", JSON.stringify(newLang));
+      return { isEnglish: newLang };
+    });
+  },
+  setIsMobile: (bool) =>
+    set((s) => ({
+      isMobile: typeof bool === "boolean" ? bool : !s.isMobile,
+    })),
 }));
 
 if (process.env.NODE_ENV === "development") {

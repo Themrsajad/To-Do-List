@@ -1,53 +1,37 @@
-import Form from "./components/Form.tsx";
-import Logo from "./components/Logo.tsx";
-import Task from "./components/Task.tsx";
-import EditForm from "./components/EditForm.tsx";
-import { useZState } from "./states.ts";
-import { Colors } from "./types.ts";
-import SortSection from "./components/SortSection.tsx";
-import TagSection from "./components/TagSection.tsx";
-import FilterByTag from "./components/FilterByTag.tsx";
-
-export const colors: Colors = {
-  a: "#FFF67E",
-  b: "#BFEA7C",
-  c: "#9BCF53",
-  d: "#416D19",
-  white: "#FFFFFF",
-  red: "#DC3545",
-};
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/pages/Home";
+import Completed from "./components/pages/Completed";
+import { useEffect } from "react";
+import { useZState } from "./states";
 
 export default function App() {
-  const { tasks, filteredTasks } = useZState();
+  const { isEnglish, isDark, setIsMobile } = useZState();
 
-  function isFilterByTagAvailable() {
-    let tagCount = 0;
-    tasks.forEach((task) => (task.tags.length > 0 ? tagCount++ : ""));
-    return tagCount;
-  }
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  
+  useEffect(() => {
+    document.documentElement.dir = isEnglish ? "ltr" : "rtl";
+    document.documentElement.lang = isEnglish ? "en" : "fa";
+  }, [isEnglish]);
 
-  const isFiltered = filteredTasks.length > 0 ? filteredTasks : tasks;
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
+  }, [isDark]);
 
   return (
-    <div className="relative w-[95vw] mx-auto">
-      <Logo />
-      <div className="flex flex-col gap-y-2">
-        <Form />
-        <TagSection />
-      </div>
-      <div className="flex items-center gap-x-10 float-right text-d font-semibold text-sm">
-        {isFilterByTagAvailable() > 0 && <FilterByTag />}
-        {tasks.length > 0 && <SortSection />}
-      </div>
-      <div className="ALLTASKS flex flex-col clear-right">
-        {isFiltered.map((task, i) =>
-          task.isEditing ? (
-            <EditForm key={i} task={task} />
-          ) : (
-            <Task task={task} key={i} />
-          )
-        )}
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/completed" element={<Completed />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

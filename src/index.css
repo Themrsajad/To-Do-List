@@ -1,21 +1,67 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin 'tailwindcss-animate';
+@variant dark (&:is(.dark *));
 
-body {
-  font-family: "Quicksand", system-ui;
-  font-style: normal;
+@theme {
+  --color-*: initial;
+  /* light theme */
+  --color-aLight: #3f72af;
+  --color-bLight: #f9f7f7;
+  --color-cLight: #dbe2ef;
+  --color-dLight: #112d4e;
+  /* dark theme */
+  --color-aDark: #0f4c75;
+  --color-aDark30: #173242;
+  --color-bDark: #bbe1fa;
+  --color-cDark: #1b262c;
+
+  --color-red: #e73c51;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 }
 
-.no-select {
-  user-select: none; /* Standard */
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE 10+ */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-.Dropdown-liClasses {
-  @apply flex items-center gap-x-1.5  hover:bg-d/10 p-2 w-full rounded-lg text-d;
+@layer utilities {
+  @font-face {
+    font-family: "Yekan-Bakh";
+    src: url("fonts/YekanBakh-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Yekan-Bakh";
+    src: url("fonts/YekanBakh-Heavy.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  body {
+    @apply bg-bLight dark:bg-cDark font-[Quicksand] not-italic rtl:font-[Yekan-Bakh];
+  }
+
+  .fa {
+    @apply rtl:-mb-1;
+  }
+
+  .no-select {
+    user-select: none; /* Standard */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE 10+ */
+  }
 }
 
 @layer base {

@@ -7,21 +7,37 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useZState } from "@/states";
+import { Button } from "./button";
+import colors from "../../../colors";
 
 export function DatePickerDemo() {
-  const { deadlineDate, setDeadlineDate } = useZState();
+  const { deadlineDate, setDeadlineDate, isDark } = useZState();
 
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button
-          className={`flex items-center gap-x-2 font-semibold bg-a text-d h-full px-4 rounded-lg shadow-sm hover:brightness-95 mr-2 transition duration-100 ${
-            deadlineDate && "w-[9.7rem]"
+        <Button
+          size={"lg"}
+          variant={"mobile"}
+          className={`font-[Quicksand] px-4 sm:mr-2 rtl:sm:ml-2 text-sm sm:text-base size-12 sm:h-full sm:w-auto ${
+            deadlineDate && "w-[8rem] sm:w-[9.7rem] bg-aLight dark:bg-aDark"
           }`}
         >
-          <CalendarSax />
+          <CalendarSax
+            size={24}
+            variant="Bold"
+            color={
+              deadlineDate
+                ? isDark
+                  ? colors.bDark
+                  : colors.bLight
+                : isDark
+                ? colors.aDark
+                : colors.aLight
+            }
+          />
           {deadlineDate && format(deadlineDate, "P")}
-        </button>
+        </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0 border-0">
         <Calendar
@@ -29,7 +45,7 @@ export function DatePickerDemo() {
           selected={deadlineDate}
           onSelect={setDeadlineDate}
           initialFocus
-          className="bg-c rounded-lg text-d"
+          className="bg-cLight dark:bg-aDark text-dLight dark:text-bDark rounded-lg shadow-md"
         />
       </PopoverContent>
     </Popover>

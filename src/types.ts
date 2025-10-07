@@ -1,9 +1,14 @@
+import { Texts } from "@/texts";
+import { textsList } from "./textsList";
+
 export interface Colors {
-  a: string;
-  b: string;
-  c: string;
-  d: string;
-  white: string;
+  aLight: string;
+  bLight: string;
+  cLight: string;
+  dLight: string;
+  aDark: string;
+  bDark: string;
+  cDark: string;
   red: string;
 }
 
@@ -22,13 +27,18 @@ export interface TagType {
   tag: string;
 }
 
-export function priorityNumToStr(n: number) {
+export interface LanguageText {
+  en: string;
+  fa: string;
+}
+
+export function priorityNumToStr(n: number, isEnglish: boolean) {
   switch (n) {
     case 1:
-      return "Low";
+      return Texts(textsList.form_priorityLow, isEnglish);
     case 2:
-      return "Medium";
+      return Texts(textsList.form_priorityMedium, isEnglish);
     case 3:
-      return "High";
+      return Texts(textsList.form_priorityHigh, isEnglish);
   }
 }
